@@ -629,6 +629,88 @@ body.dark .mock-chip.active { border-color: var(--text-primary); }
 .voice-card h4 { font-size: 16px; font-weight: 700; margin-bottom: 8px; }
 .voice-card p { font-size: 14px; color: var(--text-secondary); line-height: 22px; }
 
+/* ============ ACCESSIBILITY AUDIT ============ */
+.a11y-scorecard {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 12px; margin-bottom: 32px;
+}
+.a11y-score-card {
+  padding: 20px; border-radius: 12px; text-align: center; border: 1px solid var(--divider); background: var(--white);
+}
+.a11y-score-card .score-value { font-size: 28px; font-weight: 700; font-family: monospace; }
+.a11y-score-card .score-label { font-size: 12px; color: var(--text-secondary); margin-top: 4px; text-transform: uppercase; letter-spacing: 0.5px; }
+.a11y-score-card.pass .score-value { color: #16a34a; }
+.a11y-score-card.fail .score-value { color: #dc2626; }
+.a11y-score-card.warn .score-value { color: #d97706; }
+.a11y-score-card.info .score-value { color: var(--text-primary); }
+body.dark .a11y-score-card { background: #1E1E1E; border-color: rgba(255,255,255,0.08); }
+
+.a11y-compliance {
+  display: flex; align-items: center; gap: 16px; padding: 20px 24px; border-radius: 12px;
+  background: linear-gradient(135deg, #FEE3D6, #F9EEC9); margin-bottom: 32px;
+}
+body.dark .a11y-compliance { background: linear-gradient(135deg, rgba(253,90,19,0.15), rgba(251,219,112,0.1)); }
+.a11y-compliance-pct { font-size: 48px; font-weight: 700; color: var(--orange-vivid); font-family: monospace; line-height: 1; }
+.a11y-compliance-text h4 { font-size: 16px; font-weight: 700; margin-bottom: 4px; }
+.a11y-compliance-text p { font-size: 14px; color: var(--text-secondary); line-height: 20px; }
+
+.a11y-violation {
+  border: 1px solid var(--divider); border-radius: 12px; margin-bottom: 16px; overflow: hidden; background: var(--white);
+}
+body.dark .a11y-violation { background: #1E1E1E; border-color: rgba(255,255,255,0.08); }
+.a11y-violation-header {
+  padding: 16px 20px; cursor: pointer; display: flex; align-items: center; gap: 12px;
+  user-select: none; transition: background var(--transition);
+}
+.a11y-violation-header:hover { background: rgba(0,0,0,0.02); }
+body.dark .a11y-violation-header:hover { background: rgba(255,255,255,0.03); }
+.a11y-badge {
+  display: inline-flex; align-items: center; gap: 4px; padding: 3px 10px; border-radius: 20px;
+  font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; white-space: nowrap;
+}
+.a11y-badge.critical { background: #fef2f2; color: #dc2626; border: 1px solid #fecaca; }
+.a11y-badge.serious { background: #fff7ed; color: #c2410c; border: 1px solid #fed7aa; }
+.a11y-badge.moderate { background: #fefce8; color: #a16207; border: 1px solid #fef08a; }
+.a11y-badge.minor { background: #f3f4f6; color: #6b7280; border: 1px solid #e5e7eb; }
+.a11y-badge.review { background: #eff6ff; color: #2563eb; border: 1px solid #bfdbfe; }
+body.dark .a11y-badge.critical { background: rgba(220,38,38,0.15); border-color: rgba(220,38,38,0.3); }
+body.dark .a11y-badge.serious { background: rgba(194,65,12,0.15); border-color: rgba(194,65,12,0.3); }
+body.dark .a11y-badge.moderate { background: rgba(161,98,7,0.15); border-color: rgba(161,98,7,0.3); }
+body.dark .a11y-badge.minor { background: rgba(107,114,128,0.15); border-color: rgba(107,114,128,0.3); }
+body.dark .a11y-badge.review { background: rgba(37,99,235,0.15); border-color: rgba(37,99,235,0.3); }
+
+.a11y-violation-title { font-size: 15px; font-weight: 600; flex: 1; }
+.a11y-violation-instances { font-size: 12px; color: var(--text-disabled); font-family: monospace; white-space: nowrap; }
+.a11y-violation-chevron {
+  font-size: 20px; color: var(--text-disabled); transition: transform 0.2s ease;
+  font-family: 'Material Icons Round';
+}
+.a11y-violation.open .a11y-violation-chevron { transform: rotate(180deg); }
+.a11y-violation-body {
+  display: none; padding: 0 20px 20px; border-top: 1px solid var(--divider);
+}
+.a11y-violation.open .a11y-violation-body { display: block; padding-top: 16px; }
+.a11y-detail { margin-bottom: 12px; }
+.a11y-detail-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; color: var(--text-disabled); margin-bottom: 4px; }
+.a11y-detail p, .a11y-detail ul { font-size: 14px; color: var(--text-secondary); line-height: 22px; }
+.a11y-detail ul { padding-left: 20px; }
+.a11y-detail li { margin-bottom: 4px; }
+.a11y-wcag-ref {
+  display: inline-flex; align-items: center; gap: 4px; font-size: 12px; color: var(--orange-dark);
+  font-weight: 600; margin-top: 8px;
+}
+.a11y-wcag-ref:hover { text-decoration: underline; }
+
+.a11y-checks { margin-top: 32px; }
+.a11y-check-group { margin-bottom: 24px; }
+.a11y-check-group h4 { font-size: 15px; font-weight: 700; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
+.a11y-check-item {
+  display: flex; align-items: flex-start; gap: 8px; padding: 8px 0;
+  font-size: 14px; color: var(--text-secondary); line-height: 22px;
+}
+.a11y-check-icon { font-size: 16px; flex-shrink: 0; margin-top: 2px; }
+.a11y-check-icon.pass { color: #16a34a; }
+.a11y-check-icon.warn { color: #d97706; }
+
 /* ============ COPY TOAST ============ */
 .copy-toast {
   position: fixed; bottom: 32px; left: 50%; transform: translateX(-50%) translateY(20px);
@@ -706,6 +788,7 @@ code {
     <div class="nav-group-label">Guidelines</div>
     <a href="#layout" class="nav-link">Layout</a>
     <a href="#voice" class="nav-link">Brand Voice</a>
+    <a href="#accessibility" class="nav-link">Accessibility</a>
   </div>
 </nav>
 
@@ -1737,6 +1820,279 @@ code {
       <p>We celebrate smart shopping. Our users aren't penny-pinchers — they're savvy people who know the value of their money.</p>
     </div>
   </div>
+</section>
+
+<!-- ====== ACCESSIBILITY AUDIT ====== -->
+<section class="section" id="accessibility">
+  <h2 class="section-title">Accessibility Audit</h2>
+  <p class="section-desc">Automated (axe-core) and manual accessibility audit of igraal.pl. Evaluated against WCAG 2.1 AA standards. Audit date: March 2026.</p>
+
+  <!-- Compliance Rating -->
+  <div class="a11y-compliance">
+    <div class="a11y-compliance-pct">~75%</div>
+    <div class="a11y-compliance-text">
+      <h4>WCAG 2.1 AA Compliance</h4>
+      <p>Critical issues in ARIA navigation structure, missing main landmark, nested interactive controls in cards, and minor heading misuse.</p>
+    </div>
+  </div>
+
+  <!-- Scorecard -->
+  <div class="a11y-scorecard">
+    <div class="a11y-score-card fail">
+      <div class="score-value">5</div>
+      <div class="score-label">Violations</div>
+    </div>
+    <div class="a11y-score-card warn">
+      <div class="score-value">2</div>
+      <div class="score-label">Manual Review</div>
+    </div>
+    <div class="a11y-score-card pass">
+      <div class="score-value">6</div>
+      <div class="score-label">Passing</div>
+    </div>
+    <div class="a11y-score-card warn">
+      <div class="score-value">4</div>
+      <div class="score-label">Warnings</div>
+    </div>
+  </div>
+
+  <!-- Violations -->
+  <h3 class="subsection-title">Violations</h3>
+
+  <!-- CRITICAL: ARIA Parent Roles -->
+  <div class="a11y-violation" onclick="this.classList.toggle('open')">
+    <div class="a11y-violation-header">
+      <span class="a11y-badge critical">Critical</span>
+      <span class="a11y-violation-title">ARIA Parent Roles Missing</span>
+      <span class="a11y-violation-instances">7 instances</span>
+      <span class="a11y-violation-chevron">expand_more</span>
+    </div>
+    <div class="a11y-violation-body">
+      <div class="a11y-detail">
+        <div class="a11y-detail-label">Rule</div>
+        <p><code>aria-required-parent</code> — WCAG 2.1 §1.3.1 (Info and Relationships)</p>
+      </div>
+      <div class="a11y-detail">
+        <div class="a11y-detail-label">Issue</div>
+        <p>Navigation <code>menuitem</code> roles used without parent <code>menu</code> or <code>menubar</code> wrapper. Screen readers cannot understand the navigation structure.</p>
+      </div>
+      <div class="a11y-detail">
+        <div class="a11y-detail-label">Where</div>
+        <p>Main navigation bar — all 7 nav items</p>
+      </div>
+      <div class="a11y-detail">
+        <div class="a11y-detail-label">Fix</div>
+        <p>Wrap navigation items in <code>&lt;nav role="menubar"&gt;</code> or <code>&lt;ul role="menu"&gt;</code></p>
+      </div>
+      <a class="a11y-wcag-ref" href="https://www.w3.org/WAI/WCAG21/Understanding/info-and-relationships.html" target="_blank">
+        <span class="material-icons-round" style="font-size:14px">open_in_new</span> WCAG 1.3.1 Reference
+      </a>
+    </div>
+  </div>
+
+  <!-- SERIOUS: Links Without Discernible Text -->
+  <div class="a11y-violation" onclick="this.classList.toggle('open')">
+    <div class="a11y-violation-header">
+      <span class="a11y-badge serious">Serious</span>
+      <span class="a11y-violation-title">Links Without Discernible Text</span>
+      <span class="a11y-violation-instances">3 instances</span>
+      <span class="a11y-violation-chevron">expand_more</span>
+    </div>
+    <div class="a11y-violation-body">
+      <div class="a11y-detail">
+        <div class="a11y-detail-label">Rule</div>
+        <p><code>link-name</code> — WCAG 2.1 §2.4.4, §4.1.2 (Link Purpose, Name/Role/Value)</p>
+      </div>
+      <div class="a11y-detail">
+        <div class="a11y-detail-label">Where</div>
+        <ul>
+          <li>Logo link (home) — SVG without <code>aria-label</code></li>
+          <li>Trustpilot link — empty anchor wrapping an image</li>
+          <li>Footer logo link — same issue as header</li>
+        </ul>
+      </div>
+      <div class="a11y-detail">
+        <div class="a11y-detail-label">Fix</div>
+        <p>Add <code>aria-label="Strona główna iGraal"</code> to logo links, <code>aria-label="Opinie na Trustpilot"</code> to Trustpilot link.</p>
+      </div>
+      <a class="a11y-wcag-ref" href="https://www.w3.org/WAI/WCAG21/Understanding/link-purpose-in-context.html" target="_blank">
+        <span class="material-icons-round" style="font-size:14px">open_in_new</span> WCAG 2.4.4 Reference
+      </a>
+    </div>
+  </div>
+
+  <!-- SERIOUS: Nested Interactive Controls -->
+  <div class="a11y-violation" onclick="this.classList.toggle('open')">
+    <div class="a11y-violation-header">
+      <span class="a11y-badge serious">Serious</span>
+      <span class="a11y-violation-title">Nested Interactive Controls</span>
+      <span class="a11y-violation-instances">5 instances</span>
+      <span class="a11y-violation-chevron">expand_more</span>
+    </div>
+    <div class="a11y-violation-body">
+      <div class="a11y-detail">
+        <div class="a11y-detail-label">Rule</div>
+        <p><code>nested-interactive</code> — WCAG 2.1 §4.1.2 (Name, Role, Value)</p>
+      </div>
+      <div class="a11y-detail">
+        <div class="a11y-detail-label">Where</div>
+        <p>Vertical Base Card — outer <code>div[role="button"]</code> contains inner <code>&lt;button&gt;</code> elements ("Aktywuj cashback"). Screen readers announce conflicting interactive roles; keyboard nav is ambiguous.</p>
+      </div>
+      <div class="a11y-detail">
+        <div class="a11y-detail-label">Fix</div>
+        <p>Either make the card non-interactive (<code>role="article"</code>) with the inner button as the only interactive element, OR remove the inner button and make the whole card the clickable target.</p>
+      </div>
+      <a class="a11y-wcag-ref" href="https://www.w3.org/WAI/WCAG21/Understanding/name-role-value.html" target="_blank">
+        <span class="material-icons-round" style="font-size:14px">open_in_new</span> WCAG 4.1.2 Reference
+      </a>
+    </div>
+  </div>
+
+  <!-- MODERATE: Content Outside Landmarks -->
+  <div class="a11y-violation" onclick="this.classList.toggle('open')">
+    <div class="a11y-violation-header">
+      <span class="a11y-badge moderate">Moderate</span>
+      <span class="a11y-violation-title">Content Outside Landmarks</span>
+      <span class="a11y-violation-instances">31 instances</span>
+      <span class="a11y-violation-chevron">expand_more</span>
+    </div>
+    <div class="a11y-violation-body">
+      <div class="a11y-detail">
+        <div class="a11y-detail-label">Rule</div>
+        <p><code>region</code> — Best practice (landmark navigation)</p>
+      </div>
+      <div class="a11y-detail">
+        <div class="a11y-detail-label">Where</div>
+        <p>Various content sections not wrapped in <code>&lt;main&gt;</code>, <code>&lt;section&gt;</code>, or landmark roles. Screen reader users cannot navigate by landmarks.</p>
+      </div>
+      <div class="a11y-detail">
+        <div class="a11y-detail-label">Fix</div>
+        <p>Add a <code>&lt;main&gt;</code> element wrapping primary content. Ensure all sections have landmark roles.</p>
+      </div>
+      <a class="a11y-wcag-ref" href="https://www.w3.org/WAI/WCAG21/Techniques/aria/ARIA11" target="_blank">
+        <span class="material-icons-round" style="font-size:14px">open_in_new</span> ARIA Landmark Reference
+      </a>
+    </div>
+  </div>
+
+  <!-- MINOR: Redundant Image Alt Text -->
+  <div class="a11y-violation" onclick="this.classList.toggle('open')">
+    <div class="a11y-violation-header">
+      <span class="a11y-badge minor">Minor</span>
+      <span class="a11y-violation-title">Redundant Image Alt Text</span>
+      <span class="a11y-violation-instances">10 instances</span>
+      <span class="a11y-violation-chevron">expand_more</span>
+    </div>
+    <div class="a11y-violation-body">
+      <div class="a11y-detail">
+        <div class="a11y-detail-label">Rule</div>
+        <p><code>image-redundant-alt</code></p>
+      </div>
+      <div class="a11y-detail">
+        <div class="a11y-detail-label">Where</div>
+        <p>Brand logo grid — alt text duplicates adjacent text (e.g., <code>img alt="adidas"</code> next to text "adidas").</p>
+      </div>
+      <div class="a11y-detail">
+        <div class="a11y-detail-label">Fix</div>
+        <p>Set <code>alt=""</code> on decorative images where text already provides the name, or remove text duplication.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Needs Manual Review -->
+  <h3 class="subsection-title">Needs Manual Review</h3>
+
+  <div class="a11y-violation" onclick="this.classList.toggle('open')">
+    <div class="a11y-violation-header">
+      <span class="a11y-badge review">Review</span>
+      <span class="a11y-violation-title">Color Contrast</span>
+      <span class="a11y-violation-instances">13 elements</span>
+      <span class="a11y-violation-chevron">expand_more</span>
+    </div>
+    <div class="a11y-violation-body">
+      <div class="a11y-detail">
+        <div class="a11y-detail-label">Issue</div>
+        <p>13 elements couldn't be automatically verified for contrast ratios. Likely: text on gradient backgrounds, overlays, or dynamically colored sections.</p>
+      </div>
+      <div class="a11y-detail">
+        <div class="a11y-detail-label">Recommendation</div>
+        <p>Manual check with browser DevTools or <a href="https://webaim.org/resources/contrastchecker/" target="_blank">WebAIM Contrast Checker</a>.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="a11y-violation" onclick="this.classList.toggle('open')">
+    <div class="a11y-violation-header">
+      <span class="a11y-badge review">Review</span>
+      <span class="a11y-violation-title">ARIA Hidden Focus</span>
+      <span class="a11y-violation-instances">9 elements</span>
+      <span class="a11y-violation-chevron">expand_more</span>
+    </div>
+    <div class="a11y-violation-body">
+      <div class="a11y-detail">
+        <div class="a11y-detail-label">Issue</div>
+        <p>9 elements with <code>aria-hidden</code> may still contain focusable children. Keyboard users could tab into invisible elements.</p>
+      </div>
+      <div class="a11y-detail">
+        <div class="a11y-detail-label">Recommendation</div>
+        <p>Add <code>tabindex="-1"</code> to focusable children within <code>aria-hidden</code> containers.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Manual Checks -->
+  <div class="a11y-checks">
+    <h3 class="subsection-title">Manual Checks</h3>
+
+    <div class="a11y-check-group">
+      <h4>✅ Passing</h4>
+      <div class="a11y-check-item">
+        <span class="a11y-check-icon pass">✓</span>
+        <span>HTML lang attribute: <code>pl-PL</code> correctly set</span>
+      </div>
+      <div class="a11y-check-item">
+        <span class="a11y-check-icon pass">✓</span>
+        <span>All 112 images have alt attributes</span>
+      </div>
+      <div class="a11y-check-item">
+        <span class="a11y-check-icon pass">✓</span>
+        <span>Heading hierarchy: proper H1 → H2 → H3 flow (single H1, logical structure)</span>
+      </div>
+      <div class="a11y-check-item">
+        <span class="a11y-check-icon pass">✓</span>
+        <span>Navigation landmark present</span>
+      </div>
+      <div class="a11y-check-item">
+        <span class="a11y-check-icon pass">✓</span>
+        <span>Banner/header landmark present</span>
+      </div>
+      <div class="a11y-check-item">
+        <span class="a11y-check-icon pass">✓</span>
+        <span>Footer/contentinfo landmark present</span>
+      </div>
+    </div>
+
+    <div class="a11y-check-group">
+      <h4>⚠️ Warnings</h4>
+      <div class="a11y-check-item">
+        <span class="a11y-check-icon warn">!</span>
+        <span><strong>No <code>&lt;main&gt;</code> landmark</strong> — critical for screen reader navigation</span>
+      </div>
+      <div class="a11y-check-item">
+        <span class="a11y-check-icon warn">!</span>
+        <span><strong>40 small touch targets</strong> — 20% of interactive elements under 44×44px minimum (WCAG 2.5.8)</span>
+      </div>
+      <div class="a11y-check-item">
+        <span class="a11y-check-icon warn">!</span>
+        <span><strong>5 empty links + 6 unnamed buttons</strong> — carousel arrows likely missing aria-labels</span>
+      </div>
+      <div class="a11y-check-item">
+        <span class="a11y-check-icon warn">!</span>
+        <span><strong>Heading pollution</strong> — cashback percentages used as H3 headings (e.g., "15% cashbacku") which dilutes heading navigation. These should be <code>&lt;span&gt;</code> or <code>&lt;p&gt;</code>, not headings.</span>
+      </div>
+    </div>
+  </div>
+
 </section>
 
 </div><!-- /content -->
