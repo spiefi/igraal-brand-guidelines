@@ -742,6 +742,155 @@ code {
   .type-example { flex-direction: column; gap: 8px; }
   .type-meta { min-width: unset; }
 }
+
+/* ============ COMPONENT INVENTORY ============ */
+.ci-stats-bar {
+  display: flex; gap: 24px; flex-wrap: wrap; align-items: center;
+  padding: 20px 24px; background: linear-gradient(135deg, rgba(253,90,19,0.06), rgba(251,219,112,0.06));
+  border-radius: 12px; margin-bottom: 24px;
+}
+body.dark .ci-stats-bar { background: linear-gradient(135deg, rgba(253,90,19,0.12), rgba(251,219,112,0.08)); }
+.ci-stat { text-align: center; }
+.ci-stat-value { font-size: 28px; font-weight: 700; color: var(--orange-vivid); font-family: monospace; }
+.ci-stat-label { font-size: 12px; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.04em; }
+.ci-stat-sep { font-size: 20px; color: var(--text-disabled); }
+
+.ci-filters {
+  display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 24px;
+}
+.ci-filter-btn {
+  padding: 8px 16px; border-radius: 99px; font-size: 12px; font-weight: 600;
+  border: 1px solid var(--divider); background: var(--white); cursor: pointer;
+  transition: var(--transition); color: var(--text-secondary);
+}
+.ci-filter-btn:hover { border-color: var(--orange-vivid); color: var(--orange-vivid); }
+.ci-filter-btn.active { background: var(--orange-vivid); color: #fff; border-color: var(--orange-vivid); }
+body.dark .ci-filter-btn { background: #1E1E1E; border-color: rgba(255,255,255,0.1); }
+body.dark .ci-filter-btn.active { background: var(--orange-vivid); border-color: var(--orange-vivid); color: #fff; }
+
+.ci-category {
+  margin-bottom: 32px; border: 1px solid var(--divider); border-radius: 12px;
+  overflow: hidden; background: var(--white);
+}
+body.dark .ci-category { background: #1E1E1E; border-color: rgba(255,255,255,0.08); }
+.ci-category-header {
+  padding: 16px 24px; border-bottom: 1px solid var(--divider);
+  display: flex; align-items: center; gap: 12px;
+  background: rgba(0,0,0,0.015);
+}
+body.dark .ci-category-header { background: rgba(255,255,255,0.02); }
+.ci-category-icon { font-size: 20px; }
+.ci-category-name { font-size: 16px; font-weight: 700; }
+.ci-category-count {
+  font-size: 11px; font-weight: 700; background: rgba(253,90,19,0.1); color: var(--orange-vivid);
+  padding: 2px 8px; border-radius: 10px; margin-left: auto;
+}
+
+.ci-table {
+  width: 100%; border-collapse: collapse; font-size: 14px;
+}
+.ci-table th {
+  text-align: left; padding: 10px 24px; font-size: 11px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.04em; color: var(--text-disabled);
+  border-bottom: 1px solid var(--divider);
+}
+.ci-table td { padding: 0; border-bottom: 1px solid var(--divider); }
+.ci-table tr:last-child td { border-bottom: none; }
+
+.ci-row-toggle {
+  display: flex; align-items: center; width: 100%; padding: 12px 24px;
+  cursor: pointer; background: none; border: none; text-align: left;
+  font-family: inherit; font-size: 14px; color: inherit; gap: 0;
+  transition: background var(--transition);
+}
+.ci-row-toggle:hover { background: rgba(253,90,19,0.03); }
+body.dark .ci-row-toggle:hover { background: rgba(255,255,255,0.03); }
+
+.ci-row-toggle .ci-col-status { width: 32px; flex-shrink: 0; }
+.ci-row-toggle .ci-col-name { flex: 2; font-weight: 600; display: flex; align-items: center; gap: 8px; }
+.ci-row-toggle .ci-col-name code {
+  font-size: 12px; font-family: 'SF Mono','Fira Code',monospace; color: var(--orange-vivid);
+  background: rgba(253,90,19,0.08); padding: 2px 6px; border-radius: 4px;
+}
+.ci-row-toggle .ci-col-count { width: 80px; text-align: center; font-weight: 700; font-family: monospace; color: var(--text-primary); }
+.ci-row-toggle .ci-col-pages { flex: 3; color: var(--text-secondary); font-size: 13px; }
+.ci-row-toggle .ci-col-chevron {
+  width: 24px; text-align: center; color: var(--text-disabled); font-size: 18px;
+  transition: transform 0.2s ease;
+}
+.ci-row.open .ci-row-toggle .ci-col-chevron { transform: rotate(180deg); }
+
+.ci-row-detail {
+  display: none; padding: 0 24px 16px; font-size: 13px; color: var(--text-secondary);
+  background: rgba(0,0,0,0.015);
+}
+body.dark .ci-row-detail { background: rgba(255,255,255,0.015); }
+.ci-row.open .ci-row-detail { display: block; }
+.ci-row-detail .ci-detail-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; color: var(--text-disabled); margin-bottom: 4px; }
+.ci-row-detail .ci-detail-pages { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 8px; }
+.ci-row-detail .ci-page-chip {
+  padding: 3px 8px; border-radius: 4px; font-size: 11px; font-weight: 600;
+  background: rgba(0,0,0,0.05); color: var(--text-secondary);
+}
+body.dark .ci-row-detail .ci-page-chip { background: rgba(255,255,255,0.08); }
+
+.ci-status-badge {
+  display: inline-block; width: 18px; height: 18px; font-size: 14px; line-height: 18px; text-align: center;
+}
+
+/* Typography inventory */
+.ci-typo-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 12px; margin-bottom: 32px; }
+.ci-typo-item {
+  padding: 16px 20px; border: 1px solid var(--divider); border-radius: 10px; background: var(--white);
+  display: flex; align-items: baseline; gap: 16px;
+}
+body.dark .ci-typo-item { background: #1E1E1E; border-color: rgba(255,255,255,0.08); }
+.ci-typo-class { font-size: 12px; font-family: 'SF Mono','Fira Code',monospace; color: var(--orange-vivid); min-width: 180px; }
+.ci-typo-count { font-size: 12px; font-family: monospace; color: var(--text-disabled); min-width: 32px; text-align: right; }
+.ci-typo-sample { font-size: 13px; color: var(--text-secondary); flex: 1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+/* Icon grid */
+.ci-icon-section { margin-bottom: 32px; }
+.ci-icon-group { margin-bottom: 20px; }
+.ci-icon-group-label { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; color: var(--text-disabled); margin-bottom: 8px; padding-bottom: 4px; border-bottom: 1px solid var(--divider); }
+.ci-icon-grid { display: flex; gap: 8px; flex-wrap: wrap; }
+.ci-icon-chip {
+  padding: 6px 12px; border-radius: 6px; font-size: 12px; font-family: 'SF Mono','Fira Code',monospace;
+  background: rgba(0,0,0,0.04); color: var(--text-secondary); border: 1px solid var(--divider);
+}
+body.dark .ci-icon-chip { background: rgba(255,255,255,0.06); border-color: rgba(255,255,255,0.08); }
+
+/* Page complexity matrix */
+.ci-matrix {
+  width: 100%; border-collapse: collapse; font-size: 13px; margin-bottom: 32px;
+}
+.ci-matrix th {
+  text-align: left; padding: 10px 12px; font-size: 11px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.04em; color: var(--text-disabled);
+  border-bottom: 2px solid var(--divider); background: rgba(0,0,0,0.02);
+}
+body.dark .ci-matrix th { background: rgba(255,255,255,0.03); }
+.ci-matrix td { padding: 10px 12px; border-bottom: 1px solid var(--divider); vertical-align: middle; }
+.ci-matrix tr:last-child td { border-bottom: none; }
+.ci-matrix-bar-wrap { display: flex; align-items: center; gap: 8px; }
+.ci-matrix-bar {
+  height: 8px; border-radius: 4px; background: var(--orange-vivid); transition: width 0.4s ease;
+  min-width: 2px;
+}
+.ci-matrix-bar.icons { background: var(--purple-vivid); }
+.ci-matrix-bar.elements { background: var(--blue-vivid); }
+.ci-matrix-bar.buttons { background: #16a34a; }
+.ci-matrix-bar.links { background: #1976D3; }
+.ci-matrix-bar.inputs { background: var(--yellow-vivid); }
+.ci-matrix-val { font-family: monospace; font-size: 12px; color: var(--text-secondary); white-space: nowrap; }
+
+@media (max-width: 900px) {
+  .ci-stats-bar { gap: 16px; }
+  .ci-row-toggle .ci-col-pages { display: none; }
+  .ci-matrix { font-size: 11px; }
+  .ci-matrix th, .ci-matrix td { padding: 6px 8px; }
+  .ci-typo-grid { grid-template-columns: 1fr; }
+}
 </style>
 </head>
 <body>
@@ -783,6 +932,7 @@ code {
     <a href="#card-island" class="nav-link" style="padding-left:40px;font-size:13px">Islands</a>
     <a href="#card-supporting" class="nav-link" style="padding-left:40px;font-size:13px">Supporting Components</a>
     <a href="#card-grouping" class="nav-link" style="padding-left:40px;font-size:13px">System Grouping</a>
+    <a href="#component-inventory" class="nav-link">Component Inventory</a>
   </div>
   <div class="nav-group">
     <div class="nav-group-label">Guidelines</div>
@@ -1770,6 +1920,1065 @@ code {
   </div>
 </section>
 
+<!-- ====== COMPONENT INVENTORY ====== -->
+<section class="section" id="component-inventory">
+  <h2 class="section-title">Component Inventory</h2>
+  <p class="section-desc">A comprehensive audit of all Nalu design system components found across 8 pages of igraal.pl. Every component, typography class, and icon has been catalogued with instance counts and page locations.</p>
+
+  <!-- Summary Stats -->
+  <div class="ci-stats-bar">
+    <div class="ci-stat"><div class="ci-stat-value">34</div><div class="ci-stat-label">Components</div></div>
+    <div class="ci-stat-sep">•</div>
+    <div class="ci-stat"><div class="ci-stat-value">9</div><div class="ci-stat-label">Typography Classes</div></div>
+    <div class="ci-stat-sep">•</div>
+    <div class="ci-stat"><div class="ci-stat-value">37</div><div class="ci-stat-label">Icons</div></div>
+    <div class="ci-stat-sep">•</div>
+    <div class="ci-stat"><div class="ci-stat-value">8</div><div class="ci-stat-label">Pages Scanned</div></div>
+  </div>
+
+  <!-- Category Filters -->
+  <div class="ci-filters">
+    <button class="ci-filter-btn active" data-filter="all">All</button>
+    <button class="ci-filter-btn" data-filter="navigation">Navigation</button>
+    <button class="ci-filter-btn" data-filter="data-display">Data Display</button>
+    <button class="ci-filter-btn" data-filter="data-entry">Data Entry</button>
+    <button class="ci-filter-btn" data-filter="cards">Cards</button>
+    <button class="ci-filter-btn" data-filter="actions">Actions</button>
+    <button class="ci-filter-btn" data-filter="feedback">Feedback</button>
+    <button class="ci-filter-btn" data-filter="layout">Layout</button>
+    <button class="ci-filter-btn" data-filter="status">Status Modifiers</button>
+  </div>
+
+  <!-- ═══ NAVIGATION ═══ -->
+  <div class="ci-category" data-category="navigation">
+    <div class="ci-category-header">
+      <span class="ci-category-icon">🧭</span>
+      <span class="ci-category-name">Navigation</span>
+      <span class="ci-category-count">5 components</span>
+    </div>
+    <table class="ci-table">
+      <thead><tr><th style="width:32px"></th><th>Component</th><th style="width:80px;text-align:center">Count</th><th>Pages Found</th><th style="width:24px"></th></tr></thead>
+      <tbody>
+        <tr class="ci-row" onclick="this.classList.toggle('open')">
+          <td colspan="5">
+            <button class="ci-row-toggle" type="button">
+              <span class="ci-col-status"><span class="ci-status-badge">🟡</span></span>
+              <span class="ci-col-name"><code>searchinput</code></span>
+              <span class="ci-col-count">9</span>
+              <span class="ci-col-pages">All 8 pages</span>
+              <span class="ci-col-chevron material-icons-round">expand_more</span>
+            </button>
+            <div class="ci-row-detail">
+              <div class="ci-detail-label">Found on</div>
+              <div class="ci-detail-pages">
+                <span class="ci-page-chip">Homepage</span><span class="ci-page-chip">Shop Detail</span><span class="ci-page-chip">Gift Cards</span><span class="ci-page-chip">Daily Offers</span><span class="ci-page-chip">Extension</span><span class="ci-page-chip">FAQ</span><span class="ci-page-chip">Team</span><span class="ci-page-chip">Terms</span>
+              </div>
+              <div class="ci-detail-label">Usage</div>
+              <p>Global search input present in the header/navigation bar across all pages. Allows users to search for stores and offers.</p>
+            </div>
+          </td>
+        </tr>
+        <tr class="ci-row" onclick="this.classList.toggle('open')">
+          <td colspan="5">
+            <button class="ci-row-toggle" type="button">
+              <span class="ci-col-status"><span class="ci-status-badge">🟡</span></span>
+              <span class="ci-col-name"><code>link</code></span>
+              <span class="ci-col-count">83</span>
+              <span class="ci-col-pages">All 8 pages</span>
+              <span class="ci-col-chevron material-icons-round">expand_more</span>
+            </button>
+            <div class="ci-row-detail">
+              <div class="ci-detail-label">Found on</div>
+              <div class="ci-detail-pages">
+                <span class="ci-page-chip">Homepage</span><span class="ci-page-chip">Shop Detail</span><span class="ci-page-chip">Gift Cards</span><span class="ci-page-chip">Daily Offers</span><span class="ci-page-chip">Extension</span><span class="ci-page-chip">FAQ</span><span class="ci-page-chip">Team</span><span class="ci-page-chip">Terms</span>
+              </div>
+              <div class="ci-detail-label">Usage</div>
+              <p>Standard navigation links used throughout the site — in headers, footers, breadcrumbs, and inline text. Styled via Nalu link component with hover states.</p>
+            </div>
+          </td>
+        </tr>
+        <tr class="ci-row" onclick="this.classList.toggle('open')">
+          <td colspan="5">
+            <button class="ci-row-toggle" type="button">
+              <span class="ci-col-status"><span class="ci-status-badge">🟡</span></span>
+              <span class="ci-col-name"><code>dropdown</code></span>
+              <span class="ci-col-count">6</span>
+              <span class="ci-col-pages">Homepage, Terms, Extension, Gift Cards, Shop Detail, FAQ</span>
+              <span class="ci-col-chevron material-icons-round">expand_more</span>
+            </button>
+            <div class="ci-row-detail">
+              <div class="ci-detail-label">Found on</div>
+              <div class="ci-detail-pages">
+                <span class="ci-page-chip">Homepage</span><span class="ci-page-chip">Terms</span><span class="ci-page-chip">Extension</span><span class="ci-page-chip">Gift Cards</span><span class="ci-page-chip">Shop Detail</span><span class="ci-page-chip">FAQ</span>
+              </div>
+              <div class="ci-detail-label">Usage</div>
+              <p>Dropdown menus used for navigation categories, language selectors, and filter options. Typically triggered from the header or category navigation.</p>
+            </div>
+          </td>
+        </tr>
+        <tr class="ci-row" onclick="this.classList.toggle('open')">
+          <td colspan="5">
+            <button class="ci-row-toggle" type="button">
+              <span class="ci-col-status"><span class="ci-status-badge">🟡</span></span>
+              <span class="ci-col-name"><code>dropdownitem</code></span>
+              <span class="ci-col-count">24</span>
+              <span class="ci-col-pages">Homepage, Terms, Extension, Gift Cards, Shop Detail, FAQ</span>
+              <span class="ci-col-chevron material-icons-round">expand_more</span>
+            </button>
+            <div class="ci-row-detail">
+              <div class="ci-detail-label">Found on</div>
+              <div class="ci-detail-pages">
+                <span class="ci-page-chip">Homepage</span><span class="ci-page-chip">Terms</span><span class="ci-page-chip">Extension</span><span class="ci-page-chip">Gift Cards</span><span class="ci-page-chip">Shop Detail</span><span class="ci-page-chip">FAQ</span>
+              </div>
+              <div class="ci-detail-label">Usage</div>
+              <p>Individual items within dropdown menus. Each dropdown contains ~4 items on average for category links and navigation options.</p>
+            </div>
+          </td>
+        </tr>
+        <tr class="ci-row" onclick="this.classList.toggle('open')">
+          <td colspan="5">
+            <button class="ci-row-toggle" type="button">
+              <span class="ci-col-status"><span class="ci-status-badge">🟡</span></span>
+              <span class="ci-col-name"><code>paginationindicator</code></span>
+              <span class="ci-col-count">6</span>
+              <span class="ci-col-pages">Homepage</span>
+              <span class="ci-col-chevron material-icons-round">expand_more</span>
+            </button>
+            <div class="ci-row-detail">
+              <div class="ci-detail-label">Found on</div>
+              <div class="ci-detail-pages">
+                <span class="ci-page-chip">Homepage</span>
+              </div>
+              <div class="ci-detail-label">Usage</div>
+              <p>Dot-style pagination indicators used for carousels on the homepage. Shows current position within horizontally scrollable content.</p>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ═══ DATA DISPLAY ═══ -->
+  <div class="ci-category" data-category="data-display">
+    <div class="ci-category-header">
+      <span class="ci-category-icon">📊</span>
+      <span class="ci-category-name">Data Display</span>
+      <span class="ci-category-count">7 components</span>
+    </div>
+    <table class="ci-table">
+      <thead><tr><th style="width:32px"></th><th>Component</th><th style="width:80px;text-align:center">Count</th><th>Pages Found</th><th style="width:24px"></th></tr></thead>
+      <tbody>
+        <tr class="ci-row" onclick="this.classList.toggle('open')">
+          <td colspan="5">
+            <button class="ci-row-toggle" type="button">
+              <span class="ci-col-status"><span class="ci-status-badge">🟢</span></span>
+              <span class="ci-col-name"><code>tag</code></span>
+              <span class="ci-col-count">83</span>
+              <span class="ci-col-pages">Homepage, Shop Detail, Gift Cards, Daily Offers</span>
+              <span class="ci-col-chevron material-icons-round">expand_more</span>
+            </button>
+            <div class="ci-row-detail">
+              <div class="ci-detail-label">Found on</div>
+              <div class="ci-detail-pages">
+                <span class="ci-page-chip">Homepage</span><span class="ci-page-chip">Shop Detail</span><span class="ci-page-chip">Gift Cards</span><span class="ci-page-chip">Daily Offers</span>
+              </div>
+              <div class="ci-detail-label">Usage</div>
+              <p>Color-coded tags for cashback offers, promo codes, deals, and gift cards. Variants: cashback (orange), kod (purple), okazja (blue), gift (gold), inactive (grey). Documented in Cards section.</p>
+            </div>
+          </td>
+        </tr>
+        <tr class="ci-row" onclick="this.classList.toggle('open')">
+          <td colspan="5">
+            <button class="ci-row-toggle" type="button">
+              <span class="ci-col-status"><span class="ci-status-badge">🟡</span></span>
+              <span class="ci-col-name"><code>badge</code></span>
+              <span class="ci-col-count">6</span>
+              <span class="ci-col-pages">Gift Cards</span>
+              <span class="ci-col-chevron material-icons-round">expand_more</span>
+            </button>
+            <div class="ci-row-detail">
+              <div class="ci-detail-label">Found on</div>
+              <div class="ci-detail-pages">
+                <span class="ci-page-chip">Gift Cards</span>
+              </div>
+              <div class="ci-detail-label">Usage</div>
+              <p>Small badge indicators on gift card items, showing cashback percentages or special status markers.</p>
+            </div>
+          </td>
+        </tr>
+        <tr class="ci-row" onclick="this.classList.toggle('open')">
+          <td colspan="5">
+            <button class="ci-row-toggle" type="button">
+              <span class="ci-col-status"><span class="ci-status-badge">🟡</span></span>
+              <span class="ci-col-name"><code>avatar</code></span>
+              <span class="ci-col-count">4</span>
+              <span class="ci-col-pages">Shop Detail</span>
+              <span class="ci-col-chevron material-icons-round">expand_more</span>
+            </button>
+            <div class="ci-row-detail">
+              <div class="ci-detail-label">Found on</div>
+              <div class="ci-detail-pages">
+                <span class="ci-page-chip">Shop Detail</span>
+              </div>
+              <div class="ci-detail-label">Usage</div>
+              <p>User avatar components displayed in review/testimonial sections of shop detail pages. Circular image containers with fallback initials.</p>
+            </div>
+          </td>
+        </tr>
+        <tr class="ci-row" onclick="this.classList.toggle('open')">
+          <td colspan="5">
+            <button class="ci-row-toggle" type="button">
+              <span class="ci-col-status"><span class="ci-status-badge">🟡</span></span>
+              <span class="ci-col-name"><code>star</code></span>
+              <span class="ci-col-count">4</span>
+              <span class="ci-col-pages">Shop Detail</span>
+              <span class="ci-col-chevron material-icons-round">expand_more</span>
+            </button>
+            <div class="ci-row-detail">
+              <div class="ci-detail-label">Found on</div>
+              <div class="ci-detail-pages">
+                <span class="ci-page-chip">Shop Detail</span>
+              </div>
+              <div class="ci-detail-label">Usage</div>
+              <p>Star rating component used in user reviews on shop detail pages. Renders filled/unfilled stars for 1–5 rating scale.</p>
+            </div>
+          </td>
+        </tr>
+        <tr class="ci-row" onclick="this.classList.toggle('open')">
+          <td colspan="5">
+            <button class="ci-row-toggle" type="button">
+              <span class="ci-col-status"><span class="ci-status-badge">🟡</span></span>
+              <span class="ci-col-name"><code>retailerlogo</code></span>
+              <span class="ci-col-count">98</span>
+              <span class="ci-col-pages">Homepage, Shop Detail, Daily Offers</span>
+              <span class="ci-col-chevron material-icons-round">expand_more</span>
+            </button>
+            <div class="ci-row-detail">
+              <div class="ci-detail-label">Found on</div>
+              <div class="ci-detail-pages">
+                <span class="ci-page-chip">Homepage</span><span class="ci-page-chip">Shop Detail</span><span class="ci-page-chip">Daily Offers</span>
+              </div>
+              <div class="ci-detail-label">Usage</div>
+              <p>Retailer/store logo containers. The most frequently used component by instance count. Appears in cards, carousels, and grids with consistent sizing and rounded corners.</p>
+            </div>
+          </td>
+        </tr>
+        <tr class="ci-row" onclick="this.classList.toggle('open')">
+          <td colspan="5">
+            <button class="ci-row-toggle" type="button">
+              <span class="ci-col-status"><span class="ci-status-badge">🟡</span></span>
+              <span class="ci-col-name"><code>heading</code></span>
+              <span class="ci-col-count">14</span>
+              <span class="ci-col-pages">Daily Offers, Team, Terms, Homepage, Gift Cards</span>
+              <span class="ci-col-chevron material-icons-round">expand_more</span>
+            </button>
+            <div class="ci-row-detail">
+              <div class="ci-detail-label">Found on</div>
+              <div class="ci-detail-pages">
+                <span class="ci-page-chip">Daily Offers</span><span class="ci-page-chip">Team</span><span class="ci-page-chip">Terms</span><span class="ci-page-chip">Homepage</span><span class="ci-page-chip">Gift Cards</span>
+              </div>
+              <div class="ci-detail-label">Usage</div>
+              <p>Nalu heading component for section titles. Uses the typography system classes (headline-large, headline-medium, etc.) for consistent sizing.</p>
+            </div>
+          </td>
+        </tr>
+        <tr class="ci-row" onclick="this.classList.toggle('open')">
+          <td colspan="5">
+            <button class="ci-row-toggle" type="button">
+              <span class="ci-col-status"><span class="ci-status-badge">🟡</span></span>
+              <span class="ci-col-name"><code>divider</code></span>
+              <span class="ci-col-count">15</span>
+              <span class="ci-col-pages">Shop Detail</span>
+              <span class="ci-col-chevron material-icons-round">expand_more</span>
+            </button>
+            <div class="ci-row-detail">
+              <div class="ci-detail-label">Found on</div>
+              <div class="ci-detail-pages">
+                <span class="ci-page-chip">Shop Detail</span>
+              </div>
+              <div class="ci-detail-label">Usage</div>
+              <p>Horizontal dividers separating content sections on the shop detail page — between offer blocks, review sections, and informational areas.</p>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ═══ DATA ENTRY ═══ -->
+  <div class="ci-category" data-category="data-entry">
+    <div class="ci-category-header">
+      <span class="ci-category-icon">✏️</span>
+      <span class="ci-category-name">Data Entry</span>
+      <span class="ci-category-count">5 components</span>
+    </div>
+    <table class="ci-table">
+      <thead><tr><th style="width:32px"></th><th>Component</th><th style="width:80px;text-align:center">Count</th><th>Pages Found</th><th style="width:24px"></th></tr></thead>
+      <tbody>
+        <tr class="ci-row" onclick="this.classList.toggle('open')">
+          <td colspan="5">
+            <button class="ci-row-toggle" type="button">
+              <span class="ci-col-status"><span class="ci-status-badge">🟡</span></span>
+              <span class="ci-col-name"><code>inputfield</code></span>
+              <span class="ci-col-count">3</span>
+              <span class="ci-col-pages">Shop Detail, Gift Cards</span>
+              <span class="ci-col-chevron material-icons-round">expand_more</span>
+            </button>
+            <div class="ci-row-detail">
+              <div class="ci-detail-label">Found on</div>
+              <div class="ci-detail-pages">
+                <span class="ci-page-chip">Shop Detail</span><span class="ci-page-chip">Gift Cards</span>
+              </div>
+              <div class="ci-detail-label">Usage</div>
+              <p>Text input fields used in forms — promo code entry on shop detail, email/value inputs on gift card pages.</p>
+            </div>
+          </td>
+        </tr>
+        <tr class="ci-row" onclick="this.classList.toggle('open')">
+          <td colspan="5">
+            <button class="ci-row-toggle" type="button">
+              <span class="ci-col-status"><span class="ci-status-badge">🟡</span></span>
+              <span class="ci-col-name"><code>checkbox</code></span>
+              <span class="ci-col-count">1</span>
+              <span class="ci-col-pages">Shop Detail</span>
+              <span class="ci-col-chevron material-icons-round">expand_more</span>
+            </button>
+            <div class="ci-row-detail">
+              <div class="ci-detail-label">Found on</div>
+              <div class="ci-detail-pages">
+                <span class="ci-page-chip">Shop Detail</span>
+              </div>
+              <div class="ci-detail-label">Usage</div>
+              <p>Single checkbox used in shop detail for terms/conditions acceptance or notification opt-in.</p>
+            </div>
+          </td>
+        </tr>
+        <tr class="ci-row" onclick="this.classList.toggle('open')">
+          <td colspan="5">
+            <button class="ci-row-toggle" type="button">
+              <span class="ci-col-status"><span class="ci-status-badge">🟡</span></span>
+              <span class="ci-col-name"><code>togglebutton</code></span>
+              <span class="ci-col-count">1</span>
+              <span class="ci-col-pages">Shop Detail</span>
+              <span class="ci-col-chevron material-icons-round">expand_more</span>
+            </button>
+            <div class="ci-row-detail">
+              <div class="ci-detail-label">Found on</div>
+              <div class="ci-detail-pages">
+                <span class="ci-page-chip">Shop Detail</span>
+              </div>
+              <div class="ci-detail-label">Usage</div>
+              <p>Toggle/switch button for enabling notifications or toggling between views on the shop detail page.</p>
+            </div>
+          </td>
+        </tr>
+        <tr class="ci-row" onclick="this.classList.toggle('open')">
+          <td colspan="5">
+            <button class="ci-row-toggle" type="button">
+              <span class="ci-col-status"><span class="ci-status-badge">🟢</span></span>
+              <span class="ci-col-name"><code>chip</code></span>
+              <span class="ci-col-count">6</span>
+              <span class="ci-col-pages">Homepage</span>
+              <span class="ci-col-chevron material-icons-round">expand_more</span>
+            </button>
+            <div class="ci-row-detail">
+              <div class="ci-detail-label">Found on</div>
+              <div class="ci-detail-pages">
+                <span class="ci-page-chip">Homepage</span>
+              </div>
+              <div class="ci-detail-label">Usage</div>
+              <p>Category filter chips on the homepage for browsing store categories (e.g. "Moda", "Elektronika", "Podróże"). Documented in Cards section as a supporting component.</p>
+            </div>
+          </td>
+        </tr>
+        <tr class="ci-row" onclick="this.classList.toggle('open')">
+          <td colspan="5">
+            <button class="ci-row-toggle" type="button">
+              <span class="ci-col-status"><span class="ci-status-badge">🟡</span></span>
+              <span class="ci-col-name"><code>chipgroup</code></span>
+              <span class="ci-col-count">1</span>
+              <span class="ci-col-pages">Homepage</span>
+              <span class="ci-col-chevron material-icons-round">expand_more</span>
+            </button>
+            <div class="ci-row-detail">
+              <div class="ci-detail-label">Found on</div>
+              <div class="ci-detail-pages">
+                <span class="ci-page-chip">Homepage</span>
+              </div>
+              <div class="ci-detail-label">Usage</div>
+              <p>Container for chip components, providing horizontal scrollable layout with overflow handling for category filters.</p>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ═══ CARDS ═══ -->
+  <div class="ci-category" data-category="cards">
+    <div class="ci-category-header">
+      <span class="ci-category-icon">🃏</span>
+      <span class="ci-category-name">Cards</span>
+      <span class="ci-category-count">4 components</span>
+    </div>
+    <table class="ci-table">
+      <thead><tr><th style="width:32px"></th><th>Component</th><th style="width:80px;text-align:center">Count</th><th>Pages Found</th><th style="width:24px"></th></tr></thead>
+      <tbody>
+        <tr class="ci-row" onclick="this.classList.toggle('open')">
+          <td colspan="5">
+            <button class="ci-row-toggle" type="button">
+              <span class="ci-col-status"><span class="ci-status-badge">🟢</span></span>
+              <span class="ci-col-name"><code>verticalbasecard</code></span>
+              <span class="ci-col-count">20</span>
+              <span class="ci-col-pages">Homepage</span>
+              <span class="ci-col-chevron material-icons-round">expand_more</span>
+            </button>
+            <div class="ci-row-detail">
+              <div class="ci-detail-label">Found on</div>
+              <div class="ci-detail-pages">
+                <span class="ci-page-chip">Homepage</span>
+              </div>
+              <div class="ci-detail-label">Usage</div>
+              <p>Primary commerce card — tall format with retailer logo, store name, cashback value, CTA button. Used in carousels and grid layouts for featured offers. Fully documented in Card System section.</p>
+            </div>
+          </td>
+        </tr>
+        <tr class="ci-row" onclick="this.classList.toggle('open')">
+          <td colspan="5">
+            <button class="ci-row-toggle" type="button">
+              <span class="ci-col-status"><span class="ci-status-badge">🟢</span></span>
+              <span class="ci-col-name"><code>verticalbasecardlite</code></span>
+              <span class="ci-col-count">41</span>
+              <span class="ci-col-pages">Homepage, Shop Detail, Gift Cards</span>
+              <span class="ci-col-chevron material-icons-round">expand_more</span>
+            </button>
+            <div class="ci-row-detail">
+              <div class="ci-detail-label">Found on</div>
+              <div class="ci-detail-pages">
+                <span class="ci-page-chip">Homepage</span><span class="ci-page-chip">Shop Detail</span><span class="ci-page-chip">Gift Cards</span>
+              </div>
+              <div class="ci-detail-label">Usage</div>
+              <p>Compact card variant — reduced height, no CTA button. The most frequently used card type (41 instances). Used in "similar stores" carousels and browsing grids. Fully documented in Card System section.</p>
+            </div>
+          </td>
+        </tr>
+        <tr class="ci-row" onclick="this.classList.toggle('open')">
+          <td colspan="5">
+            <button class="ci-row-toggle" type="button">
+              <span class="ci-col-status"><span class="ci-status-badge">🟢</span></span>
+              <span class="ci-col-name"><code>horizontalbasecard</code></span>
+              <span class="ci-col-count">12</span>
+              <span class="ci-col-pages">Shop Detail</span>
+              <span class="ci-col-chevron material-icons-round">expand_more</span>
+            </button>
+            <div class="ci-row-detail">
+              <div class="ci-detail-label">Found on</div>
+              <div class="ci-detail-pages">
+                <span class="ci-page-chip">Shop Detail</span>
+              </div>
+              <div class="ci-detail-label">Usage</div>
+              <p>Wide format card — badge on left, content center, actions right. Used for individual offers/coupons on shop detail pages. Fully documented in Card System section.</p>
+            </div>
+          </td>
+        </tr>
+        <tr class="ci-row" onclick="this.classList.toggle('open')">
+          <td colspan="5">
+            <button class="ci-row-toggle" type="button">
+              <span class="ci-col-status"><span class="ci-status-badge">🟢</span></span>
+              <span class="ci-col-name"><code>island</code></span>
+              <span class="ci-col-count">34</span>
+              <span class="ci-col-pages">All 8 pages</span>
+              <span class="ci-col-chevron material-icons-round">expand_more</span>
+            </button>
+            <div class="ci-row-detail">
+              <div class="ci-detail-label">Found on</div>
+              <div class="ci-detail-pages">
+                <span class="ci-page-chip">Homepage</span><span class="ci-page-chip">Shop Detail</span><span class="ci-page-chip">Gift Cards</span><span class="ci-page-chip">Daily Offers</span><span class="ci-page-chip">Extension</span><span class="ci-page-chip">FAQ</span><span class="ci-page-chip">Team</span><span class="ci-page-chip">Terms</span>
+              </div>
+              <div class="ci-detail-label">Usage</div>
+              <p>Full-width content containers with large border-radius (32px). Used for promotional blocks, FAQ sections, testimonials, and footers. The most versatile layout component. Fully documented in Card System section.</p>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ═══ ACTIONS ═══ -->
+  <div class="ci-category" data-category="actions">
+    <div class="ci-category-header">
+      <span class="ci-category-icon">👆</span>
+      <span class="ci-category-name">Actions</span>
+      <span class="ci-category-count">2 components</span>
+    </div>
+    <table class="ci-table">
+      <thead><tr><th style="width:32px"></th><th>Component</th><th style="width:80px;text-align:center">Count</th><th>Pages Found</th><th style="width:24px"></th></tr></thead>
+      <tbody>
+        <tr class="ci-row" onclick="this.classList.toggle('open')">
+          <td colspan="5">
+            <button class="ci-row-toggle" type="button">
+              <span class="ci-col-status"><span class="ci-status-badge">🟢</span></span>
+              <span class="ci-col-name"><code>button</code></span>
+              <span class="ci-col-count">77</span>
+              <span class="ci-col-pages">All 8 pages</span>
+              <span class="ci-col-chevron material-icons-round">expand_more</span>
+            </button>
+            <div class="ci-row-detail">
+              <div class="ci-detail-label">Found on</div>
+              <div class="ci-detail-pages">
+                <span class="ci-page-chip">Homepage</span><span class="ci-page-chip">Shop Detail</span><span class="ci-page-chip">Gift Cards</span><span class="ci-page-chip">Daily Offers</span><span class="ci-page-chip">Extension</span><span class="ci-page-chip">FAQ</span><span class="ci-page-chip">Team</span><span class="ci-page-chip">Terms</span>
+              </div>
+              <div class="ci-detail-label">Usage</div>
+              <p>Primary action component — contained, outlined, and text variants. Used for CTAs, form submissions, navigation triggers. Fully documented in Buttons section with all variant/color combinations.</p>
+            </div>
+          </td>
+        </tr>
+        <tr class="ci-row" onclick="this.classList.toggle('open')">
+          <td colspan="5">
+            <button class="ci-row-toggle" type="button">
+              <span class="ci-col-status"><span class="ci-status-badge">🟡</span></span>
+              <span class="ci-col-name"><code>iconbutton</code></span>
+              <span class="ci-col-count">23</span>
+              <span class="ci-col-pages">All 8 pages</span>
+              <span class="ci-col-chevron material-icons-round">expand_more</span>
+            </button>
+            <div class="ci-row-detail">
+              <div class="ci-detail-label">Found on</div>
+              <div class="ci-detail-pages">
+                <span class="ci-page-chip">Homepage</span><span class="ci-page-chip">Shop Detail</span><span class="ci-page-chip">Gift Cards</span><span class="ci-page-chip">Daily Offers</span><span class="ci-page-chip">Extension</span><span class="ci-page-chip">FAQ</span><span class="ci-page-chip">Team</span><span class="ci-page-chip">Terms</span>
+              </div>
+              <div class="ci-detail-label">Usage</div>
+              <p>Icon-only buttons for close actions, navigation arrows, favorite/heart toggles, and utility actions. Circular hit target with icon centered.</p>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ═══ FEEDBACK ═══ -->
+  <div class="ci-category" data-category="feedback">
+    <div class="ci-category-header">
+      <span class="ci-category-icon">💬</span>
+      <span class="ci-category-name">Feedback</span>
+      <span class="ci-category-count">6 components</span>
+    </div>
+    <table class="ci-table">
+      <thead><tr><th style="width:32px"></th><th>Component</th><th style="width:80px;text-align:center">Count</th><th>Pages Found</th><th style="width:24px"></th></tr></thead>
+      <tbody>
+        <tr class="ci-row" onclick="this.classList.toggle('open')">
+          <td colspan="5">
+            <button class="ci-row-toggle" type="button">
+              <span class="ci-col-status"><span class="ci-status-badge">🟡</span></span>
+              <span class="ci-col-name"><code>dialog</code></span>
+              <span class="ci-col-count">3</span>
+              <span class="ci-col-pages">Shop Detail, Gift Cards</span>
+              <span class="ci-col-chevron material-icons-round">expand_more</span>
+            </button>
+            <div class="ci-row-detail">
+              <div class="ci-detail-label">Found on</div>
+              <div class="ci-detail-pages">
+                <span class="ci-page-chip">Shop Detail</span><span class="ci-page-chip">Gift Cards</span>
+              </div>
+              <div class="ci-detail-label">Usage</div>
+              <p>Modal dialog overlays for cashback activation confirmation, promo code details, and gift card purchase flows.</p>
+            </div>
+          </td>
+        </tr>
+        <tr class="ci-row" onclick="this.classList.toggle('open')">
+          <td colspan="5">
+            <button class="ci-row-toggle" type="button">
+              <span class="ci-col-status"><span class="ci-status-badge">🟡</span></span>
+              <span class="ci-col-name"><code>dialog-footer</code></span>
+              <span class="ci-col-count">1</span>
+              <span class="ci-col-pages">Gift Cards</span>
+              <span class="ci-col-chevron material-icons-round">expand_more</span>
+            </button>
+            <div class="ci-row-detail">
+              <div class="ci-detail-label">Found on</div>
+              <div class="ci-detail-pages">
+                <span class="ci-page-chip">Gift Cards</span>
+              </div>
+              <div class="ci-detail-label">Usage</div>
+              <p>Footer section of dialog modals containing action buttons (confirm/cancel). Used in the gift card purchase dialog.</p>
+            </div>
+          </td>
+        </tr>
+        <tr class="ci-row" onclick="this.classList.toggle('open')">
+          <td colspan="5">
+            <button class="ci-row-toggle" type="button">
+              <span class="ci-col-status"><span class="ci-status-badge">🟢</span></span>
+              <span class="ci-col-name"><code>accordion</code></span>
+              <span class="ci-col-count">16</span>
+              <span class="ci-col-pages">Homepage, Shop Detail, Gift Cards</span>
+              <span class="ci-col-chevron material-icons-round">expand_more</span>
+            </button>
+            <div class="ci-row-detail">
+              <div class="ci-detail-label">Found on</div>
+              <div class="ci-detail-pages">
+                <span class="ci-page-chip">Homepage</span><span class="ci-page-chip">Shop Detail</span><span class="ci-page-chip">Gift Cards</span>
+              </div>
+              <div class="ci-detail-label">Usage</div>
+              <p>Expandable FAQ-style content blocks. Used in FAQ islands on the homepage, shop detail Q&amp;A sections, and gift card help areas. Documented in Cards section as a supporting component.</p>
+            </div>
+          </td>
+        </tr>
+        <tr class="ci-row" onclick="this.classList.toggle('open')">
+          <td colspan="5">
+            <button class="ci-row-toggle" type="button">
+              <span class="ci-col-status"><span class="ci-status-badge">🟡</span></span>
+              <span class="ci-col-name"><code>expandabletext</code></span>
+              <span class="ci-col-count">13</span>
+              <span class="ci-col-pages">Shop Detail</span>
+              <span class="ci-col-chevron material-icons-round">expand_more</span>
+            </button>
+            <div class="ci-row-detail">
+              <div class="ci-detail-label">Found on</div>
+              <div class="ci-detail-pages">
+                <span class="ci-page-chip">Shop Detail</span>
+              </div>
+              <div class="ci-detail-label">Usage</div>
+              <p>Truncated text blocks with "Pokaż więcej" (Show more) toggle. Used for long offer descriptions and terms on shop detail pages.</p>
+            </div>
+          </td>
+        </tr>
+        <tr class="ci-row" onclick="this.classList.toggle('open')">
+          <td colspan="5">
+            <button class="ci-row-toggle" type="button">
+              <span class="ci-col-status"><span class="ci-status-badge">🟡</span></span>
+              <span class="ci-col-name"><code>stepper</code></span>
+              <span class="ci-col-count">2</span>
+              <span class="ci-col-pages">Gift Cards</span>
+              <span class="ci-col-chevron material-icons-round">expand_more</span>
+            </button>
+            <div class="ci-row-detail">
+              <div class="ci-detail-label">Found on</div>
+              <div class="ci-detail-pages">
+                <span class="ci-page-chip">Gift Cards</span>
+              </div>
+              <div class="ci-detail-label">Usage</div>
+              <p>Step progress indicator for multi-step flows — gift card purchase process (select → customize → pay).</p>
+            </div>
+          </td>
+        </tr>
+        <tr class="ci-row" onclick="this.classList.toggle('open')">
+          <td colspan="5">
+            <button class="ci-row-toggle" type="button">
+              <span class="ci-col-status"><span class="ci-status-badge">🟡</span></span>
+              <span class="ci-col-name"><code>stepperitem</code></span>
+              <span class="ci-col-count">6</span>
+              <span class="ci-col-pages">Gift Cards</span>
+              <span class="ci-col-chevron material-icons-round">expand_more</span>
+            </button>
+            <div class="ci-row-detail">
+              <div class="ci-detail-label">Found on</div>
+              <div class="ci-detail-pages">
+                <span class="ci-page-chip">Gift Cards</span>
+              </div>
+              <div class="ci-detail-label">Usage</div>
+              <p>Individual step within a stepper component. Each stepper has 3 items (6 total across 2 steppers). Shows step number, label, and active/completed state.</p>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ═══ LAYOUT ═══ -->
+  <div class="ci-category" data-category="layout">
+    <div class="ci-category-header">
+      <span class="ci-category-icon">📐</span>
+      <span class="ci-category-name">Layout</span>
+      <span class="ci-category-count">2 components</span>
+    </div>
+    <table class="ci-table">
+      <thead><tr><th style="width:32px"></th><th>Component</th><th style="width:80px;text-align:center">Count</th><th>Pages Found</th><th style="width:24px"></th></tr></thead>
+      <tbody>
+        <tr class="ci-row" onclick="this.classList.toggle('open')">
+          <td colspan="5">
+            <button class="ci-row-toggle" type="button">
+              <span class="ci-col-status"><span class="ci-status-badge">🟢</span></span>
+              <span class="ci-col-name"><code>section</code></span>
+              <span class="ci-col-count">33</span>
+              <span class="ci-col-pages">All 8 pages</span>
+              <span class="ci-col-chevron material-icons-round">expand_more</span>
+            </button>
+            <div class="ci-row-detail">
+              <div class="ci-detail-label">Found on</div>
+              <div class="ci-detail-pages">
+                <span class="ci-page-chip">Homepage</span><span class="ci-page-chip">Shop Detail</span><span class="ci-page-chip">Gift Cards</span><span class="ci-page-chip">Daily Offers</span><span class="ci-page-chip">Extension</span><span class="ci-page-chip">FAQ</span><span class="ci-page-chip">Team</span><span class="ci-page-chip">Terms</span>
+              </div>
+              <div class="ci-detail-label">Usage</div>
+              <p>Top-level layout wrapper defining page sections. Applies consistent spacing, max-width constraints, and theme backgrounds (high/medium/low emphasis). Documented in Section Themes.</p>
+            </div>
+          </td>
+        </tr>
+        <tr class="ci-row" onclick="this.classList.toggle('open')">
+          <td colspan="5">
+            <button class="ci-row-toggle" type="button">
+              <span class="ci-col-status"><span class="ci-status-badge">🟢</span></span>
+              <span class="ci-col-name"><code>carousel</code></span>
+              <span class="ci-col-count">3</span>
+              <span class="ci-col-pages">Homepage</span>
+              <span class="ci-col-chevron material-icons-round">expand_more</span>
+            </button>
+            <div class="ci-row-detail">
+              <div class="ci-detail-label">Found on</div>
+              <div class="ci-detail-pages">
+                <span class="ci-page-chip">Homepage</span>
+              </div>
+              <div class="ci-detail-label">Usage</div>
+              <p>Horizontal scroll containers with pagination dots. Used for featured stores, top cashback offers, and promotional content on the homepage. Documented in Card System section.</p>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ═══ STATUS MODIFIERS ═══ -->
+  <div class="ci-category" data-category="status">
+    <div class="ci-category-header">
+      <span class="ci-category-icon">🏷️</span>
+      <span class="ci-category-name">Status Modifiers</span>
+      <span class="ci-category-count">3 components</span>
+    </div>
+    <table class="ci-table">
+      <thead><tr><th style="width:32px"></th><th>Component</th><th style="width:80px;text-align:center">Count</th><th>Pages Found</th><th style="width:24px"></th></tr></thead>
+      <tbody>
+        <tr class="ci-row" onclick="this.classList.toggle('open')">
+          <td colspan="5">
+            <button class="ci-row-toggle" type="button">
+              <span class="ci-col-status"><span class="ci-status-badge">🟡</span></span>
+              <span class="ci-col-name"><code>stt-vld</code> <span style="font-weight:400;color:var(--text-secondary);font-size:12px">(validated)</span></span>
+              <span class="ci-col-count">9</span>
+              <span class="ci-col-pages">Shop Detail</span>
+              <span class="ci-col-chevron material-icons-round">expand_more</span>
+            </button>
+            <div class="ci-row-detail">
+              <div class="ci-detail-label">Found on</div>
+              <div class="ci-detail-pages">
+                <span class="ci-page-chip">Shop Detail</span>
+              </div>
+              <div class="ci-detail-label">Usage</div>
+              <p>Status modifier marking offers as validated/verified. Applied as a CSS class to offer cards, rendering a green check indicator.</p>
+            </div>
+          </td>
+        </tr>
+        <tr class="ci-row" onclick="this.classList.toggle('open')">
+          <td colspan="5">
+            <button class="ci-row-toggle" type="button">
+              <span class="ci-col-status"><span class="ci-status-badge">🟡</span></span>
+              <span class="ci-col-name"><code>stt-exp</code> <span style="font-weight:400;color:var(--text-secondary);font-size:12px">(expired)</span></span>
+              <span class="ci-col-count">3</span>
+              <span class="ci-col-pages">Shop Detail</span>
+              <span class="ci-col-chevron material-icons-round">expand_more</span>
+            </button>
+            <div class="ci-row-detail">
+              <div class="ci-detail-label">Found on</div>
+              <div class="ci-detail-pages">
+                <span class="ci-page-chip">Shop Detail</span>
+              </div>
+              <div class="ci-detail-label">Usage</div>
+              <p>Status modifier marking offers as expired. Applied as a CSS class, rendering greyed-out/strikethrough styling on offer cards.</p>
+            </div>
+          </td>
+        </tr>
+        <tr class="ci-row" onclick="this.classList.toggle('open')">
+          <td colspan="5">
+            <button class="ci-row-toggle" type="button">
+              <span class="ci-col-status"><span class="ci-status-badge">🟡</span></span>
+              <span class="ci-col-name"><code>shp-crcl</code> <span style="font-weight:400;color:var(--text-secondary);font-size:12px">(shape circle)</span></span>
+              <span class="ci-col-count">4</span>
+              <span class="ci-col-pages">Shop Detail</span>
+              <span class="ci-col-chevron material-icons-round">expand_more</span>
+            </button>
+            <div class="ci-row-detail">
+              <div class="ci-detail-label">Found on</div>
+              <div class="ci-detail-pages">
+                <span class="ci-page-chip">Shop Detail</span>
+              </div>
+              <div class="ci-detail-label">Usage</div>
+              <p>Shape modifier applying circular border-radius to avatars and logo containers. Used on retailer logos and user profile images.</p>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ═══ TYPOGRAPHY SYSTEM ═══ -->
+  <h3 class="subsection-title">Typography System</h3>
+  <p style="font-size:14px;color:var(--text-secondary);margin-bottom:20px;">9 Nalu typography classes identified across all pages.</p>
+  <div class="ci-typo-grid">
+    <div class="ci-typo-item">
+      <span class="ci-typo-class">nalu-t-display-medium</span>
+      <span class="ci-typo-count">×1</span>
+      <span class="ci-typo-sample">"Jak działa cashback w iGraal?"</span>
+    </div>
+    <div class="ci-typo-item">
+      <span class="ci-typo-class">nalu-t-headline-large</span>
+      <span class="ci-typo-count">×2</span>
+      <span class="ci-typo-sample">"Pobierz aplikację iGraal..."</span>
+    </div>
+    <div class="ci-typo-item">
+      <span class="ci-typo-class">nalu-t-headline-medium</span>
+      <span class="ci-typo-count">×1</span>
+      <span class="ci-typo-sample">"Sprawdź opinie naszych użytkowników"</span>
+    </div>
+    <div class="ci-typo-item">
+      <span class="ci-typo-class">nalu-t-headline-small</span>
+      <span class="ci-typo-count">×4</span>
+      <span class="ci-typo-sample">"To były hity!"</span>
+    </div>
+    <div class="ci-typo-item">
+      <span class="ci-typo-class">nalu-t-title-medium</span>
+      <span class="ci-typo-count">×83</span>
+      <span class="ci-typo-sample">(various titles)</span>
+    </div>
+    <div class="ci-typo-item">
+      <span class="ci-typo-class">nalu-t-title-small</span>
+      <span class="ci-typo-count">×19</span>
+      <span class="ci-typo-sample">"Pomoc"</span>
+    </div>
+    <div class="ci-typo-item">
+      <span class="ci-typo-class">nalu-t-body-large</span>
+      <span class="ci-typo-count">×4</span>
+      <span class="ci-typo-sample">"Skorzystaj z ofert weryfikowanych..."</span>
+    </div>
+    <div class="ci-typo-item">
+      <span class="ci-typo-class">nalu-t-body-medium</span>
+      <span class="ci-typo-count">×39</span>
+      <span class="ci-typo-sample">"Zawsze za darmo"</span>
+    </div>
+    <div class="ci-typo-item">
+      <span class="ci-typo-class">nalu-t-body-small</span>
+      <span class="ci-typo-count">×14</span>
+      <span class="ci-typo-sample">"© 2026 iGraal. Wszelkie prawa zastrzeżone."</span>
+    </div>
+  </div>
+
+  <!-- ═══ ICON LIBRARY ═══ -->
+  <h3 class="subsection-title">Icon Library</h3>
+  <p style="font-size:14px;color:var(--text-secondary);margin-bottom:20px;">37 unique SVG icons from the Nalu icon sprite library, grouped by sprite file.</p>
+  <div class="ci-icon-section">
+    <div class="ci-icon-group">
+      <div class="ci-icon-group-label">arrows (4)</div>
+      <div class="ci-icon-grid">
+        <span class="ci-icon-chip">arrow-left</span>
+        <span class="ci-icon-chip">arrow-right</span>
+        <span class="ci-icon-chip">chevron-down</span>
+        <span class="ci-icon-chip">chevron-right</span>
+      </div>
+    </div>
+    <div class="ci-icon-group">
+      <div class="ci-icon-group-label">general (9)</div>
+      <div class="ci-icon-grid">
+        <span class="ci-icon-chip">check</span>
+        <span class="ci-icon-chip">check-circle</span>
+        <span class="ci-icon-chip">check-verified-01</span>
+        <span class="ci-icon-chip">heart</span>
+        <span class="ci-icon-chip">info-circle</span>
+        <span class="ci-icon-chip">percent-02</span>
+        <span class="ci-icon-chip">plus</span>
+        <span class="ci-icon-chip">search-sm</span>
+        <span class="ci-icon-chip">x-close</span>
+      </div>
+    </div>
+    <div class="ci-icon-group">
+      <div class="ci-icon-group-label">finance &amp; ecommerce (8)</div>
+      <div class="ci-icon-grid">
+        <span class="ci-icon-chip">bank-note-01</span>
+        <span class="ci-icon-chip">bank-note-02</span>
+        <span class="ci-icon-chip">credit-card-01</span>
+        <span class="ci-icon-chip">credit-card-refresh</span>
+        <span class="ci-icon-chip">gift-02</span>
+        <span class="ci-icon-chip">sale-03</span>
+        <span class="ci-icon-chip">shopping-bag-03</span>
+        <span class="ci-icon-chip">tag-01</span>
+      </div>
+    </div>
+    <div class="ci-icon-group">
+      <div class="ci-icon-group-label">alert &amp; feedback (1)</div>
+      <div class="ci-icon-grid">
+        <span class="ci-icon-chip">thumbs-up</span>
+      </div>
+    </div>
+    <div class="ci-icon-group">
+      <div class="ci-icon-group-label">communication (1)</div>
+      <div class="ci-icon-grid">
+        <span class="ci-icon-chip">send-03</span>
+      </div>
+    </div>
+    <div class="ci-icon-group">
+      <div class="ci-icon-group-label">maps &amp; travel (1)</div>
+      <div class="ci-icon-grid">
+        <span class="ci-icon-chip">truck-01</span>
+      </div>
+    </div>
+    <div class="ci-icon-group">
+      <div class="ci-icon-group-label">shapes (1)</div>
+      <div class="ci-icon-grid">
+        <span class="ci-icon-chip">star-01</span>
+      </div>
+    </div>
+    <div class="ci-icon-group">
+      <div class="ci-icon-group-label">time (2)</div>
+      <div class="ci-icon-grid">
+        <span class="ci-icon-chip">alarm-clock</span>
+        <span class="ci-icon-chip">hourglass-01</span>
+      </div>
+    </div>
+    <div class="ci-icon-group">
+      <div class="ci-icon-group-label">users (1)</div>
+      <div class="ci-icon-grid">
+        <span class="ci-icon-chip">user-01</span>
+      </div>
+    </div>
+    <div class="ci-icon-group">
+      <div class="ci-icon-group-label">weather (1)</div>
+      <div class="ci-icon-grid">
+        <span class="ci-icon-chip">lightning-02</span>
+      </div>
+    </div>
+    <div class="ci-icon-group">
+      <div class="ci-icon-group-label">brand-logos/atolls (1)</div>
+      <div class="ci-icon-grid">
+        <span class="ci-icon-chip">igraal-landscape</span>
+      </div>
+    </div>
+    <div class="ci-icon-group">
+      <div class="ci-icon-group-label">brand-logos (3)</div>
+      <div class="ci-icon-grid">
+        <span class="ci-icon-chip">chrome</span>
+        <span class="ci-icon-chip">facebook (mono)</span>
+        <span class="ci-icon-chip">instagram (mono)</span>
+      </div>
+    </div>
+    <div class="ci-icon-group">
+      <div class="ci-icon-group-label">flags (4)</div>
+      <div class="ci-icon-grid">
+        <span class="ci-icon-chip">DE</span>
+        <span class="ci-icon-chip">ES</span>
+        <span class="ci-icon-chip">FR</span>
+        <span class="ci-icon-chip">PL</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ PAGE COMPLEXITY MATRIX ═══ -->
+  <h3 class="subsection-title">Page Complexity Matrix</h3>
+  <p style="font-size:14px;color:var(--text-secondary);margin-bottom:20px;">Comparative analysis of component density across all 8 audited pages.</p>
+  <table class="ci-matrix">
+    <thead>
+      <tr>
+        <th>Page</th>
+        <th>Components</th>
+        <th>Icons</th>
+        <th>Elements</th>
+        <th>Buttons</th>
+        <th>Links</th>
+        <th>Inputs</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td style="font-weight:600">Homepage</td>
+        <td><div class="ci-matrix-bar-wrap"><div class="ci-matrix-bar" style="width:86%"></div><span class="ci-matrix-val">38</span></div></td>
+        <td><div class="ci-matrix-bar-wrap"><div class="ci-matrix-bar icons" style="width:92%"></div><span class="ci-matrix-val">24</span></div></td>
+        <td><div class="ci-matrix-bar-wrap"><div class="ci-matrix-bar elements" style="width:100%"></div><span class="ci-matrix-val">2,519</span></div></td>
+        <td><div class="ci-matrix-bar-wrap"><div class="ci-matrix-bar buttons" style="width:100%"></div><span class="ci-matrix-val">103</span></div></td>
+        <td><div class="ci-matrix-bar-wrap"><div class="ci-matrix-bar links" style="width:76%"></div><span class="ci-matrix-val">99</span></div></td>
+        <td><div class="ci-matrix-bar-wrap"><div class="ci-matrix-bar inputs" style="width:25%"></div><span class="ci-matrix-val">1</span></div></td>
+      </tr>
+      <tr>
+        <td style="font-weight:600">Shop Detail</td>
+        <td><div class="ci-matrix-bar-wrap"><div class="ci-matrix-bar" style="width:100%"></div><span class="ci-matrix-val">44</span></div></td>
+        <td><div class="ci-matrix-bar-wrap"><div class="ci-matrix-bar icons" style="width:100%"></div><span class="ci-matrix-val">26</span></div></td>
+        <td><div class="ci-matrix-bar-wrap"><div class="ci-matrix-bar elements" style="width:73%"></div><span class="ci-matrix-val">1,836</span></div></td>
+        <td><div class="ci-matrix-bar-wrap"><div class="ci-matrix-bar buttons" style="width:45%"></div><span class="ci-matrix-val">46</span></div></td>
+        <td><div class="ci-matrix-bar-wrap"><div class="ci-matrix-bar links" style="width:81%"></div><span class="ci-matrix-val">105</span></div></td>
+        <td><div class="ci-matrix-bar-wrap"><div class="ci-matrix-bar inputs" style="width:100%"></div><span class="ci-matrix-val">4</span></div></td>
+      </tr>
+      <tr>
+        <td style="font-weight:600">Gift Cards</td>
+        <td><div class="ci-matrix-bar-wrap"><div class="ci-matrix-bar" style="width:75%"></div><span class="ci-matrix-val">33</span></div></td>
+        <td><div class="ci-matrix-bar-wrap"><div class="ci-matrix-bar icons" style="width:58%"></div><span class="ci-matrix-val">15</span></div></td>
+        <td><div class="ci-matrix-bar-wrap"><div class="ci-matrix-bar elements" style="width:39%"></div><span class="ci-matrix-val">980</span></div></td>
+        <td><div class="ci-matrix-bar-wrap"><div class="ci-matrix-bar buttons" style="width:17%"></div><span class="ci-matrix-val">17</span></div></td>
+        <td><div class="ci-matrix-bar-wrap"><div class="ci-matrix-bar links" style="width:60%"></div><span class="ci-matrix-val">78</span></div></td>
+        <td><div class="ci-matrix-bar-wrap"><div class="ci-matrix-bar inputs" style="width:50%"></div><span class="ci-matrix-val">2</span></div></td>
+      </tr>
+      <tr>
+        <td style="font-weight:600">Terms</td>
+        <td><div class="ci-matrix-bar-wrap"><div class="ci-matrix-bar" style="width:41%"></div><span class="ci-matrix-val">18</span></div></td>
+        <td><div class="ci-matrix-bar-wrap"><div class="ci-matrix-bar icons" style="width:42%"></div><span class="ci-matrix-val">11</span></div></td>
+        <td><div class="ci-matrix-bar-wrap"><div class="ci-matrix-bar elements" style="width:41%"></div><span class="ci-matrix-val">1,025</span></div></td>
+        <td><div class="ci-matrix-bar-wrap"><div class="ci-matrix-bar buttons" style="width:8%"></div><span class="ci-matrix-val">8</span></div></td>
+        <td><div class="ci-matrix-bar-wrap"><div class="ci-matrix-bar links" style="width:63%"></div><span class="ci-matrix-val">82</span></div></td>
+        <td><div class="ci-matrix-bar-wrap"><div class="ci-matrix-bar inputs" style="width:25%"></div><span class="ci-matrix-val">1</span></div></td>
+      </tr>
+      <tr>
+        <td style="font-weight:600">Daily Offers</td>
+        <td><div class="ci-matrix-bar-wrap"><div class="ci-matrix-bar" style="width:39%"></div><span class="ci-matrix-val">17</span></div></td>
+        <td><div class="ci-matrix-bar-wrap"><div class="ci-matrix-bar icons" style="width:35%"></div><span class="ci-matrix-val">9</span></div></td>
+        <td><div class="ci-matrix-bar-wrap"><div class="ci-matrix-bar elements" style="width:32%"></div><span class="ci-matrix-val">806</span></div></td>
+        <td><div class="ci-matrix-bar-wrap"><div class="ci-matrix-bar buttons" style="width:17%"></div><span class="ci-matrix-val">18</span></div></td>
+        <td><div class="ci-matrix-bar-wrap"><div class="ci-matrix-bar links" style="width:55%"></div><span class="ci-matrix-val">72</span></div></td>
+        <td><div class="ci-matrix-bar-wrap"><div class="ci-matrix-bar inputs" style="width:25%"></div><span class="ci-matrix-val">1</span></div></td>
+      </tr>
+      <tr>
+        <td style="font-weight:600">FAQ</td>
+        <td><div class="ci-matrix-bar-wrap"><div class="ci-matrix-bar" style="width:34%"></div><span class="ci-matrix-val">15</span></div></td>
+        <td><div class="ci-matrix-bar-wrap"><div class="ci-matrix-bar icons" style="width:42%"></div><span class="ci-matrix-val">11</span></div></td>
+        <td><div class="ci-matrix-bar-wrap"><div class="ci-matrix-bar elements" style="width:29%"></div><span class="ci-matrix-val">738</span></div></td>
+        <td><div class="ci-matrix-bar-wrap"><div class="ci-matrix-bar buttons" style="width:9%"></div><span class="ci-matrix-val">9</span></div></td>
+        <td><div class="ci-matrix-bar-wrap"><div class="ci-matrix-bar links" style="width:100%"></div><span class="ci-matrix-val">130</span></div></td>
+        <td><div class="ci-matrix-bar-wrap"><div class="ci-matrix-bar inputs" style="width:50%"></div><span class="ci-matrix-val">2</span></div></td>
+      </tr>
+      <tr>
+        <td style="font-weight:600">Extension</td>
+        <td><div class="ci-matrix-bar-wrap"><div class="ci-matrix-bar" style="width:34%"></div><span class="ci-matrix-val">15</span></div></td>
+        <td><div class="ci-matrix-bar-wrap"><div class="ci-matrix-bar icons" style="width:42%"></div><span class="ci-matrix-val">11</span></div></td>
+        <td><div class="ci-matrix-bar-wrap"><div class="ci-matrix-bar elements" style="width:24%"></div><span class="ci-matrix-val">611</span></div></td>
+        <td><div class="ci-matrix-bar-wrap"><div class="ci-matrix-bar buttons" style="width:8%"></div><span class="ci-matrix-val">8</span></div></td>
+        <td><div class="ci-matrix-bar-wrap"><div class="ci-matrix-bar links" style="width:60%"></div><span class="ci-matrix-val">78</span></div></td>
+        <td><div class="ci-matrix-bar-wrap"><div class="ci-matrix-bar inputs" style="width:25%"></div><span class="ci-matrix-val">1</span></div></td>
+      </tr>
+      <tr>
+        <td style="font-weight:600">Team</td>
+        <td><div class="ci-matrix-bar-wrap"><div class="ci-matrix-bar" style="width:30%"></div><span class="ci-matrix-val">13</span></div></td>
+        <td><div class="ci-matrix-bar-wrap"><div class="ci-matrix-bar icons" style="width:27%"></div><span class="ci-matrix-val">7</span></div></td>
+        <td><div class="ci-matrix-bar-wrap"><div class="ci-matrix-bar elements" style="width:22%"></div><span class="ci-matrix-val">557</span></div></td>
+        <td><div class="ci-matrix-bar-wrap"><div class="ci-matrix-bar buttons" style="width:7%"></div><span class="ci-matrix-val">7</span></div></td>
+        <td><div class="ci-matrix-bar-wrap"><div class="ci-matrix-bar links" style="width:57%"></div><span class="ci-matrix-val">74</span></div></td>
+        <td><div class="ci-matrix-bar-wrap"><div class="ci-matrix-bar inputs" style="width:25%"></div><span class="ci-matrix-val">1</span></div></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- ═══ COVERAGE LEGEND ═══ -->
+  <h3 class="subsection-title">Coverage Status Legend</h3>
+  <div style="display:flex;gap:32px;flex-wrap:wrap;margin-bottom:16px;">
+    <div style="display:flex;align-items:center;gap:8px;font-size:14px;">
+      <span style="font-size:18px;">🟢</span>
+      <div><strong>Documented</strong> <span style="color:var(--text-secondary)">— fully documented in these brand guidelines</span></div>
+    </div>
+    <div style="display:flex;align-items:center;gap:8px;font-size:14px;">
+      <span style="font-size:18px;">🟡</span>
+      <div><strong>Identified</strong> <span style="color:var(--text-secondary)">— found in use, not yet documented in detail</span></div>
+    </div>
+    <div style="display:flex;align-items:center;gap:8px;font-size:14px;">
+      <span style="font-size:18px;">⬜</span>
+      <div><strong>Not found</strong> <span style="color:var(--text-secondary)">— exists in Nalu NPM but not used on igraal.pl</span></div>
+    </div>
+  </div>
+  <p style="font-size:13px;color:var(--text-secondary);line-height:20px;">
+    <strong>10 of 34 components</strong> are fully documented (🟢): verticalbasecard, verticalbasecardlite, horizontalbasecard, island, button, chip, tag, section, carousel, accordion.
+    The remaining 24 components are identified (🟡) and awaiting detailed documentation. Future audits will compare against the full Nalu NPM package to identify ⬜ unused components.
+  </p>
+</section>
+
 <!-- ====== LAYOUT ====== -->
 <section class="section" id="layout">
   <h2 class="section-title">Layout</h2>
@@ -2392,6 +3601,33 @@ function selectChip(chip) {
 navLinks.forEach(l => l.addEventListener('click', () => {
   if (window.innerWidth <= 900) document.getElementById('sidebar').classList.remove('open');
 }));
+
+// ============ COMPONENT INVENTORY FILTERS ============
+document.querySelectorAll('.ci-filter-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.ci-filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    const filter = btn.dataset.filter;
+    document.querySelectorAll('.ci-category').forEach(cat => {
+      if (filter === 'all' || cat.dataset.category === filter) {
+        cat.style.display = '';
+      } else {
+        cat.style.display = 'none';
+      }
+    });
+  });
+});
+
+// Expandable component rows
+document.querySelectorAll('.ci-row-toggle').forEach(row => {
+  row.addEventListener('click', () => {
+    const detail = row.nextElementSibling;
+    if (detail && detail.classList.contains('ci-row-detail')) {
+      detail.classList.toggle('open');
+      row.classList.toggle('expanded');
+    }
+  });
+});
 </script>
 </body>
 </html>
