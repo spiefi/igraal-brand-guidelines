@@ -1,0 +1,1709 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>iGraal — Horizontal Base Card — 5 Design Proposals</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   DESIGN TOKENS
+   ============================================================ */
+:root {
+  --brand-orange: #FD5A13;
+  --brand-orange-dark: #CA3E02;
+  --brand-orange-light: #FFF0E8;
+  --brand-orange-10: rgba(253, 90, 19, 0.10);
+  --brand-orange-15: rgba(253, 90, 19, 0.15);
+  --brand-black: #160E0B;
+  --gray-900: #1A1A1A;
+  --gray-800: #2D2D2D;
+  --gray-700: #404040;
+  --gray-600: #595959;
+  --gray-500: #737373;
+  --gray-400: #A3A3A3;
+  --gray-300: #D4D4D4;
+  --gray-200: #E5E5E5;
+  --gray-100: #F5F5F5;
+  --gray-50: #FAFAFA;
+  --white: #FFFFFF;
+  --green-600: #16A34A;
+  --green-100: #DCFCE7;
+  --amber-600: #D97706;
+  --amber-100: #FEF3C7;
+  --red-600: #DC2626;
+  --red-100: #FEE2E2;
+  --blue-600: #2563EB;
+  --blue-100: #DBEAFE;
+  --purple-600: #7C3AED;
+  --purple-100: #EDE9FE;
+
+  --shadow-1: 0px 2px 4px rgba(0,0,0,0.08);
+  --shadow-2: 0px 4px 8px rgba(0,0,0,0.10);
+  --shadow-3: 0px 8px 16px rgba(0,0,0,0.12);
+  --shadow-4: 0px 12px 24px rgba(0,0,0,0.14);
+  --shadow-hover: 0px 8px 24px rgba(253, 90, 19, 0.15);
+
+  --radius-card: 16px;
+  --radius-pill: 48px;
+  --radius-sm: 8px;
+  --radius-xs: 4px;
+
+  --font-heading: Georgia, "New Spirit", serif;
+  --font-body: "Inter", -apple-system, sans-serif;
+}
+
+/* ============================================================
+   RESET & BASE
+   ============================================================ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: var(--font-body);
+  background: #F0ECE6;
+  color: var(--brand-black);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ============================================================
+   PRESENTATION SHELL
+   ============================================================ */
+.presentation-header {
+  background: var(--brand-black);
+  color: var(--white);
+  padding: 48px 32px 32px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.presentation-header::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -20%;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(253,90,19,0.15) 0%, transparent 70%);
+  pointer-events: none;
+}
+.presentation-header h1 {
+  font-family: var(--font-heading);
+  font-size: 40px;
+  font-weight: 700;
+  margin-bottom: 8px;
+  position: relative;
+}
+.presentation-header h1 span { color: var(--brand-orange); }
+.presentation-header p {
+  font-size: 16px;
+  color: var(--gray-400);
+  max-width: 600px;
+  margin: 0 auto;
+  position: relative;
+}
+
+/* NAV */
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: var(--white);
+  border-bottom: 1px solid var(--gray-200);
+  padding: 0 32px;
+  display: flex;
+  gap: 0;
+  overflow-x: auto;
+  box-shadow: var(--shadow-1);
+}
+.nav a {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 16px 20px;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--gray-500);
+  white-space: nowrap;
+  border-bottom: 3px solid transparent;
+  transition: all 0.2s;
+}
+.nav a:hover, .nav a.active {
+  color: var(--brand-orange);
+  border-bottom-color: var(--brand-orange);
+}
+.nav a .nav-num {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--gray-100);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--gray-500);
+  transition: all 0.2s;
+}
+.nav a:hover .nav-num, .nav a.active .nav-num {
+  background: var(--brand-orange);
+  color: var(--white);
+}
+
+/* PROPOSAL SECTION */
+.proposal {
+  padding: 64px 32px;
+  max-width: 1120px;
+  margin: 0 auto;
+}
+.proposal + .proposal { border-top: 1px solid var(--gray-200); }
+
+.proposal-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: var(--brand-orange);
+  margin-bottom: 12px;
+}
+.proposal-label .dot {
+  width: 8px; height: 8px;
+  background: var(--brand-orange);
+  border-radius: 50%;
+}
+
+.proposal-title {
+  font-family: var(--font-heading);
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--brand-black);
+  margin-bottom: 8px;
+}
+
+.proposal-subtitle {
+  font-size: 16px;
+  color: var(--gray-600);
+  margin-bottom: 32px;
+  max-width: 700px;
+}
+
+.rationale {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+  margin-bottom: 48px;
+}
+.rationale-card {
+  background: var(--white);
+  border-radius: 12px;
+  padding: 20px;
+  border: 1px solid var(--gray-200);
+}
+.rationale-card .rc-icon {
+  font-size: 20px;
+  margin-bottom: 8px;
+}
+.rationale-card h4 {
+  font-size: 14px;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+.rationale-card p {
+  font-size: 13px;
+  color: var(--gray-600);
+  line-height: 1.5;
+}
+
+.cards-label {
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--gray-400);
+  margin-bottom: 16px;
+}
+.cards-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* ============================================================
+   SHARED CARD UTILITIES
+   ============================================================ */
+.badge-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 10px;
+  border-radius: var(--radius-pill);
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+.badge-tag.cashback { background: var(--green-100); color: var(--green-600); }
+.badge-tag.kod { background: var(--blue-100); color: var(--blue-600); }
+.badge-tag.okazja { background: var(--amber-100); color: var(--amber-600); }
+.badge-tag.karta { background: var(--purple-100); color: var(--purple-600); }
+
+/* ============================================================
+   PROPOSAL A — URGENCY-FIRST
+   ============================================================ */
+.card-a {
+  background: var(--white);
+  border-radius: var(--radius-card);
+  padding: 0;
+  display: flex;
+  align-items: stretch;
+  overflow: hidden;
+  transition: box-shadow 0.25s, transform 0.25s;
+  box-shadow: var(--shadow-1);
+  position: relative;
+}
+.card-a:hover {
+  box-shadow: var(--shadow-hover);
+  transform: translateY(-2px);
+}
+.card-a .urgency-strip {
+  width: 6px;
+  flex-shrink: 0;
+}
+.card-a .urgency-strip.urgent { background: var(--red-600); }
+.card-a .urgency-strip.warning { background: var(--amber-600); }
+.card-a .urgency-strip.normal { background: var(--green-600); }
+.card-a .urgency-strip.neutral { background: var(--gray-300); }
+
+.card-a .card-a-left {
+  padding: 20px 24px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-shrink: 0;
+}
+.card-a .value-block {
+  text-align: center;
+  min-width: 80px;
+}
+.card-a .value-block .amount {
+  font-family: var(--font-heading);
+  font-size: 36px;
+  font-weight: 700;
+  color: var(--brand-orange);
+  line-height: 1;
+}
+.card-a .value-block .unit {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--gray-500);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.card-a .card-a-center {
+  flex: 1;
+  padding: 20px 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 6px;
+  min-width: 0;
+}
+.card-a .card-a-center .top-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.card-a .card-a-center .expiry {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: var(--radius-pill);
+}
+.card-a .card-a-center .expiry.urgent {
+  background: var(--red-100);
+  color: var(--red-600);
+  animation: pulse-urgent 2s infinite;
+}
+.card-a .card-a-center .expiry.warning {
+  background: var(--amber-100);
+  color: var(--amber-600);
+}
+.card-a .card-a-center .expiry.normal {
+  background: var(--gray-100);
+  color: var(--gray-600);
+}
+@keyframes pulse-urgent {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+.card-a .card-a-center .desc {
+  font-size: 14px;
+  color: var(--gray-700);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.card-a .card-a-right {
+  padding: 20px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 28px;
+  background: var(--brand-orange);
+  color: var(--white);
+  border: none;
+  border-radius: var(--radius-pill);
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.15s;
+  white-space: nowrap;
+  text-decoration: none;
+}
+.btn-primary:hover {
+  background: var(--brand-orange-dark);
+  transform: scale(1.03);
+}
+.link-secondary {
+  font-size: 12px;
+  color: var(--gray-500);
+  text-decoration: underline;
+  text-decoration-color: transparent;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.link-secondary:hover {
+  color: var(--brand-orange);
+  text-decoration-color: var(--brand-orange);
+}
+
+/* ============================================================
+   PROPOSAL B — SOCIAL PROOF
+   ============================================================ */
+.card-b {
+  background: var(--white);
+  border-radius: var(--radius-card);
+  padding: 20px 24px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  box-shadow: var(--shadow-1);
+  transition: box-shadow 0.25s, transform 0.25s;
+  position: relative;
+}
+.card-b:hover {
+  box-shadow: var(--shadow-hover);
+  transform: translateY(-2px);
+}
+.card-b .badge-area {
+  flex-shrink: 0;
+  width: 96px;
+  height: 80px;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+}
+.card-b .badge-area.cashback-bg { background: linear-gradient(135deg, #16A34A, #22C55E); }
+.card-b .badge-area.kod-bg { background: linear-gradient(135deg, #2563EB, #3B82F6); }
+.card-b .badge-area.okazja-bg { background: linear-gradient(135deg, #D97706, #F59E0B); }
+.card-b .badge-area.karta-bg { background: linear-gradient(135deg, #7C3AED, #8B5CF6); }
+.card-b .badge-area .badge-val {
+  font-family: var(--font-heading);
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--white);
+  line-height: 1;
+}
+.card-b .badge-area .badge-label {
+  font-size: 10px;
+  font-weight: 700;
+  color: rgba(255,255,255,0.85);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.card-b .content-area {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.card-b .content-area .title-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.card-b .content-area .desc {
+  font-size: 14px;
+  color: var(--gray-700);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.card-b .social-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.card-b .social-item {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 12px;
+  color: var(--gray-500);
+}
+.card-b .social-item .s-icon {
+  font-size: 14px;
+}
+.card-b .social-item strong {
+  color: var(--gray-700);
+  font-weight: 600;
+}
+.card-b .avatar-stack {
+  display: flex;
+  margin-right: 4px;
+}
+.card-b .avatar-stack .mini-av {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 2px solid var(--white);
+  margin-left: -6px;
+  font-size: 9px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--white);
+}
+.card-b .avatar-stack .mini-av:first-child { margin-left: 0; }
+
+.card-b .action-area {
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 8px;
+}
+.card-b .popularity-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 10px;
+  border-radius: var(--radius-pill);
+  background: var(--brand-orange-10);
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--brand-orange);
+}
+
+/* ============================================================
+   PROPOSAL C — VISUAL BRAND
+   ============================================================ */
+.card-c {
+  background: var(--white);
+  border-radius: var(--radius-card);
+  display: flex;
+  align-items: stretch;
+  overflow: hidden;
+  box-shadow: var(--shadow-1);
+  transition: box-shadow 0.25s, transform 0.25s;
+  position: relative;
+}
+.card-c:hover {
+  box-shadow: var(--shadow-hover);
+  transform: translateY(-2px);
+}
+.card-c .brand-accent {
+  width: 120px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 20px 16px;
+  position: relative;
+  overflow: hidden;
+}
+.card-c .brand-accent::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  opacity: 0.06;
+}
+.card-c .brand-accent .brand-logo {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  background: var(--white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 800;
+  box-shadow: var(--shadow-1);
+}
+.card-c .brand-accent .offer-value {
+  font-family: var(--font-heading);
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--white);
+  line-height: 1;
+}
+.card-c .brand-accent .offer-type {
+  font-size: 10px;
+  font-weight: 700;
+  color: rgba(255,255,255,0.8);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.card-c .card-c-body {
+  flex: 1;
+  padding: 20px 24px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  min-width: 0;
+}
+.card-c .card-c-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+}
+.card-c .card-c-content .desc {
+  font-size: 14px;
+  color: var(--gray-700);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.card-c .card-c-content .meta-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 12px;
+  color: var(--gray-500);
+}
+.card-c .card-c-content .meta-row .sep { color: var(--gray-300); }
+.card-c .card-c-actions {
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Accent color backgrounds per variant */
+.card-c .brand-accent.allegro-cashback { background: linear-gradient(135deg, #FD5A13, #FF8A50); }
+.card-c .brand-accent.allegro-kod { background: linear-gradient(135deg, #2563EB, #60A5FA); }
+.card-c .brand-accent.allegro-okazja { background: linear-gradient(135deg, #D97706, #FBBF24); }
+.card-c .brand-accent.allegro-karta { background: linear-gradient(135deg, #7C3AED, #A78BFA); }
+
+/* ============================================================
+   PROPOSAL D — COMPACT / DENSE
+   ============================================================ */
+.card-d {
+  background: var(--white);
+  border-radius: 12px;
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  transition: background 0.2s, box-shadow 0.2s;
+  border: 1px solid var(--gray-200);
+}
+.card-d:hover {
+  background: var(--gray-50);
+  box-shadow: var(--shadow-1);
+}
+.card-d .d-badge {
+  flex-shrink: 0;
+  width: 56px;
+  height: 44px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+}
+.card-d .d-badge .d-val {
+  font-family: var(--font-heading);
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--white);
+  line-height: 1;
+}
+.card-d .d-badge .d-label {
+  font-size: 8px;
+  font-weight: 700;
+  color: rgba(255,255,255,0.8);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+.card-d .d-badge.cashback-bg { background: var(--green-600); }
+.card-d .d-badge.kod-bg { background: var(--blue-600); }
+.card-d .d-badge.okazja-bg { background: var(--amber-600); }
+.card-d .d-badge.karta-bg { background: var(--purple-600); }
+
+.card-d .d-content {
+  flex: 1;
+  min-width: 0;
+}
+.card-d .d-content .d-top {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 2px;
+}
+.card-d .d-content .d-desc {
+  font-size: 13px;
+  color: var(--gray-700);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.card-d .d-content .d-meta {
+  font-size: 11px;
+  color: var(--gray-400);
+}
+
+.card-d .d-action {
+  flex-shrink: 0;
+}
+.btn-compact {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 20px;
+  background: var(--brand-orange);
+  color: var(--white);
+  border: none;
+  border-radius: var(--radius-pill);
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.15s;
+  white-space: nowrap;
+}
+.btn-compact:hover {
+  background: var(--brand-orange-dark);
+  transform: scale(1.03);
+}
+
+/* ============================================================
+   PROPOSAL E — PREMIUM / ELEVATED
+   ============================================================ */
+.card-e {
+  background: var(--white);
+  border-radius: 20px;
+  padding: 0;
+  display: flex;
+  align-items: stretch;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.04), 0 4px 12px rgba(0,0,0,0.06);
+  transition: box-shadow 0.4s cubic-bezier(0.22,1,0.36,1), transform 0.4s cubic-bezier(0.22,1,0.36,1);
+  position: relative;
+}
+.card-e:hover {
+  box-shadow: 0 8px 32px rgba(253,90,19,0.12), 0 2px 8px rgba(0,0,0,0.06);
+  transform: translateY(-4px);
+}
+.card-e .e-value-zone {
+  flex-shrink: 0;
+  width: 140px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 24px 20px;
+  position: relative;
+  overflow: hidden;
+}
+.card-e .e-value-zone::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(253,90,19,0.06), rgba(253,90,19,0.02));
+}
+.card-e .e-value-zone .e-amount {
+  position: relative;
+  font-family: var(--font-heading);
+  font-size: 42px;
+  font-weight: 700;
+  color: var(--brand-orange);
+  line-height: 1;
+}
+.card-e .e-value-zone .e-type-label {
+  position: relative;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--brand-orange-dark);
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  margin-top: 4px;
+}
+.card-e .e-value-zone .e-glow {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(253,90,19,0.12) 0%, transparent 70%);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transition: transform 0.4s;
+}
+.card-e:hover .e-glow {
+  transform: translate(-50%, -50%) scale(1.4);
+}
+.card-e .e-divider {
+  width: 1px;
+  background: linear-gradient(180deg, transparent 10%, var(--gray-200) 50%, transparent 90%);
+  flex-shrink: 0;
+}
+.card-e .e-body {
+  flex: 1;
+  padding: 24px;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  min-width: 0;
+}
+.card-e .e-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 0;
+}
+.card-e .e-content .e-tag-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.card-e .e-content .e-desc {
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--gray-800);
+  line-height: 1.4;
+}
+.card-e .e-content .e-meta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 12px;
+  color: var(--gray-500);
+}
+.card-e .e-actions {
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+.btn-premium {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 14px 32px;
+  background: linear-gradient(135deg, var(--brand-orange), var(--brand-orange-dark));
+  color: var(--white);
+  border: none;
+  border-radius: var(--radius-pill);
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 0.25s, box-shadow 0.25s;
+  white-space: nowrap;
+  box-shadow: 0 4px 12px rgba(253,90,19,0.25);
+}
+.btn-premium:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 20px rgba(253,90,19,0.35);
+}
+
+/* ============================================================
+   COMPARISON TABLE
+   ============================================================ */
+.comparison-section {
+  padding: 64px 32px;
+  max-width: 1120px;
+  margin: 0 auto;
+  border-top: 1px solid var(--gray-200);
+}
+.comparison-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+.comparison-table th {
+  text-align: left;
+  padding: 12px 16px;
+  font-weight: 700;
+  color: var(--gray-500);
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border-bottom: 2px solid var(--gray-200);
+}
+.comparison-table td {
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--gray-100);
+  color: var(--gray-700);
+}
+.comparison-table td:first-child {
+  font-weight: 600;
+  color: var(--brand-black);
+}
+.check { color: var(--green-600); font-weight: 700; }
+.cross { color: var(--gray-300); }
+
+/* Footer */
+.footer {
+  text-align: center;
+  padding: 48px 32px;
+  font-size: 13px;
+  color: var(--gray-400);
+}
+.footer strong { color: var(--gray-600); }
+</style>
+</head>
+<body>
+
+<!-- ============================================================
+     HEADER
+     ============================================================ -->
+<header class="presentation-header">
+  <h1>Horizontal Base Card — <span>5 Proposals</span></h1>
+  <p>Design exploration for iGraal's retailer page offer cards. Each proposal solves a different UX problem.</p>
+</header>
+
+<!-- ============================================================
+     NAV
+     ============================================================ -->
+<nav class="nav" id="nav">
+  <a href="#proposal-a" class="active"><span class="nav-num">A</span> Urgency-First</a>
+  <a href="#proposal-b"><span class="nav-num">B</span> Social Proof</a>
+  <a href="#proposal-c"><span class="nav-num">C</span> Visual Brand</a>
+  <a href="#proposal-d"><span class="nav-num">D</span> Compact Dense</a>
+  <a href="#proposal-e"><span class="nav-num">E</span> Premium Elevated</a>
+  <a href="#comparison"><span class="nav-num">⚖</span> Comparison</a>
+</nav>
+
+<!-- ============================================================
+     PROPOSAL A — URGENCY-FIRST
+     ============================================================ -->
+<section class="proposal" id="proposal-a">
+  <div class="proposal-label"><span class="dot"></span> Proposal A</div>
+  <h2 class="proposal-title">Urgency-First</h2>
+  <p class="proposal-subtitle">Redesigns visual hierarchy around time pressure and deal value. Expiring deals are impossible to miss — a color-coded edge strip + pulsing countdown badge creates scan-and-act behavior.</p>
+
+  <div class="rationale">
+    <div class="rationale-card">
+      <div class="rc-icon">⏰</div>
+      <h4>What changed</h4>
+      <p>Left edge color strip signals urgency (red/amber/green). Expiry badge pulses for &lt;24h deals. Value amount is 36px — the dominant visual element.</p>
+    </div>
+    <div class="rationale-card">
+      <div class="rc-icon">🎯</div>
+      <h4>UX Rationale</h4>
+      <p>Users scanning a retailer page need to quickly spot deals that expire soon. Time-coded strips let them triage instantly without reading every card.</p>
+    </div>
+    <div class="rationale-card">
+      <div class="rc-icon">📊</div>
+      <h4>Expected Impact</h4>
+      <p>Higher conversion on time-limited offers. Reduced "missed deal" frustration. Natural list ordering by urgency becomes visually obvious.</p>
+    </div>
+  </div>
+
+  <div class="cards-label">All 4 sub-variants</div>
+  <div class="cards-grid">
+    <!-- Cashback — urgent -->
+    <div class="card-a">
+      <div class="urgency-strip urgent"></div>
+      <div class="card-a-left">
+        <div class="value-block">
+          <div class="amount">12%</div>
+          <div class="unit">cashback</div>
+        </div>
+      </div>
+      <div class="card-a-center">
+        <div class="top-row">
+          <span class="badge-tag cashback">💰 Cashback</span>
+          <span class="expiry urgent">🔥 Kończy się za 3h</span>
+        </div>
+        <div class="desc">Cashback 12% na wszystkie zamówienia w kategorii Elektronika</div>
+      </div>
+      <div class="card-a-right">
+        <button class="btn-primary">Aktywuj</button>
+        <span class="link-secondary">Sprawdź warunki</span>
+      </div>
+    </div>
+
+    <!-- Coupon code — warning -->
+    <div class="card-a">
+      <div class="urgency-strip warning"></div>
+      <div class="card-a-left">
+        <div class="value-block">
+          <div class="amount">30 zł</div>
+          <div class="unit">rabat</div>
+        </div>
+      </div>
+      <div class="card-a-center">
+        <div class="top-row">
+          <span class="badge-tag kod">🏷️ Kod</span>
+          <span class="expiry warning">⚡ 2 dni</span>
+        </div>
+        <div class="desc">Kod rabatowy na pierwsze zamówienie powyżej 100 zł</div>
+      </div>
+      <div class="card-a-right">
+        <button class="btn-primary">Pokaż kod</button>
+        <span class="link-secondary">Sprawdź warunki</span>
+      </div>
+    </div>
+
+    <!-- Deal — normal -->
+    <div class="card-a">
+      <div class="urgency-strip normal"></div>
+      <div class="card-a-left">
+        <div class="value-block">
+          <div class="amount">-50%</div>
+          <div class="unit">okazja</div>
+        </div>
+      </div>
+      <div class="card-a-center">
+        <div class="top-row">
+          <span class="badge-tag okazja">⭐ Okazja</span>
+          <span class="expiry normal">📅 do 25.03</span>
+        </div>
+        <div class="desc">Do 50% zniżki na wiosenną kolekcję odzieży</div>
+      </div>
+      <div class="card-a-right">
+        <button class="btn-primary">Zobacz ofertę</button>
+        <span class="link-secondary">Sprawdź warunki</span>
+      </div>
+    </div>
+
+    <!-- Gift card — neutral -->
+    <div class="card-a">
+      <div class="urgency-strip neutral"></div>
+      <div class="card-a-left">
+        <div class="value-block">
+          <div class="amount">5%</div>
+          <div class="unit">bonus</div>
+        </div>
+      </div>
+      <div class="card-a-center">
+        <div class="top-row">
+          <span class="badge-tag karta">🎁 Karta</span>
+          <span class="expiry normal">Stała oferta</span>
+        </div>
+        <div class="desc">Kup kartę podarunkową i otrzymaj 5% wartości jako cashback</div>
+      </div>
+      <div class="card-a-right">
+        <button class="btn-primary">Kup kartę</button>
+        <span class="link-secondary">Sprawdź warunki</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     PROPOSAL B — SOCIAL PROOF
+     ============================================================ -->
+<section class="proposal" id="proposal-b">
+  <div class="proposal-label"><span class="dot"></span> Proposal B</div>
+  <h2 class="proposal-title">Social Proof</h2>
+  <p class="proposal-subtitle">Injects trust signals directly into the card — how many people used a deal, trending indicators, and avatar stacks. Converts uncertainty into confidence.</p>
+
+  <div class="rationale">
+    <div class="rationale-card">
+      <div class="rc-icon">👥</div>
+      <h4>What changed</h4>
+      <p>Added "X osób skorzystało" counter, mini avatar stack, popularity badge ("Popularne 🔥"), and a "Zweryfikowano" verified label. Badge area is now gradient-filled.</p>
+    </div>
+    <div class="rationale-card">
+      <div class="rc-icon">🧠</div>
+      <h4>UX Rationale</h4>
+      <p>Cashback users are inherently skeptical — "does this actually work?" Social proof (others used it) and verification signals reduce hesitation and build trust.</p>
+    </div>
+    <div class="rationale-card">
+      <div class="rc-icon">📈</div>
+      <h4>Expected Impact</h4>
+      <p>Higher click-through on lesser-known offers. Reduced bounce from "I don't trust this" sentiment. Viral loop: popular deals become more popular.</p>
+    </div>
+  </div>
+
+  <div class="cards-label">All 4 sub-variants</div>
+  <div class="cards-grid">
+    <!-- Cashback -->
+    <div class="card-b">
+      <div class="badge-area cashback-bg">
+        <div class="badge-val">12%</div>
+        <div class="badge-label">Cashback</div>
+      </div>
+      <div class="content-area">
+        <div class="title-row">
+          <span class="badge-tag cashback">💰 Cashback</span>
+          <span style="font-size:11px; color:var(--green-600); font-weight:600;">✓ Zweryfikowano</span>
+        </div>
+        <div class="desc">Cashback 12% na wszystkie zamówienia w kategorii Elektronika</div>
+        <div class="social-row">
+          <div class="social-item">
+            <div class="avatar-stack">
+              <div class="mini-av" style="background:#F87171;">M</div>
+              <div class="mini-av" style="background:#60A5FA;">K</div>
+              <div class="mini-av" style="background:#34D399;">A</div>
+            </div>
+            <span><strong>2,847</strong> osób skorzystało</span>
+          </div>
+          <div class="social-item">
+            <span class="s-icon">📅</span>
+            <span>do 25.03</span>
+          </div>
+        </div>
+      </div>
+      <div class="action-area">
+        <span class="popularity-badge">🔥 Popularne</span>
+        <button class="btn-primary">Aktywuj</button>
+        <span class="link-secondary">Sprawdź warunki</span>
+      </div>
+    </div>
+
+    <!-- Coupon -->
+    <div class="card-b">
+      <div class="badge-area kod-bg">
+        <div class="badge-val">30 zł</div>
+        <div class="badge-label">Rabat</div>
+      </div>
+      <div class="content-area">
+        <div class="title-row">
+          <span class="badge-tag kod">🏷️ Kod</span>
+          <span style="font-size:11px; color:var(--green-600); font-weight:600;">✓ Zweryfikowano</span>
+        </div>
+        <div class="desc">Kod rabatowy na pierwsze zamówienie powyżej 100 zł</div>
+        <div class="social-row">
+          <div class="social-item">
+            <div class="avatar-stack">
+              <div class="mini-av" style="background:#FBBF24;">J</div>
+              <div class="mini-av" style="background:#A78BFA;">P</div>
+            </div>
+            <span><strong>412</strong> osób skorzystało</span>
+          </div>
+          <div class="social-item">
+            <span class="s-icon">📅</span>
+            <span>2 dni</span>
+          </div>
+        </div>
+      </div>
+      <div class="action-area">
+        <button class="btn-primary">Pokaż kod</button>
+        <span class="link-secondary">Sprawdź warunki</span>
+      </div>
+    </div>
+
+    <!-- Deal -->
+    <div class="card-b">
+      <div class="badge-area okazja-bg">
+        <div class="badge-val">-50%</div>
+        <div class="badge-label">Okazja</div>
+      </div>
+      <div class="content-area">
+        <div class="title-row">
+          <span class="badge-tag okazja">⭐ Okazja</span>
+        </div>
+        <div class="desc">Do 50% zniżki na wiosenną kolekcję odzieży</div>
+        <div class="social-row">
+          <div class="social-item">
+            <div class="avatar-stack">
+              <div class="mini-av" style="background:#F87171;">D</div>
+              <div class="mini-av" style="background:#60A5FA;">R</div>
+              <div class="mini-av" style="background:#34D399;">W</div>
+              <div class="mini-av" style="background:#FBBF24;">S</div>
+            </div>
+            <span><strong>5,102</strong> osób skorzystało</span>
+          </div>
+          <div class="social-item">
+            <span class="s-icon">📅</span>
+            <span>do 31.03</span>
+          </div>
+        </div>
+      </div>
+      <div class="action-area">
+        <span class="popularity-badge">🔥 Trending</span>
+        <button class="btn-primary">Zobacz ofertę</button>
+        <span class="link-secondary">Sprawdź warunki</span>
+      </div>
+    </div>
+
+    <!-- Gift card -->
+    <div class="card-b">
+      <div class="badge-area karta-bg">
+        <div class="badge-val">5%</div>
+        <div class="badge-label">Bonus</div>
+      </div>
+      <div class="content-area">
+        <div class="title-row">
+          <span class="badge-tag karta">🎁 Karta</span>
+          <span style="font-size:11px; color:var(--green-600); font-weight:600;">✓ Zweryfikowano</span>
+        </div>
+        <div class="desc">Kup kartę podarunkową i otrzymaj 5% wartości jako cashback</div>
+        <div class="social-row">
+          <div class="social-item">
+            <div class="avatar-stack">
+              <div class="mini-av" style="background:#A78BFA;">E</div>
+            </div>
+            <span><strong>89</strong> osób skorzystało</span>
+          </div>
+          <div class="social-item">
+            <span class="s-icon">♾️</span>
+            <span>Stała oferta</span>
+          </div>
+        </div>
+      </div>
+      <div class="action-area">
+        <button class="btn-primary">Kup kartę</button>
+        <span class="link-secondary">Sprawdź warunki</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     PROPOSAL C — VISUAL BRAND
+     ============================================================ -->
+<section class="proposal" id="proposal-c">
+  <div class="proposal-label"><span class="dot"></span> Proposal C</div>
+  <h2 class="proposal-title">Visual Brand</h2>
+  <p class="proposal-subtitle">Transforms the card into a retailer-branded surface. A bold left accent zone carries the retailer's identity and the deal value, making each card feel like it "belongs" to that shop.</p>
+
+  <div class="rationale">
+    <div class="rationale-card">
+      <div class="rc-icon">🎨</div>
+      <h4>What changed</h4>
+      <p>120px left brand zone with gradient background, retailer logo, and large offer value. Color-coded per offer type. Card feels owned by the retailer.</p>
+    </div>
+    <div class="rationale-card">
+      <div class="rc-icon">🏪</div>
+      <h4>UX Rationale</h4>
+      <p>When browsing a retailer page (e.g. /allegro), users expect brand context. A branded card surface increases perceived legitimacy and emotional connection to the retailer.</p>
+    </div>
+    <div class="rationale-card">
+      <div class="rc-icon">💡</div>
+      <h4>Expected Impact</h4>
+      <p>Stronger retailer page identity. Works especially well when iGraal can match retailer brand colors. Higher dwell time on retailer pages.</p>
+    </div>
+  </div>
+
+  <div class="cards-label">All 4 sub-variants</div>
+  <div class="cards-grid">
+    <!-- Cashback -->
+    <div class="card-c">
+      <div class="brand-accent allegro-cashback">
+        <div class="brand-logo" style="color: #FD5A13;">A!</div>
+        <div class="offer-value">12%</div>
+        <div class="offer-type">Cashback</div>
+      </div>
+      <div class="card-c-body">
+        <div class="card-c-content">
+          <div><span class="badge-tag cashback">💰 Cashback</span></div>
+          <div class="desc">Cashback 12% na wszystkie zamówienia w kategorii Elektronika</div>
+          <div class="meta-row">
+            <span>📅 do 25.03.2026</span>
+            <span class="sep">·</span>
+            <span>Bez minimalnego zamówienia</span>
+          </div>
+        </div>
+        <div class="card-c-actions">
+          <button class="btn-primary">Aktywuj</button>
+          <span class="link-secondary">Sprawdź warunki</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Coupon -->
+    <div class="card-c">
+      <div class="brand-accent allegro-kod">
+        <div class="brand-logo" style="color: #2563EB;">A!</div>
+        <div class="offer-value">30 zł</div>
+        <div class="offer-type">Rabat</div>
+      </div>
+      <div class="card-c-body">
+        <div class="card-c-content">
+          <div><span class="badge-tag kod">🏷️ Kod</span></div>
+          <div class="desc">Kod rabatowy na pierwsze zamówienie powyżej 100 zł</div>
+          <div class="meta-row">
+            <span>📅 za 2 dni</span>
+            <span class="sep">·</span>
+            <span>Min. zamówienie: 100 zł</span>
+          </div>
+        </div>
+        <div class="card-c-actions">
+          <button class="btn-primary">Pokaż kod</button>
+          <span class="link-secondary">Sprawdź warunki</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Deal -->
+    <div class="card-c">
+      <div class="brand-accent allegro-okazja">
+        <div class="brand-logo" style="color: #D97706;">A!</div>
+        <div class="offer-value">-50%</div>
+        <div class="offer-type">Okazja</div>
+      </div>
+      <div class="card-c-body">
+        <div class="card-c-content">
+          <div><span class="badge-tag okazja">⭐ Okazja</span></div>
+          <div class="desc">Do 50% zniżki na wiosenną kolekcję odzieży</div>
+          <div class="meta-row">
+            <span>📅 do 31.03.2026</span>
+            <span class="sep">·</span>
+            <span>Wybrane produkty</span>
+          </div>
+        </div>
+        <div class="card-c-actions">
+          <button class="btn-primary">Zobacz ofertę</button>
+          <span class="link-secondary">Sprawdź warunki</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Gift card -->
+    <div class="card-c">
+      <div class="brand-accent allegro-karta">
+        <div class="brand-logo" style="color: #7C3AED;">A!</div>
+        <div class="offer-value">5%</div>
+        <div class="offer-type">Bonus</div>
+      </div>
+      <div class="card-c-body">
+        <div class="card-c-content">
+          <div><span class="badge-tag karta">🎁 Karta</span></div>
+          <div class="desc">Kup kartę podarunkową i otrzymaj 5% wartości jako cashback</div>
+          <div class="meta-row">
+            <span>♾️ Stała oferta</span>
+            <span class="sep">·</span>
+            <span>Karty od 25 zł</span>
+          </div>
+        </div>
+        <div class="card-c-actions">
+          <button class="btn-primary">Kup kartę</button>
+          <span class="link-secondary">Sprawdź warunki</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     PROPOSAL D — COMPACT / DENSE
+     ============================================================ -->
+<section class="proposal" id="proposal-d">
+  <div class="proposal-label"><span class="dot"></span> Proposal D</div>
+  <h2 class="proposal-title">Compact Dense</h2>
+  <p class="proposal-subtitle">Shrinks vertical footprint by ~40%. Users see more offers without scrolling — optimized for mobile and for retailers with 10+ active offers. Every pixel earns its place.</p>
+
+  <div class="rationale">
+    <div class="rationale-card">
+      <div class="rc-icon">📱</div>
+      <h4>What changed</h4>
+      <p>Reduced padding (12px vs 24px), smaller badge (56×44px), single-line description, no "Sprawdź warunki" link (moved to card tap), border instead of shadow.</p>
+    </div>
+    <div class="rationale-card">
+      <div class="rc-icon">📐</div>
+      <h4>UX Rationale</h4>
+      <p>On mobile, a retailer with 15 offers means 15 scrolls with the current card. The compact variant shows 6-7 offers in one viewport — dramatically improving scannability.</p>
+    </div>
+    <div class="rationale-card">
+      <div class="rc-icon">⚡</div>
+      <h4>Expected Impact</h4>
+      <p>More offers visible = higher discovery rate. Faster scanning = quicker decisions. Works beautifully on mobile where vertical space is premium.</p>
+    </div>
+  </div>
+
+  <div class="cards-label">All 4 sub-variants</div>
+  <div class="cards-grid" style="gap: 8px;">
+    <!-- Cashback -->
+    <div class="card-d">
+      <div class="d-badge cashback-bg">
+        <div class="d-val">12%</div>
+        <div class="d-label">Cash</div>
+      </div>
+      <div class="d-content">
+        <div class="d-top">
+          <span class="badge-tag cashback" style="font-size:10px; padding: 2px 8px;">Cashback</span>
+          <span class="d-meta">do 25.03</span>
+        </div>
+        <div class="d-desc">Cashback 12% na wszystkie zamówienia w kategorii Elektronika</div>
+      </div>
+      <div class="d-action">
+        <button class="btn-compact">Aktywuj</button>
+      </div>
+    </div>
+
+    <!-- Coupon -->
+    <div class="card-d">
+      <div class="d-badge kod-bg">
+        <div class="d-val">30zł</div>
+        <div class="d-label">Kod</div>
+      </div>
+      <div class="d-content">
+        <div class="d-top">
+          <span class="badge-tag kod" style="font-size:10px; padding: 2px 8px;">Kod rabatowy</span>
+          <span class="d-meta">2 dni</span>
+        </div>
+        <div class="d-desc">Kod rabatowy na pierwsze zamówienie powyżej 100 zł</div>
+      </div>
+      <div class="d-action">
+        <button class="btn-compact">Pokaż kod</button>
+      </div>
+    </div>
+
+    <!-- Deal -->
+    <div class="card-d">
+      <div class="d-badge okazja-bg">
+        <div class="d-val">-50%</div>
+        <div class="d-label">Deal</div>
+      </div>
+      <div class="d-content">
+        <div class="d-top">
+          <span class="badge-tag okazja" style="font-size:10px; padding: 2px 8px;">Okazja</span>
+          <span class="d-meta">do 31.03</span>
+        </div>
+        <div class="d-desc">Do 50% zniżki na wiosenną kolekcję odzieży</div>
+      </div>
+      <div class="d-action">
+        <button class="btn-compact">Zobacz</button>
+      </div>
+    </div>
+
+    <!-- Gift card -->
+    <div class="card-d">
+      <div class="d-badge karta-bg">
+        <div class="d-val">5%</div>
+        <div class="d-label">Karta</div>
+      </div>
+      <div class="d-content">
+        <div class="d-top">
+          <span class="badge-tag karta" style="font-size:10px; padding: 2px 8px;">Karta podarunkowa</span>
+          <span class="d-meta">Stała</span>
+        </div>
+        <div class="d-desc">Kup kartę podarunkową i otrzymaj 5% wartości jako cashback</div>
+      </div>
+      <div class="d-action">
+        <button class="btn-compact">Kup</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     PROPOSAL E — PREMIUM / ELEVATED
+     ============================================================ -->
+<section class="proposal" id="proposal-e">
+  <div class="proposal-label"><span class="dot"></span> Proposal E</div>
+  <h2 class="proposal-title">Premium Elevated</h2>
+  <p class="proposal-subtitle">Adds depth, motion, and polish. Subtle shadows, gradient CTAs, glow effects on hover, and refined spacing make the card feel high-end. For when iGraal wants to feel like a premium savings platform, not a coupon site.</p>
+
+  <div class="rationale">
+    <div class="rationale-card">
+      <div class="rc-icon">✨</div>
+      <h4>What changed</h4>
+      <p>20px border-radius, layered shadows, gradient CTA with glow, elegant value zone with radial glow, divider line, larger typography, spring-physics hover (translateY -4px).</p>
+    </div>
+    <div class="rationale-card">
+      <div class="rc-icon">💎</div>
+      <h4>UX Rationale</h4>
+      <p>Cashback sites often look "deal-ish" — cheap, crowded, untrustworthy. Elevating the card's visual quality positions iGraal as a premium partner, not a discount aggregator.</p>
+    </div>
+    <div class="rationale-card">
+      <div class="rc-icon">🎯</div>
+      <h4>Expected Impact</h4>
+      <p>Brand perception lift. Users feel they're getting exclusive deals, not scraping for coupons. Hover micro-interactions create delight and encourage exploration.</p>
+    </div>
+  </div>
+
+  <div class="cards-label">All 4 sub-variants</div>
+  <div class="cards-grid">
+    <!-- Cashback -->
+    <div class="card-e">
+      <div class="e-value-zone">
+        <div class="e-glow"></div>
+        <div class="e-amount">12%</div>
+        <div class="e-type-label">Cashback</div>
+      </div>
+      <div class="e-divider"></div>
+      <div class="e-body">
+        <div class="e-content">
+          <div class="e-tag-row">
+            <span class="badge-tag cashback">💰 Cashback</span>
+          </div>
+          <div class="e-desc">Cashback 12% na wszystkie zamówienia w kategorii Elektronika</div>
+          <div class="e-meta">
+            <span>📅 do 25.03.2026</span>
+            <span style="color:var(--gray-300)">·</span>
+            <span>Bez minimalnego zamówienia</span>
+          </div>
+        </div>
+        <div class="e-actions">
+          <button class="btn-premium">Aktywuj →</button>
+          <span class="link-secondary">Sprawdź warunki</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Coupon -->
+    <div class="card-e">
+      <div class="e-value-zone">
+        <div class="e-glow"></div>
+        <div class="e-amount">30 zł</div>
+        <div class="e-type-label">Rabat</div>
+      </div>
+      <div class="e-divider"></div>
+      <div class="e-body">
+        <div class="e-content">
+          <div class="e-tag-row">
+            <span class="badge-tag kod">🏷️ Kod rabatowy</span>
+          </div>
+          <div class="e-desc">Kod rabatowy na pierwsze zamówienie powyżej 100 zł</div>
+          <div class="e-meta">
+            <span>⚡ Kończy się za 2 dni</span>
+            <span style="color:var(--gray-300)">·</span>
+            <span>Min. 100 zł</span>
+          </div>
+        </div>
+        <div class="e-actions">
+          <button class="btn-premium">Pokaż kod →</button>
+          <span class="link-secondary">Sprawdź warunki</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Deal -->
+    <div class="card-e">
+      <div class="e-value-zone">
+        <div class="e-glow"></div>
+        <div class="e-amount">-50%</div>
+        <div class="e-type-label">Okazja</div>
+      </div>
+      <div class="e-divider"></div>
+      <div class="e-body">
+        <div class="e-content">
+          <div class="e-tag-row">
+            <span class="badge-tag okazja">⭐ Okazja</span>
+          </div>
+          <div class="e-desc">Do 50% zniżki na wiosenną kolekcję odzieży</div>
+          <div class="e-meta">
+            <span>📅 do 31.03.2026</span>
+            <span style="color:var(--gray-300)">·</span>
+            <span>Wybrane produkty</span>
+          </div>
+        </div>
+        <div class="e-actions">
+          <button class="btn-premium">Zobacz ofertę →</button>
+          <span class="link-secondary">Sprawdź warunki</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Gift card -->
+    <div class="card-e">
+      <div class="e-value-zone">
+        <div class="e-glow"></div>
+        <div class="e-amount">5%</div>
+        <div class="e-type-label">Bonus</div>
+      </div>
+      <div class="e-divider"></div>
+      <div class="e-body">
+        <div class="e-content">
+          <div class="e-tag-row">
+            <span class="badge-tag karta">🎁 Karta podarunkowa</span>
+          </div>
+          <div class="e-desc">Kup kartę podarunkową i otrzymaj 5% wartości jako cashback</div>
+          <div class="e-meta">
+            <span>♾️ Stała oferta</span>
+            <span style="color:var(--gray-300)">·</span>
+            <span>Karty od 25 zł</span>
+          </div>
+        </div>
+        <div class="e-actions">
+          <button class="btn-premium">Kup kartę →</button>
+          <span class="link-secondary">Sprawdź warunki</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     COMPARISON TABLE
+     ============================================================ -->
+<section class="comparison-section" id="comparison">
+  <div class="proposal-label"><span class="dot"></span> Comparison</div>
+  <h2 class="proposal-title">Side-by-Side</h2>
+  <p class="proposal-subtitle" style="margin-bottom: 32px;">How each proposal stacks up across key UX dimensions.</p>
+
+  <table class="comparison-table">
+    <thead>
+      <tr>
+        <th style="width:200px;">Dimension</th>
+        <th>A — Urgency</th>
+        <th>B — Social</th>
+        <th>C — Brand</th>
+        <th>D — Compact</th>
+        <th>E — Premium</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Primary UX goal</td>
+        <td>Act fast</td>
+        <td>Trust &amp; validate</td>
+        <td>Retailer identity</td>
+        <td>See more offers</td>
+        <td>Feel premium</td>
+      </tr>
+      <tr>
+        <td>Card height (approx)</td>
+        <td>~88px</td>
+        <td>~100px</td>
+        <td>~88px</td>
+        <td>~56px</td>
+        <td>~96px</td>
+      </tr>
+      <tr>
+        <td>Info density</td>
+        <td>Medium</td>
+        <td>High</td>
+        <td>Medium</td>
+        <td>Very high</td>
+        <td>Medium</td>
+      </tr>
+      <tr>
+        <td>Urgency signals</td>
+        <td><span class="check">★★★</span></td>
+        <td><span class="cross">★</span></td>
+        <td><span class="cross">★</span></td>
+        <td><span class="cross">★</span></td>
+        <td><span class="cross">★★</span></td>
+      </tr>
+      <tr>
+        <td>Trust signals</td>
+        <td><span class="cross">★</span></td>
+        <td><span class="check">★★★</span></td>
+        <td><span class="check">★★</span></td>
+        <td><span class="cross">★</span></td>
+        <td><span class="check">★★</span></td>
+      </tr>
+      <tr>
+        <td>Visual polish</td>
+        <td>★★</td>
+        <td>★★</td>
+        <td>★★★</td>
+        <td>★</td>
+        <td><span class="check">★★★</span></td>
+      </tr>
+      <tr>
+        <td>Mobile-friendly</td>
+        <td><span class="check">★★</span></td>
+        <td>★★</td>
+        <td>★★</td>
+        <td><span class="check">★★★</span></td>
+        <td>★★</td>
+      </tr>
+      <tr>
+        <td>Hover interactions</td>
+        <td><span class="check">✓</span></td>
+        <td><span class="check">✓</span></td>
+        <td><span class="check">✓</span></td>
+        <td>Subtle</td>
+        <td><span class="check">✓ Rich</span></td>
+      </tr>
+      <tr>
+        <td>Best for</td>
+        <td>Time-limited deals</td>
+        <td>New users / skeptics</td>
+        <td>Retailer pages</td>
+        <td>Long offer lists</td>
+        <td>Brand elevation</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+  <strong>iGraal Design System</strong> · Horizontal Base Card Proposals · March 2026
+</footer>
+
+<!-- ============================================================
+     NAV SCROLL SPY
+     ============================================================ -->
+<script>
+(function() {
+  const nav = document.getElementById('nav');
+  const links = nav.querySelectorAll('a');
+  const sections = [];
+  links.forEach(link => {
+    const id = link.getAttribute('href').slice(1);
+    const el = document.getElementById(id);
+    if (el) sections.push({ el, link });
+  });
+
+  function update() {
+    let current = sections[0];
+    const scrollY = window.scrollY + 120;
+    for (const s of sections) {
+      if (s.el.offsetTop <= scrollY) current = s;
+    }
+    links.forEach(l => l.classList.remove('active'));
+    if (current) current.link.classList.add('active');
+  }
+
+  window.addEventListener('scroll', update, { passive: true });
+  update();
+
+  // Smooth scroll
+  links.forEach(link => {
+    link.addEventListener('click', e => {
+      e.preventDefault();
+      const id = link.getAttribute('href').slice(1);
+      const target = document.getElementById(id);
+      if (target) {
+        window.scrollTo({ top: target.offsetTop - 60, behavior: 'smooth' });
+      }
+    });
+  });
+})();
+</script>
+
+</body>
+</html>
