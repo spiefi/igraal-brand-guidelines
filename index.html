@@ -64,7 +64,9 @@ body.dark {
 body.dark .card, body.dark .swatch-card, body.dark .elevation-box,
 body.dark .type-example, body.dark .spacing-bar-wrap, body.dark .radius-example,
 body.dark .btn-showcase, body.dark .theme-card, body.dark .card-variant,
-body.dark .voice-card {
+body.dark .voice-card, body.dark .copy-pattern-box, body.dark .testimonial-card,
+body.dark .do-dont-col, body.dark .motion-guideline-card, body.dark .motion-playground,
+body.dark .easing-card, body.dark .keyframe-list li {
   background: #1E1E1E;
   border-color: rgba(255,255,255,0.08);
 }
@@ -620,7 +622,7 @@ body.dark .mock-chip.active { border-color: var(--text-primary); }
 .layout-value { font-size: 28px; font-weight: 700; color: var(--orange-vivid); font-family: monospace; }
 .layout-label { font-size: 13px; color: var(--text-secondary); margin-top: 4px; }
 
-/* ============ VOICE ============ */
+/* ============ VOICE & TONE ============ */
 .voice-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; }
 .voice-card {
   padding: 24px; border: 1px solid var(--divider); border-radius: 12px; background: var(--white);
@@ -628,6 +630,204 @@ body.dark .mock-chip.active { border-color: var(--text-primary); }
 .voice-card .voice-icon { font-size: 32px; margin-bottom: 12px; }
 .voice-card h4 { font-size: 16px; font-weight: 700; margin-bottom: 8px; }
 .voice-card p { font-size: 14px; color: var(--text-secondary); line-height: 22px; }
+
+.voice-subsection { margin-top: 48px; }
+.voice-subsection h3 { font-size: 22px; font-weight: 700; margin-bottom: 8px; color: var(--text-primary); }
+.voice-subsection h4 { font-size: 17px; font-weight: 600; margin: 24px 0 12px; color: var(--text-primary); }
+.voice-subsection > p { font-size: 15px; color: var(--text-secondary); margin-bottom: 16px; line-height: 1.6; }
+
+.copy-pattern-box {
+  background: var(--white); border: 1px solid var(--divider); border-radius: 12px;
+  padding: 20px 24px; margin-bottom: 16px;
+}
+.copy-pattern-box .pattern-label {
+  font-size: 11px; text-transform: uppercase; letter-spacing: 1px;
+  color: var(--orange-vivid); font-weight: 700; margin-bottom: 8px;
+}
+.copy-pattern-box .pattern-formula {
+  font-size: 15px; font-weight: 600; color: var(--text-primary); margin-bottom: 12px;
+}
+.copy-example {
+  display: flex; gap: 12px; align-items: baseline; padding: 8px 0;
+  border-bottom: 1px solid var(--divider); font-size: 14px;
+}
+.copy-example:last-child { border-bottom: none; }
+.copy-example .example-text { color: var(--text-primary); font-style: italic; flex: 1; }
+.copy-example .example-tag {
+  font-size: 11px; background: var(--orange-pale); color: var(--orange-dark);
+  padding: 2px 8px; border-radius: 4px; white-space: nowrap; font-weight: 500;
+}
+body.dark .copy-example .example-tag { background: rgba(253,90,19,0.15); }
+
+.cta-showcase { display: flex; flex-wrap: wrap; gap: 10px; margin: 12px 0; }
+.cta-pill {
+  padding: 8px 16px; border-radius: 8px; font-size: 13px; font-weight: 600;
+  border: 1px solid var(--divider); background: var(--white); color: var(--text-primary);
+}
+.cta-pill.primary { background: var(--orange-vivid); color: #fff; border-color: var(--orange-vivid); }
+.cta-pill.secondary { background: var(--orange-pale); color: var(--orange-dark); border-color: var(--orange-pale); }
+.cta-pill.tertiary { background: transparent; color: var(--text-secondary); border: 1px dashed var(--divider); }
+
+.trust-metrics {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 12px; margin: 16px 0;
+}
+.trust-metric {
+  text-align: center; padding: 20px 12px; border-radius: 12px;
+  background: linear-gradient(135deg, var(--orange-pale), var(--yellow-pale));
+  border: 1px solid var(--divider);
+}
+.trust-metric .metric-value { font-size: 28px; font-weight: 700; color: var(--orange-vivid); font-family: monospace; }
+.trust-metric .metric-label { font-size: 12px; color: var(--text-secondary); margin-top: 4px; }
+body.dark .trust-metric { background: linear-gradient(135deg, rgba(253,90,19,0.1), rgba(251,219,112,0.08)); }
+
+.badge-taxonomy { display: flex; flex-wrap: wrap; gap: 8px; margin: 12px 0; }
+.badge-tag {
+  padding: 4px 12px; border-radius: 4px; font-size: 12px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.5px;
+}
+.badge-tag.offer { background: var(--orange-vivid); color: #fff; }
+.badge-tag.status { background: var(--purple-pale); color: var(--purple-vivid); }
+.badge-tag.avail { background: var(--blue-pale); color: var(--blue-vivid); text-transform: none; }
+.badge-tag.urgency { background: var(--yellow-pale); color: #92400e; text-transform: none; }
+
+.do-dont-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 16px 0; }
+@media (max-width: 700px) { .do-dont-grid { grid-template-columns: 1fr; } }
+.do-dont-col {
+  padding: 20px 24px; border-radius: 12px; border: 1px solid var(--divider); background: var(--white);
+}
+.do-dont-col.do-col { border-top: 3px solid #16a34a; }
+.do-dont-col.dont-col { border-top: 3px solid #dc2626; }
+.do-dont-col h4 { font-size: 16px; font-weight: 700; margin-bottom: 12px; }
+.do-dont-col.do-col h4 { color: #16a34a; }
+.do-dont-col.dont-col h4 { color: #dc2626; }
+.do-dont-col ul { list-style: none; padding: 0; }
+.do-dont-col ul li { font-size: 14px; padding: 6px 0; padding-left: 24px; position: relative; color: var(--text-secondary); }
+.do-dont-col.do-col ul li::before { content: '✅'; position: absolute; left: 0; }
+.do-dont-col.dont-col ul li::before { content: '❌'; position: absolute; left: 0; }
+
+.testimonial-card {
+  padding: 20px 24px; border-radius: 12px; border: 1px solid var(--divider);
+  background: var(--white); margin-bottom: 12px; font-style: italic;
+  font-size: 14px; color: var(--text-secondary); line-height: 1.7;
+  position: relative; padding-left: 40px;
+}
+.testimonial-card::before {
+  content: '"'; position: absolute; left: 16px; top: 12px;
+  font-size: 32px; color: var(--orange-vivid); font-style: normal; line-height: 1;
+}
+
+/* ============ MOTION & ANIMATION ============ */
+.motion-philosophy {
+  padding: 24px; border-radius: 12px; margin-bottom: 32px;
+  background: linear-gradient(135deg, var(--purple-pale), var(--blue-pale));
+  border: 1px solid var(--divider); font-size: 15px; color: var(--text-primary); line-height: 1.7;
+}
+body.dark .motion-philosophy { background: linear-gradient(135deg, rgba(85,50,100,0.15), rgba(32,41,74,0.15)); }
+
+.duration-timeline { margin: 24px 0; }
+.duration-bar-row {
+  display: flex; align-items: center; gap: 16px; padding: 8px 0;
+  border-bottom: 1px solid var(--divider);
+}
+.duration-bar-row:last-child { border-bottom: none; }
+.duration-bar-label {
+  width: 180px; font-family: monospace; font-size: 13px; color: var(--text-primary); flex-shrink: 0;
+}
+.duration-bar-value { width: 50px; font-family: monospace; font-size: 12px; color: var(--text-secondary); flex-shrink: 0; text-align: right; }
+.duration-bar-track { flex: 1; height: 24px; position: relative; }
+.duration-bar-fill {
+  height: 100%; border-radius: 4px; transition: width 0.5s ease-out;
+  background: linear-gradient(90deg, var(--orange-vivid), var(--orange-mild));
+  position: relative;
+}
+.duration-bar-fill::after {
+  content: attr(data-usecase); position: absolute; right: 8px; top: 50%; transform: translateY(-50%);
+  font-size: 11px; color: #fff; white-space: nowrap; font-weight: 500;
+}
+@media (max-width: 700px) {
+  .duration-bar-label { width: 120px; font-size: 11px; }
+  .duration-bar-fill::after { display: none; }
+}
+
+.easing-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 16px; margin: 24px 0; }
+.easing-card {
+  padding: 20px; border-radius: 12px; border: 1px solid var(--divider);
+  background: var(--white); text-align: center; cursor: pointer; transition: var(--transition);
+}
+.easing-card:hover { border-color: var(--orange-vivid); box-shadow: 0 4px 12px rgba(253,90,19,0.1); }
+.easing-card .easing-name { font-family: monospace; font-size: 13px; font-weight: 600; margin-bottom: 4px; }
+.easing-card .easing-value { font-family: monospace; font-size: 11px; color: var(--text-secondary); margin-bottom: 12px; }
+.easing-card .easing-desc { font-size: 12px; color: var(--text-secondary); margin-top: 12px; }
+.easing-canvas { width: 100%; height: 120px; display: block; }
+
+.transition-table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 14px; }
+.transition-table th {
+  text-align: left; padding: 10px 12px; font-size: 12px; text-transform: uppercase;
+  letter-spacing: 0.5px; color: var(--text-secondary); border-bottom: 2px solid var(--divider);
+}
+.transition-table td { padding: 10px 12px; border-bottom: 1px solid var(--divider); }
+.transition-table td:first-child { font-family: monospace; font-size: 13px; }
+.transition-table .usage-bar {
+  height: 8px; border-radius: 4px; background: var(--orange-pale); position: relative;
+}
+.transition-table .usage-bar-fill {
+  height: 100%; border-radius: 4px; background: var(--orange-vivid);
+}
+
+.keyframe-group { margin: 24px 0; }
+.keyframe-group h4 { font-size: 16px; font-weight: 600; margin-bottom: 12px; color: var(--text-primary); }
+.keyframe-list { list-style: none; padding: 0; }
+.keyframe-list li {
+  padding: 10px 16px; border-left: 3px solid var(--orange-vivid); margin-bottom: 8px;
+  background: var(--white); border-radius: 0 8px 8px 0; border: 1px solid var(--divider);
+  border-left: 3px solid var(--orange-vivid); font-size: 14px;
+}
+.keyframe-list li strong { color: var(--text-primary); }
+.keyframe-list li span { color: var(--text-secondary); }
+
+.motion-guidelines-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 24px 0; }
+@media (max-width: 700px) { .motion-guidelines-grid { grid-template-columns: 1fr; } }
+.motion-guideline-card {
+  padding: 20px 24px; border-radius: 12px; border: 1px solid var(--divider); background: var(--white);
+}
+.motion-guideline-card h4 { font-size: 15px; font-weight: 700; margin-bottom: 12px; }
+.motion-guideline-card ul { list-style: none; padding: 0; }
+.motion-guideline-card ul li { font-size: 14px; padding: 4px 0; color: var(--text-secondary); }
+
+.pairing-table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 14px; }
+.pairing-table th {
+  text-align: left; padding: 10px 12px; font-size: 12px; text-transform: uppercase;
+  letter-spacing: 0.5px; color: var(--text-secondary); border-bottom: 2px solid var(--divider);
+}
+.pairing-table td { padding: 10px 12px; border-bottom: 1px solid var(--divider); }
+.pairing-table td:first-child { font-weight: 500; }
+
+.motion-playground {
+  padding: 24px; border-radius: 12px; border: 1px solid var(--divider);
+  background: var(--white); margin: 24px 0;
+}
+.motion-playground h4 { font-size: 16px; font-weight: 700; margin-bottom: 16px; }
+.playground-controls { display: flex; flex-wrap: wrap; gap: 16px; margin-bottom: 20px; }
+.playground-controls label { font-size: 13px; color: var(--text-secondary); display: flex; flex-direction: column; gap: 4px; }
+.playground-controls select {
+  padding: 6px 10px; border-radius: 6px; border: 1px solid var(--divider);
+  font-size: 13px; background: var(--white); color: var(--text-primary);
+}
+body.dark .playground-controls select { background: #2a2a2a; color: var(--text-primary); border-color: rgba(255,255,255,0.15); }
+.playground-preview {
+  height: 60px; display: flex; align-items: center; padding: 0 20px;
+  background: rgba(253,90,19,0.04); border-radius: 8px; position: relative;
+}
+.playground-dot {
+  width: 32px; height: 32px; border-radius: 50%; background: var(--orange-vivid);
+  position: relative; cursor: pointer;
+}
+.playground-btn {
+  margin-top: 12px; padding: 8px 20px; border-radius: 8px; border: none;
+  background: var(--orange-vivid); color: #fff; font-size: 13px; font-weight: 600;
+  cursor: pointer; transition: var(--transition);
+}
+.playground-btn:hover { background: var(--orange-dark); }
 
 /* ============ ACCESSIBILITY AUDIT ============ */
 .a11y-scorecard {
@@ -937,7 +1137,14 @@ body.dark .ci-matrix th { background: rgba(255,255,255,0.03); }
   <div class="nav-group">
     <div class="nav-group-label">Guidelines</div>
     <a href="#layout" class="nav-link">Layout</a>
-    <a href="#voice" class="nav-link">Brand Voice</a>
+    <a href="#voice" class="nav-link">Voice &amp; Tone</a>
+    <a href="#voice-copy" class="nav-link" style="padding-left:40px;font-size:13px">Copy Patterns</a>
+    <a href="#voice-cta" class="nav-link" style="padding-left:40px;font-size:13px">CTA Patterns</a>
+    <a href="#voice-dodont" class="nav-link" style="padding-left:40px;font-size:13px">Do / Don't</a>
+    <a href="#motion" class="nav-link">Motion &amp; Animation</a>
+    <a href="#motion-duration" class="nav-link" style="padding-left:40px;font-size:13px">Duration Tokens</a>
+    <a href="#motion-easing" class="nav-link" style="padding-left:40px;font-size:13px">Easing Functions</a>
+    <a href="#motion-playground" class="nav-link" style="padding-left:40px;font-size:13px">Playground</a>
     <a href="#accessibility" class="nav-link">Accessibility</a>
   </div>
 </nav>
@@ -3005,28 +3212,539 @@ body.dark .ci-matrix th { background: rgba(255,255,255,0.03); }
 
 <!-- ====== VOICE ====== -->
 <section class="section" id="voice">
-  <h2 class="section-title">Brand Voice &amp; Tone</h2>
-  <p class="section-desc">iGraal speaks to Polish users with warmth, clarity, and confidence. Every message should feel like advice from a savvy friend.</p>
+  <h2 class="section-title">Voice &amp; Tone</h2>
+  <p class="section-desc">iGraal speaks to Polish users with warmth, clarity, and confidence. Every message should feel like advice from a savvy friend who saves you money. Based on audit of 6 pages across igraal.pl.</p>
+
+  <!-- Brand Personality -->
+  <h3 class="subsection-title" style="margin-top:32px">Brand Personality</h3>
   <div class="voice-grid">
     <div class="voice-card">
       <div class="voice-icon">🤝</div>
-      <h4>Friendly &amp; Approachable</h4>
-      <p>We use direct, conversational language. No corporate jargon. We're a friend who knows how to save money.</p>
+      <h4>Friendly but Trustworthy</h4>
+      <p>Like a knowledgeable friend who saves you money. Conversational, warm, no corporate jargon.</p>
     </div>
     <div class="voice-card">
       <div class="voice-icon">🛡️</div>
-      <h4>Trust &amp; Transparency</h4>
-      <p>We lead with trust signals — 20 years of experience, 12M+ happy users, clear rules, verified offers. No hidden catches.</p>
+      <h4>Direct &amp; Transparent</h4>
+      <p>No hidden conditions, clear language. We lead with trust signals — 20 years experience, 12M+ users, verified offers.</p>
     </div>
     <div class="voice-card">
       <div class="voice-icon">🚀</div>
       <h4>Action-Oriented</h4>
-      <p>CTAs are direct and benefit-driven: <em>"Dołącz i zyskaj 12zł"</em> (Join and earn 12zł). Every action has a clear reward.</p>
+      <p>Always driving toward the next step. Every CTA is benefit-driven: <em>"Dołącz i zyskaj 12zł"</em>. Every action has a clear reward.</p>
     </div>
     <div class="voice-card">
-      <div class="voice-icon">✨</div>
-      <h4>Empowering</h4>
-      <p>We celebrate smart shopping. Our users aren't penny-pinchers — they're savvy people who know the value of their money.</p>
+      <div class="voice-icon">🇵🇱</div>
+      <h4>Locally Adapted</h4>
+      <p>Polish market, Polish language, culturally appropriate. We celebrate smart shopping in the local context.</p>
+    </div>
+  </div>
+
+  <!-- Copy Patterns -->
+  <div class="voice-subsection" id="voice-copy">
+    <h3>Copy Patterns <span style="font-size:13px;color:var(--text-secondary);font-weight:400">(from 6 pages audited)</span></h3>
+
+    <h4>Headlines Formula</h4>
+    <p>iGraal uses a consistent headline pattern: <strong>benefit statement + emotional hook</strong></p>
+    <div class="copy-pattern-box">
+      <div class="pattern-label">Pattern</div>
+      <div class="pattern-formula">[Trust signal / Scale] + [Direct benefit to YOU]</div>
+      <div class="copy-example">
+        <span class="example-text">"iGraal pomaga Ci oszczędzać, gdy robisz zakupy online"</span>
+        <span class="example-tag">benefit + context</span>
+      </div>
+      <div class="copy-example">
+        <span class="example-text">"Zaufaj sprawdzonym markom i oszczędzaj więcej"</span>
+        <span class="example-tag">trust + benefit</span>
+      </div>
+      <div class="copy-example">
+        <span class="example-text">"Zaufane oferty i darmowy cashback - Twoje korzyści"</span>
+        <span class="example-tag">trust + free + benefit</span>
+      </div>
+      <div class="copy-example">
+        <span class="example-text">"Wybierz spośród ponad 200 partnerów"</span>
+        <span class="example-tag">choice + scale</span>
+      </div>
+      <div class="copy-example">
+        <span class="example-text">"Twoje ulubione marki w zasięgu ręki"</span>
+        <span class="example-tag">personal + access</span>
+      </div>
+      <div class="copy-example">
+        <span class="example-text">"Sprawdź opinie naszych użytkowników"</span>
+        <span class="example-tag">social proof</span>
+      </div>
+    </div>
+
+    <h4>Subheadlines</h4>
+    <p>Always follow up with a practical explanation.</p>
+    <div class="copy-pattern-box">
+      <div class="pattern-label">Pattern</div>
+      <div class="pattern-formula">[What you get] + [How easy it is]</div>
+      <div class="copy-example">
+        <span class="example-text">"Od sklepów spożywczych po podróże - zyskuj cashback w najlepszych sklepach internetowych. To takie proste z iGraal!"</span>
+      </div>
+      <div class="copy-example">
+        <span class="example-text">"Najlepsze oferty cashback i kody promocyjne – starannie wybrane, abyś nie musiał ich szukać."</span>
+      </div>
+      <div class="copy-example">
+        <span class="example-text">"Kup karty podarunkowe do swoich ulubionych sklepów i otrzymaj natychmiastowy cashback."</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- CTA Copy Patterns -->
+  <div class="voice-subsection" id="voice-cta">
+    <h3>CTA Copy Patterns</h3>
+    <p>Primary CTAs are action-first, benefit-included.</p>
+
+    <h4>Primary — [Action verb] + [benefit/incentive]</h4>
+    <div class="cta-showcase">
+      <span class="cta-pill primary">Dołącz i zyskaj 12zł</span>
+      <span class="cta-pill primary">Aktywuj cashback</span>
+      <span class="cta-pill primary">Dodaj do Chrome za darmo!</span>
+      <span class="cta-pill primary">Zapisuję się, żeby skorzystać</span>
+    </div>
+
+    <h4>Secondary — [Reveal verb] (Pokaż, Zobacz)</h4>
+    <div class="cta-showcase">
+      <span class="cta-pill secondary">Pokaż kod</span>
+      <span class="cta-pill secondary">Pokaż okazję</span>
+      <span class="cta-pill secondary">Kup kartę podarunkową</span>
+      <span class="cta-pill secondary">Zobacz wszystkie</span>
+    </div>
+
+    <h4>Tertiary — [Check/Review] (Sprawdź) — always link, never button</h4>
+    <div class="cta-showcase">
+      <span class="cta-pill tertiary">Sprawdź warunki</span>
+    </div>
+
+    <!-- Trust Signals -->
+    <h4>Trust Signals</h4>
+    <p>Prominently featured metrics that build credibility:</p>
+    <div class="trust-metrics">
+      <div class="trust-metric">
+        <div class="metric-value">100+</div>
+        <div class="metric-label">zaufanych partnerów</div>
+      </div>
+      <div class="trust-metric">
+        <div class="metric-value">1000+</div>
+        <div class="metric-label">ofert i kodów</div>
+      </div>
+      <div class="trust-metric">
+        <div class="metric-value">6%</div>
+        <div class="metric-label">śr. cashback</div>
+      </div>
+      <div class="trust-metric">
+        <div class="metric-value">20</div>
+        <div class="metric-label">lat doświadczenia</div>
+      </div>
+      <div class="trust-metric">
+        <div class="metric-value">12M</div>
+        <div class="metric-label">użytkowników</div>
+      </div>
+      <div class="trust-metric">
+        <div class="metric-value">4.1/5</div>
+        <div class="metric-label">Trustpilot (39K)</div>
+      </div>
+    </div>
+
+    <!-- Badge/Tag Taxonomy -->
+    <h4>Badge / Tag Taxonomy</h4>
+    <p>Status tags follow strict conventions:</p>
+    <div style="margin: 12px 0">
+      <div style="margin-bottom:8px;font-size:13px;color:var(--text-secondary)">Offer type — always UPPERCASE:</div>
+      <div class="badge-taxonomy">
+        <span class="badge-tag offer">CASHBACK</span>
+        <span class="badge-tag offer">KOD</span>
+        <span class="badge-tag offer">OKAZJA</span>
+        <span class="badge-tag offer">KARTA PODARUNKOWA</span>
+      </div>
+    </div>
+    <div style="margin-bottom:8px">
+      <div style="margin-bottom:8px;font-size:13px;color:var(--text-secondary)">Status — UPPERCASE, informational:</div>
+      <div class="badge-taxonomy">
+        <span class="badge-tag status">BEZ CASHBACKU</span>
+        <span class="badge-tag status">OFERTA DNIA</span>
+      </div>
+    </div>
+    <div style="margin-bottom:8px">
+      <div style="margin-bottom:8px;font-size:13px;color:var(--text-secondary)">Availability — sentence case:</div>
+      <div class="badge-taxonomy">
+        <span class="badge-tag avail">Online</span>
+        <span class="badge-tag avail">Ważne online i stacjonarnie</span>
+      </div>
+    </div>
+    <div style="margin-bottom:8px">
+      <div style="margin-bottom:8px;font-size:13px;color:var(--text-secondary)">Urgency — date or duration:</div>
+      <div class="badge-taxonomy">
+        <span class="badge-tag urgency">Do 31.03.2026</span>
+        <span class="badge-tag urgency">Przez cały rok</span>
+      </div>
+    </div>
+
+    <!-- Microcopy -->
+    <h4>Microcopy Tone</h4>
+    <p>Small text is warm and reassuring:</p>
+    <div class="copy-pattern-box">
+      <div class="copy-example">
+        <span class="example-text">"Zawsze za darmo"</span>
+        <span class="example-tag">Always free</span>
+      </div>
+      <div class="copy-example">
+        <span class="example-text">"Kupuję z iGraal!"</span>
+        <span class="example-tag">first person</span>
+      </div>
+      <div class="copy-example">
+        <span class="example-text">"Zaufały nam miliony"</span>
+        <span class="example-tag">social proof</span>
+      </div>
+      <div class="copy-example">
+        <span class="example-text">"Cashback, który naprawdę się opłaca. Każdy zakup, za każdym razem."</span>
+        <span class="example-tag">tagline</span>
+      </div>
+    </div>
+
+    <!-- FAQ Voice -->
+    <h4>FAQ Voice</h4>
+    <p>Questions use the customer's voice (first/second person). Pattern: <strong>[Question word] + [simple everyday language]</strong> — no jargon.</p>
+    <div class="copy-pattern-box">
+      <div class="copy-example">
+        <span class="example-text">"Kiedy otrzymam cashback?"</span>
+        <span class="example-tag">When will I get…</span>
+      </div>
+      <div class="copy-example">
+        <span class="example-text">"Jak aktywować cashback?"</span>
+        <span class="example-tag">How to activate…</span>
+      </div>
+      <div class="copy-example">
+        <span class="example-text">"Czy korzystanie z iGraal jest darmowe?"</span>
+        <span class="example-tag">Is it free?</span>
+      </div>
+      <div class="copy-example">
+        <span class="example-text">"Czym jest cashback?"</span>
+        <span class="example-tag">What is…</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Do / Don't -->
+  <div class="voice-subsection" id="voice-dodont">
+    <h3>Do / Don't Guidelines</h3>
+    <div class="do-dont-grid">
+      <div class="do-dont-col do-col">
+        <h4>✅ Do</h4>
+        <ul>
+          <li>Use "Ty/Twoje" (you/your) — always address the user directly</li>
+          <li>Use "za darmo" and "darmowy" when applicable — free is a key motivator</li>
+          <li>Include numbers and metrics — specificity builds trust</li>
+          <li>Use first-person for CTAs when appropriate ("Zapisuję się")</li>
+          <li>Keep headlines benefit-first, not feature-first</li>
+        </ul>
+      </div>
+      <div class="do-dont-col dont-col">
+        <h4>❌ Don't</h4>
+        <ul>
+          <li>Use technical/financial jargon without explanation</li>
+          <li>Use passive voice — always active and direct</li>
+          <li>Use vague promises — always quantify (%, zł, timeframes)</li>
+          <li>Use fear-based urgency — use positive framing instead</li>
+          <li>Mix formal and informal register in the same context</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Testimonials -->
+  <div class="voice-subsection">
+    <h3>Testimonial Voice</h3>
+    <p>Real user testimonials are informal, authentic. Note: testimonials preserve natural Polish spelling/grammar — not corrected. This feels authentic.</p>
+    <div class="testimonial-card">
+      Kojarzyłam ich z innego kraju, nie wiedziałam ze sa teraz w Polsce. Sprawidziłam kilka sklepów i super działa.
+    </div>
+    <div class="testimonial-card">
+      korzystam dosc dlugo z igeaal.com i jestem bardzo zadowolony. Korzystajac zaoszczedzilem juz ponad 120€.
+    </div>
+    <div class="testimonial-card">
+      Szybkie i wysokie zwroty. Kontakt z działem pomocy błyskawiczny, problem rozwiązany od ręki.
+    </div>
+  </div>
+</section>
+
+<!-- ====== MOTION & ANIMATION ====== -->
+<section class="section" id="motion">
+  <h2 class="section-title">Motion &amp; Animation</h2>
+  <p class="section-desc">iGraal's motion design is subtle and functional — animations serve usability, not decoration. The system follows Material Design-inspired transition tokens with custom Nalu timing.</p>
+
+  <div class="motion-philosophy">
+    <strong>Design Philosophy:</strong> Every animation must have a purpose. If removing an animation doesn't harm usability, it shouldn't exist. Motion guides attention, provides feedback, and creates spatial relationships between elements.
+  </div>
+
+  <!-- Duration Tokens -->
+  <div id="motion-duration">
+    <h3 class="subsection-title">Duration Tokens</h3>
+    <p style="font-size:14px;color:var(--text-secondary);margin-bottom:16px">Visual timeline showing relative durations. Bars are proportional to timing values.</p>
+    <div class="duration-timeline">
+      <div class="duration-bar-row">
+        <span class="duration-bar-label">duration-shortest</span>
+        <span class="duration-bar-value">0.15s</span>
+        <div class="duration-bar-track">
+          <div class="duration-bar-fill" style="width:39.5%" data-usecase="Micro-interactions"></div>
+        </div>
+      </div>
+      <div class="duration-bar-row">
+        <span class="duration-bar-label">duration-shorter</span>
+        <span class="duration-bar-value">0.20s</span>
+        <div class="duration-bar-track">
+          <div class="duration-bar-fill" style="width:52.6%" data-usecase="Small transitions"></div>
+        </div>
+      </div>
+      <div class="duration-bar-row">
+        <span class="duration-bar-label">duration-short</span>
+        <span class="duration-bar-value">0.25s</span>
+        <div class="duration-bar-track">
+          <div class="duration-bar-fill" style="width:65.8%" data-usecase="Hover/focus states"></div>
+        </div>
+      </div>
+      <div class="duration-bar-row">
+        <span class="duration-bar-label">duration-standard</span>
+        <span class="duration-bar-value">0.30s</span>
+        <div class="duration-bar-track">
+          <div class="duration-bar-fill" style="width:78.9%" data-usecase="Most UI transitions"></div>
+        </div>
+      </div>
+      <div class="duration-bar-row">
+        <span class="duration-bar-label">duration-complex</span>
+        <span class="duration-bar-value">0.38s</span>
+        <div class="duration-bar-track">
+          <div class="duration-bar-fill" style="width:100%" data-usecase="Complex transitions"></div>
+        </div>
+      </div>
+      <div class="duration-bar-row">
+        <span class="duration-bar-label">duration-enteringScreen</span>
+        <span class="duration-bar-value">0.23s</span>
+        <div class="duration-bar-track">
+          <div class="duration-bar-fill" style="width:60.5%" data-usecase="Elements entering"></div>
+        </div>
+      </div>
+      <div class="duration-bar-row">
+        <span class="duration-bar-label">duration-leavingScreen</span>
+        <span class="duration-bar-value">0.20s</span>
+        <div class="duration-bar-track">
+          <div class="duration-bar-fill" style="width:52.6%" data-usecase="Elements exiting"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Easing Functions -->
+  <div id="motion-easing" style="margin-top:48px">
+    <h3 class="subsection-title">Easing Functions</h3>
+    <p style="font-size:14px;color:var(--text-secondary);margin-bottom:16px">Click any card to see the easing curve animated. The dot follows the curve path on each click.</p>
+    <div class="easing-grid">
+      <div class="easing-card" onclick="animateEasing(this, 0.4, 0, 1, 1)">
+        <div class="easing-name">easing-easeIn</div>
+        <div class="easing-value">cubic-bezier(0.4, 0, 1, 1)</div>
+        <canvas class="easing-canvas" width="240" height="120"></canvas>
+        <div class="easing-desc">Accelerating — for exiting elements</div>
+      </div>
+      <div class="easing-card" onclick="animateEasing(this, 0.4, 0, 0.2, 1)">
+        <div class="easing-name">easing-easeInOut</div>
+        <div class="easing-value">cubic-bezier(0.4, 0, 0.2, 1)</div>
+        <canvas class="easing-canvas" width="240" height="120"></canvas>
+        <div class="easing-desc">Smooth — for on-screen transitions</div>
+      </div>
+      <div class="easing-card" onclick="animateEasing(this, 0.0, 0, 0.2, 1)">
+        <div class="easing-name">easing-easeOut</div>
+        <div class="easing-value">cubic-bezier(0.0, 0, 0.2, 1)</div>
+        <canvas class="easing-canvas" width="240" height="120"></canvas>
+        <div class="easing-desc">Decelerating — for entering elements</div>
+      </div>
+      <div class="easing-card" onclick="animateEasing(this, 0.4, 0, 0.6, 1)">
+        <div class="easing-name">easing-sharp</div>
+        <div class="easing-value">cubic-bezier(0.4, 0, 0.6, 1)</div>
+        <canvas class="easing-canvas" width="240" height="120"></canvas>
+        <div class="easing-desc">Snappy — for quick state changes</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Transition Patterns -->
+  <div style="margin-top:48px">
+    <h3 class="subsection-title">Transition Patterns Found</h3>
+    <p style="font-size:14px;color:var(--text-secondary);margin-bottom:16px">Most common transitions in use (from 2,500+ elements scanned).</p>
+    <table class="transition-table">
+      <thead>
+        <tr><th>Pattern</th><th>Elements</th><th style="width:30%">Usage</th><th>Context</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code>all</code> (generic)</td>
+          <td>2,301</td>
+          <td><div class="usage-bar"><div class="usage-bar-fill" style="width:100%"></div></div></td>
+          <td>Default fallback</td>
+        </tr>
+        <tr>
+          <td><code>background-color, height, width…</code></td>
+          <td>83</td>
+          <td><div class="usage-bar"><div class="usage-bar-fill" style="width:3.6%"></div></div></td>
+          <td>Expandable sections</td>
+        </tr>
+        <tr>
+          <td><code>0.2s ease-in-out</code></td>
+          <td>64</td>
+          <td><div class="usage-bar"><div class="usage-bar-fill" style="width:2.8%"></div></div></td>
+          <td>Hover states</td>
+        </tr>
+        <tr>
+          <td><code>background 0.2s</code></td>
+          <td>42</td>
+          <td><div class="usage-bar"><div class="usage-bar-fill" style="width:1.8%"></div></div></td>
+          <td>Button hover</td>
+        </tr>
+        <tr>
+          <td><code>color 0.2s</code></td>
+          <td>10</td>
+          <td><div class="usage-bar"><div class="usage-bar-fill" style="width:0.4%"></div></div></td>
+          <td>Text color changes</td>
+        </tr>
+        <tr>
+          <td><code>transform 0.3s</code></td>
+          <td>3</td>
+          <td><div class="usage-bar"><div class="usage-bar-fill" style="width:0.13%"></div></div></td>
+          <td>Card hover lifts</td>
+        </tr>
+        <tr>
+          <td><code>border-color 0.2s</code></td>
+          <td>1</td>
+          <td><div class="usage-bar"><div class="usage-bar-fill" style="width:0.04%"></div></div></td>
+          <td>Input focus state</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Keyframe Animations -->
+  <div style="margin-top:48px">
+    <h3 class="subsection-title">Keyframe Animations <span style="font-size:14px;color:var(--text-secondary);font-weight:400">(15 defined)</span></h3>
+
+    <div class="keyframe-group">
+      <h4>🔄 Loading Spinners</h4>
+      <ul class="keyframe-list">
+        <li><strong>Circular spinner</strong> — <span>rotation (0° → 360°), infinite linear</span></li>
+        <li><strong>Stroke dash</strong> — <span>SVG stroke-dasharray animation for indeterminate loading</span></li>
+        <li><strong>Bouncing dots</strong> — <span>scale(0) → scale(1) with translate for loading states</span></li>
+      </ul>
+    </div>
+
+    <div class="keyframe-group">
+      <h4>🍪 Cookie Consent (CMP)</h4>
+      <ul class="keyframe-list">
+        <li><strong>Pulse</strong> — <span>scale(0.9→1) with golden box-shadow glow for cookie banner attention</span></li>
+        <li><strong>Pulse2</strong> — <span>same pattern but red shadow variant</span></li>
+        <li><strong>Slide-in</strong> — <span>translateY with opacity for consent modal entry</span></li>
+      </ul>
+    </div>
+
+    <div class="keyframe-group">
+      <h4>✨ Decorative</h4>
+      <ul class="keyframe-list">
+        <li><strong>Orbit</strong> — <span>rotate + translate for floating background elements (3s linear infinite)</span></li>
+        <li><strong>Float</strong> — <span>vertical position animation (4s ease) for hero section elements</span></li>
+        <li><strong>Fade-cascade</strong> — <span>sequential opacity + translateY for staggered content reveal</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Motion Guidelines -->
+  <div style="margin-top:48px">
+    <h3 class="subsection-title">Motion Guidelines</h3>
+    <div class="motion-guidelines-grid">
+      <div class="motion-guideline-card" style="border-top:3px solid #16a34a">
+        <h4 style="color:#16a34a">✅ When to Animate</h4>
+        <ul>
+          <li>✅ <strong>State changes</strong> — hover, focus, active, disabled</li>
+          <li>✅ <strong>Content reveal</strong> — accordion, expandable text, carousel</li>
+          <li>✅ <strong>Loading states</strong> — spinners, skeletons, progress</li>
+          <li>✅ <strong>Micro-feedback</strong> — button press, checkbox, toggle</li>
+        </ul>
+      </div>
+      <div class="motion-guideline-card" style="border-top:3px solid #dc2626">
+        <h4 style="color:#dc2626">❌ Never Animate</h4>
+        <ul>
+          <li>❌ Decoration alone — no parallax on scroll</li>
+          <li>❌ No floating elements without purpose</li>
+          <li>❌ No auto-play animations &gt; 5s without controls</li>
+          <li>❌ No animation that bypasses reduced motion</li>
+        </ul>
+      </div>
+      <div class="motion-guideline-card">
+        <h4>♿ Accessibility</h4>
+        <ul>
+          <li>Respect <code>prefers-reduced-motion: reduce</code></li>
+          <li>Loading: <code>aria-busy="true"</code> + <code>role="progressbar"</code></li>
+          <li>Carousel auto-advance pauses on hover/focus</li>
+          <li>No animation &gt; 5s without user control (WCAG 2.3.3)</li>
+        </ul>
+      </div>
+      <div class="motion-guideline-card">
+        <h4>📐 Recommended Pairings</h4>
+        <table class="pairing-table" style="margin:0">
+          <thead><tr><th>Action</th><th>Duration</th><th>Easing</th></tr></thead>
+          <tbody>
+            <tr><td>Button hover</td><td>0.20s</td><td>ease-in-out</td></tr>
+            <tr><td>Card hover lift</td><td>0.30s</td><td>ease-out</td></tr>
+            <tr><td>Accordion open</td><td>0.30s</td><td>ease-in-out</td></tr>
+            <tr><td>Modal enter</td><td>0.23s</td><td>ease-out</td></tr>
+            <tr><td>Modal exit</td><td>0.20s</td><td>ease-in</td></tr>
+            <tr><td>Tooltip appear</td><td>0.15s</td><td>ease-out</td></tr>
+            <tr><td>Page transition</td><td>0.38s</td><td>ease-in-out</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- Playground -->
+  <div id="motion-playground" style="margin-top:48px">
+    <h3 class="subsection-title">Transition Playground</h3>
+    <p style="font-size:14px;color:var(--text-secondary);margin-bottom:16px">Pick a duration, easing, and property to see a live preview.</p>
+    <div class="motion-playground">
+      <div class="playground-controls">
+        <label>
+          Duration
+          <select id="pg-duration">
+            <option value="0.15">0.15s — shortest</option>
+            <option value="0.20">0.20s — shorter</option>
+            <option value="0.25">0.25s — short</option>
+            <option value="0.30" selected>0.30s — standard</option>
+            <option value="0.38">0.38s — complex</option>
+            <option value="0.23">0.23s — entering</option>
+          </select>
+        </label>
+        <label>
+          Easing
+          <select id="pg-easing">
+            <option value="cubic-bezier(0.4, 0, 1, 1)">easeIn</option>
+            <option value="cubic-bezier(0.4, 0, 0.2, 1)" selected>easeInOut</option>
+            <option value="cubic-bezier(0.0, 0, 0.2, 1)">easeOut</option>
+            <option value="cubic-bezier(0.4, 0, 0.6, 1)">sharp</option>
+          </select>
+        </label>
+        <label>
+          Property
+          <select id="pg-property">
+            <option value="transform" selected>transform (translateX)</option>
+            <option value="opacity">opacity</option>
+            <option value="background-color">background-color</option>
+            <option value="scale">transform (scale)</option>
+          </select>
+        </label>
+      </div>
+      <div class="playground-preview" id="pg-preview">
+        <div class="playground-dot" id="pg-dot"></div>
+      </div>
+      <button class="playground-btn" onclick="runPlayground()">▶ Play Transition</button>
+      <span id="pg-code" style="margin-left:12px;font-family:monospace;font-size:12px;color:var(--text-secondary)"></span>
     </div>
   </div>
 </section>
@@ -3628,6 +4346,153 @@ document.querySelectorAll('.ci-row-toggle').forEach(row => {
     }
   });
 });
+
+// ============ EASING CURVES ============
+function cubicBezier(t, p1x, p1y, p2x, p2y) {
+  // De Casteljau's algorithm for cubic bezier
+  const cx = 3 * p1x, bx = 3 * (p2x - p1x) - cx, ax = 1 - cx - bx;
+  const cy = 3 * p1y, by = 3 * (p2y - p1y) - cy, ay = 1 - cy - by;
+  function sampleX(t) { return ((ax * t + bx) * t + cx) * t; }
+  function sampleY(t) { return ((ay * t + by) * t + cy) * t; }
+  function solveCurveX(x) {
+    let t2 = x;
+    for (let i = 0; i < 8; i++) {
+      const x2 = sampleX(t2) - x;
+      if (Math.abs(x2) < 1e-6) return t2;
+      const d2 = (3 * ax * t2 + 2 * bx) * t2 + cx;
+      if (Math.abs(d2) < 1e-6) break;
+      t2 -= x2 / d2;
+    }
+    return t2;
+  }
+  return sampleY(solveCurveX(t));
+}
+
+function drawEasingCurve(canvas, p1x, p1y, p2x, p2y, dotProgress) {
+  const ctx = canvas.getContext('2d');
+  const w = canvas.width, h = canvas.height;
+  const dpr = window.devicePixelRatio || 1;
+  canvas.width = canvas.offsetWidth * dpr;
+  canvas.height = canvas.offsetHeight * dpr;
+  const cw = canvas.width, ch = canvas.height;
+  ctx.scale(dpr, dpr);
+  const aw = canvas.offsetWidth, ah = canvas.offsetHeight;
+  const pad = 16;
+
+  ctx.clearRect(0, 0, aw, ah);
+
+  // Grid
+  ctx.strokeStyle = getComputedStyle(document.body).getPropertyValue('--divider') || 'rgba(0,0,0,0.08)';
+  ctx.lineWidth = 1;
+  ctx.setLineDash([4, 4]);
+  ctx.beginPath();
+  ctx.moveTo(pad, pad); ctx.lineTo(pad, ah - pad);
+  ctx.lineTo(aw - pad, ah - pad);
+  ctx.stroke();
+  ctx.setLineDash([]);
+
+  // Curve
+  ctx.strokeStyle = '#FD5A13';
+  ctx.lineWidth = 2.5;
+  ctx.beginPath();
+  for (let i = 0; i <= 100; i++) {
+    const t = i / 100;
+    const y = cubicBezier(t, p1x, p1y, p2x, p2y);
+    const px = pad + t * (aw - 2 * pad);
+    const py = (ah - pad) - y * (ah - 2 * pad);
+    if (i === 0) ctx.moveTo(px, py); else ctx.lineTo(px, py);
+  }
+  ctx.stroke();
+
+  // Dot
+  if (typeof dotProgress === 'number') {
+    const y = cubicBezier(dotProgress, p1x, p1y, p2x, p2y);
+    const dx = pad + dotProgress * (aw - 2 * pad);
+    const dy = (ah - pad) - y * (ah - 2 * pad);
+    ctx.fillStyle = '#FD5A13';
+    ctx.beginPath();
+    ctx.arc(dx, dy, 5, 0, Math.PI * 2);
+    ctx.fill();
+  }
+}
+
+function animateEasing(card, p1x, p1y, p2x, p2y) {
+  const canvas = card.querySelector('.easing-canvas');
+  let start = null;
+  const duration = 1000;
+  function step(ts) {
+    if (!start) start = ts;
+    const progress = Math.min((ts - start) / duration, 1);
+    drawEasingCurve(canvas, p1x, p1y, p2x, p2y, progress);
+    if (progress < 1) requestAnimationFrame(step);
+  }
+  requestAnimationFrame(step);
+}
+
+// Draw all easing curves on load
+document.addEventListener('DOMContentLoaded', () => {
+  const easingData = [
+    [0.4, 0, 1, 1],
+    [0.4, 0, 0.2, 1],
+    [0.0, 0, 0.2, 1],
+    [0.4, 0, 0.6, 1],
+  ];
+  document.querySelectorAll('.easing-card').forEach((card, i) => {
+    const canvas = card.querySelector('.easing-canvas');
+    if (canvas && easingData[i]) {
+      drawEasingCurve(canvas, ...easingData[i], null);
+    }
+  });
+});
+
+// ============ MOTION PLAYGROUND ============
+function runPlayground() {
+  const dot = document.getElementById('pg-dot');
+  const dur = document.getElementById('pg-duration').value;
+  const ease = document.getElementById('pg-easing').value;
+  const prop = document.getElementById('pg-property').value;
+  const codeEl = document.getElementById('pg-code');
+
+  // Reset
+  dot.style.transition = 'none';
+  dot.style.transform = 'translateX(0) scale(1)';
+  dot.style.opacity = '1';
+  dot.style.backgroundColor = '#FD5A13';
+
+  codeEl.textContent = `transition: ${prop === 'scale' ? 'transform' : prop} ${dur}s ${ease};`;
+
+  requestAnimationFrame(() => {
+    requestAnimationFrame(() => {
+      dot.style.transition = `${prop === 'scale' ? 'transform' : prop} ${dur}s ${ease}`;
+
+      switch (prop) {
+        case 'transform':
+          const track = document.getElementById('pg-preview');
+          const maxX = track.offsetWidth - dot.offsetWidth - 40;
+          dot.style.transform = `translateX(${maxX}px)`;
+          break;
+        case 'opacity':
+          dot.style.opacity = '0.1';
+          break;
+        case 'background-color':
+          dot.style.backgroundColor = '#553264';
+          break;
+        case 'scale':
+          dot.style.transform = 'scale(2)';
+          break;
+      }
+
+      // Reset after animation
+      setTimeout(() => {
+        dot.style.transition = `${prop === 'scale' ? 'transform' : prop} ${dur}s ${ease}`;
+        if (prop === 'transform') dot.style.transform = 'translateX(0)';
+        else if (prop === 'opacity') dot.style.opacity = '1';
+        else if (prop === 'background-color') dot.style.backgroundColor = '#FD5A13';
+        else if (prop === 'scale') dot.style.transform = 'scale(1)';
+      }, parseFloat(dur) * 1000 + 200);
+    });
+  });
+}
 </script>
 </body>
 </html>
