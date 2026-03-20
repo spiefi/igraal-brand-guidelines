@@ -66,7 +66,9 @@ body.dark .type-example, body.dark .spacing-bar-wrap, body.dark .radius-example,
 body.dark .btn-showcase, body.dark .theme-card, body.dark .card-variant,
 body.dark .voice-card, body.dark .copy-pattern-box, body.dark .testimonial-card,
 body.dark .do-dont-col, body.dark .motion-guideline-card, body.dark .motion-playground,
-body.dark .easing-card, body.dark .keyframe-list li {
+body.dark .easing-card, body.dark .keyframe-list li,
+body.dark .type-style-card, body.dark .type-hierarchy-demo,
+body.dark .type-decoration-card, body.dark .type-usage-card {
   background: #1E1E1E;
   border-color: rgba(255,255,255,0.08);
 }
@@ -203,6 +205,112 @@ body.dark .dark-toggle:hover { background: rgba(255,255,255,0.08); }
 }
 .type-preview { flex: 1; min-width: 200px; }
 .type-meta { font-size: 12px; color: var(--text-secondary); font-family: monospace; white-space: nowrap; min-width: 220px; }
+
+/* Type Ramp */
+.type-ramp-card {
+  background: #160E0B; border-radius: 16px; padding: 32px; margin-bottom: 32px; overflow-x: auto;
+}
+.type-ramp-row {
+  display: flex; align-items: baseline; gap: 24px; padding: 12px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+.type-ramp-row:last-child { border-bottom: none; }
+.type-ramp-sample { flex: 1; min-width: 260px; color: #FFFFFF; }
+.type-ramp-specs {
+  font-family: 'Inter', monospace; font-size: 11px; color: rgba(255,255,255,0.5);
+  white-space: nowrap; min-width: 280px; display: flex; gap: 16px; align-items: baseline;
+}
+.type-ramp-name {
+  font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 600;
+  color: rgba(255,255,255,0.7); min-width: 120px; text-transform: uppercase; letter-spacing: 0.05em;
+}
+
+/* Type Hierarchy */
+.type-hierarchy-demo {
+  background: var(--white); border: 1px solid var(--divider); border-radius: 16px;
+  padding: 40px; margin-bottom: 24px;
+}
+.type-hierarchy-demo .hier-label {
+  font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 600;
+  color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.05em;
+  margin-bottom: 4px; opacity: 0.7;
+}
+
+/* Do / Don't */
+.type-dodont-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 32px; }
+.type-dodont-card {
+  border-radius: 12px; padding: 24px; border: 2px solid;
+}
+.type-dodont-card.do { border-color: #22C55E; background: rgba(34,197,94,0.04); }
+.type-dodont-card.dont { border-color: #EF4444; background: rgba(239,68,68,0.04); }
+.type-dodont-card h4 { margin: 0 0 12px 0; font-size: 14px; font-weight: 700; }
+.type-dodont-card.do h4 { color: #22C55E; }
+.type-dodont-card.dont h4 { color: #EF4444; }
+.type-dodont-card ul { margin: 0; padding-left: 20px; font-size: 14px; line-height: 1.8; color: var(--text-primary); }
+
+/* Type Style Cards */
+.type-style-card {
+  background: var(--white); border: 1px solid var(--divider); border-radius: 16px;
+  padding: 32px; margin-bottom: 16px;
+}
+.type-style-card .style-header {
+  display: flex; align-items: baseline; gap: 12px; margin-bottom: 8px;
+}
+.type-style-card .style-name { font-size: 18px; font-weight: 700; color: var(--text-primary); }
+.type-style-card .style-specs {
+  font-family: monospace; font-size: 12px; color: var(--text-secondary);
+}
+.type-style-card .style-desc { font-size: 14px; line-height: 1.6; color: var(--text-secondary); margin-bottom: 16px; }
+.type-style-card .style-preview {
+  background: var(--surface); border-radius: 8px; padding: 20px; margin-top: 12px;
+}
+
+/* Decoration styles */
+.type-decoration-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; margin-bottom: 32px; }
+.type-decoration-card {
+  background: var(--white); border: 1px solid var(--divider); border-radius: 12px; padding: 24px;
+}
+.type-decoration-card h4 { margin: 0 0 8px 0; font-size: 14px; font-weight: 700; }
+.type-decoration-card p { margin: 0 0 12px 0; font-size: 13px; color: var(--text-secondary); line-height: 1.5; }
+
+/* Responsive scaling table */
+.type-scaling-table {
+  width: 100%; border-collapse: collapse; margin-bottom: 24px;
+  font-size: 14px; border-radius: 12px; overflow: hidden;
+  border: 1px solid var(--divider);
+}
+.type-scaling-table th {
+  background: var(--surface); padding: 12px 16px; text-align: left;
+  font-weight: 600; font-size: 12px; text-transform: uppercase; letter-spacing: 0.05em;
+  color: var(--text-secondary); border-bottom: 1px solid var(--divider);
+}
+.type-scaling-table td {
+  padding: 12px 16px; border-bottom: 1px solid var(--divider);
+  font-family: monospace; font-size: 13px;
+}
+.type-scaling-table tr:last-child td { border-bottom: none; }
+
+/* Usage examples */
+.type-usage-card {
+  background: var(--white); border: 1px solid var(--divider); border-radius: 16px;
+  padding: 32px; margin-bottom: 16px; position: relative; overflow: hidden;
+}
+.type-usage-card::before {
+  content: attr(data-label); position: absolute; top: 12px; right: 16px;
+  font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em;
+  color: var(--text-secondary); opacity: 0.5;
+}
+.type-usage-label {
+  font-family: monospace; font-size: 11px; color: var(--interaction);
+  margin-bottom: 4px; font-weight: 600;
+}
+
+@media (max-width: 768px) {
+  .type-ramp-row { flex-direction: column; gap: 8px; }
+  .type-ramp-specs { flex-wrap: wrap; min-width: unset; }
+  .type-dodont-grid { grid-template-columns: 1fr; }
+  .type-decoration-grid { grid-template-columns: 1fr; }
+}
 
 /* ============ SPACING ============ */
 .spacing-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 12px; }
@@ -1117,6 +1225,12 @@ body.dark .ci-matrix th { background: rgba(255,255,255,0.03); }
     <a href="#overview" class="nav-link active">Overview</a>
     <a href="#colors" class="nav-link">Color Palette</a>
     <a href="#typography" class="nav-link">Typography</a>
+    <a href="#type-ramp" class="nav-link" style="padding-left:40px;font-size:13px">Type Ramp</a>
+    <a href="#type-hierarchy" class="nav-link" style="padding-left:40px;font-size:13px">Hierarchy</a>
+    <a href="#type-styles" class="nav-link" style="padding-left:40px;font-size:13px">Type Styles</a>
+    <a href="#type-decoration" class="nav-link" style="padding-left:40px;font-size:13px">Decoration</a>
+    <a href="#type-scaling" class="nav-link" style="padding-left:40px;font-size:13px">Scaling</a>
+    <a href="#type-examples" class="nav-link" style="padding-left:40px;font-size:13px">Examples</a>
     <a href="#spacing" class="nav-link">Spacing</a>
     <a href="#shape" class="nav-link">Shape / Radius</a>
     <a href="#elevation" class="nav-link">Elevation</a>
@@ -1208,22 +1322,382 @@ body.dark .ci-matrix th { background: rgba(255,255,255,0.03); }
 <!-- ====== TYPOGRAPHY ====== -->
 <section class="section" id="typography">
   <h2 class="section-title">Typography</h2>
-  <p class="section-desc">We pair <strong>New Spirit</strong> (serif) for display and headings with <strong>Inter</strong> (sans-serif) for body and UI text. New Spirit brings warmth and personality; Inter provides clarity and readability.</p>
+  <p class="section-desc">iGraal uses two typefaces: <strong>New Spirit</strong> (serif) for display and headlines, and <strong>Inter</strong> (sans-serif) for UI and body. This dual-font system creates personality through New Spirit's warmth while maintaining readability through Inter's precision.</p>
 
-  <h3 class="subsection-title">Fonts</h3>
-  <div style="display:flex;gap:24px;margin-bottom:32px;flex-wrap:wrap">
-    <div style="flex:1;min-width:240px;padding:24px;border:1px solid var(--divider);border-radius:12px;background:var(--white)">
-      <div style="font-family:var(--font-display);font-size:32px;font-weight:700;margin-bottom:8px">New Spirit</div>
-      <div style="font-size:13px;color:var(--text-secondary)">Display &amp; Headings — Serif, warm personality<br><em>Shown with Georgia fallback (licensed font)</em></div>
+  <!-- Fonts intro -->
+  <div style="display:flex;gap:24px;margin-bottom:40px;flex-wrap:wrap">
+    <div style="flex:1;min-width:260px;padding:32px;border:1px solid var(--divider);border-radius:16px;background:var(--white)">
+      <div style="font-family:var(--font-display);font-size:36px;font-weight:600;margin-bottom:8px;color:var(--text-primary)">New Spirit</div>
+      <div style="font-size:13px;color:var(--text-secondary);line-height:1.6">Serif · Display &amp; Headlines<br>Emotional, warm, personality. Used for page-level headings (H1–H3) and hero display text.<br><em style="opacity:0.6">Shown with Georgia fallback (licensed font)</em></div>
     </div>
-    <div style="flex:1;min-width:240px;padding:24px;border:1px solid var(--divider);border-radius:12px;background:var(--white)">
-      <div style="font-family:var(--font-body);font-size:32px;font-weight:700;margin-bottom:8px">Inter</div>
-      <div style="font-size:13px;color:var(--text-secondary)">Body &amp; UI — Sans-serif, modern, clean<br><em>Google Fonts</em></div>
+    <div style="flex:1;min-width:260px;padding:32px;border:1px solid var(--divider);border-radius:16px;background:var(--white)">
+      <div style="font-family:var(--font-body);font-size:36px;font-weight:600;margin-bottom:8px;color:var(--text-primary)">Inter</div>
+      <div style="font-size:13px;color:var(--text-secondary);line-height:1.6">Sans-serif · Body &amp; UI<br>Functional, clean, precise. Used for body copy, buttons, labels, captions, and all interactive elements.<br><em style="opacity:0.6">Google Fonts — Variable weight 100–900</em></div>
     </div>
   </div>
 
-  <h3 class="subsection-title">Type Scale</h3>
-  <div id="type-scale"></div>
+  <!-- ====== TYPE RAMP ====== -->
+  <h3 class="subsection-title" id="type-ramp">Type Ramp</h3>
+  <p style="font-size:14px;color:var(--text-secondary);margin-bottom:20px;">All 18 type styles shown at actual rendered size. The ramp defines every permissible text style in the system — no custom sizes.</p>
+  <div class="type-ramp-card" id="type-ramp-card">
+    <!-- Populated by JS -->
+  </div>
+
+  <!-- ====== TYPE HIERARCHY ====== -->
+  <h3 class="subsection-title" id="type-hierarchy">Type Hierarchy</h3>
+  <p style="font-size:14px;color:var(--text-secondary);margin-bottom:20px;">The two fonts create a clear visual hierarchy. New Spirit (serif) signals brand personality and importance. Inter (sans-serif) signals functional UI and readability.</p>
+
+  <div class="type-hierarchy-demo">
+    <div class="hier-label">Display Medium · New Spirit 32/40 · 600</div>
+    <div style="font-family:var(--font-display);font-size:32px;line-height:40px;font-weight:600;margin-bottom:24px;color:var(--text-primary)">iGraal pomaga Ci oszczędzać</div>
+
+    <div class="hier-label">Headline Large · New Spirit 28/36 · 600</div>
+    <div style="font-family:var(--font-display);font-size:28px;line-height:36px;font-weight:600;margin-bottom:20px;color:var(--text-primary)">Najlepsze oferty cashback</div>
+
+    <div class="hier-label">Title Medium · Inter 18/24 · 500</div>
+    <div style="font-family:var(--font-body);font-size:18px;line-height:24px;font-weight:500;margin-bottom:16px;color:var(--text-primary)">Popularne sklepy partnerskie</div>
+
+    <div class="hier-label">Body Medium · Inter 14/20 · 400</div>
+    <div style="font-family:var(--font-body);font-size:14px;line-height:20px;font-weight:400;margin-bottom:16px;color:var(--text-secondary)">Rób zakupy online i otrzymuj zwrot części wydanej kwoty. Cashback zostanie naliczony w ciągu 7 dni roboczych od daty zakupu.</div>
+
+    <div class="hier-label">Caption · Inter 12/16 · 700</div>
+    <div style="font-family:var(--font-body);font-size:12px;line-height:16px;font-weight:700;margin-bottom:16px;color:var(--text-secondary)">Zaktualizowano 2 godziny temu</div>
+
+    <div class="hier-label">Tag · Inter 12/16 · 600 · UPPERCASE</div>
+    <div style="font-family:var(--font-body);font-size:12px;line-height:16px;font-weight:600;text-transform:uppercase;letter-spacing:0.025em;color:var(--interaction)">CASHBACK · ELEKTRONIKA · KOD RABATOWY</div>
+  </div>
+
+  <!-- Do / Don't -->
+  <div class="type-dodont-grid">
+    <div class="type-dodont-card do">
+      <h4>✅ Do</h4>
+      <ul>
+        <li>Use New Spirit only for H1–H3 level headings</li>
+        <li>Use Inter for all interactive elements (buttons, links, inputs)</li>
+        <li>Always use a style from the defined type ramp</li>
+        <li>Match each style's designated weight exactly</li>
+      </ul>
+    </div>
+    <div class="type-dodont-card dont">
+      <h4>❌ Don't</h4>
+      <ul>
+        <li>Use New Spirit for body copy or UI elements</li>
+        <li>Mix weights randomly — each style has a specific weight</li>
+        <li>Use custom font sizes outside the type ramp</li>
+        <li>Apply bold to Body styles (they are always weight 400)</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ====== TYPE STYLES ====== -->
+  <h3 class="subsection-title" id="type-styles">Type Styles</h3>
+  <p style="font-size:14px;color:var(--text-secondary);margin-bottom:20px;">Each style has a specific purpose. Use the right style for the right context — never improvise.</p>
+
+  <!-- Display -->
+  <div class="type-style-card">
+    <div class="style-header">
+      <span class="style-name">Display</span>
+      <span class="style-specs">New Spirit · 32px · weight 600 · line-height 40px</span>
+    </div>
+    <p class="style-desc">Display is the largest and most expressive style. Used for hero section headlines and primary page titles. Creates immediate visual impact with the serif warmth of New Spirit.</p>
+    <div class="style-preview">
+      <div style="font-family:var(--font-display);font-size:32px;line-height:40px;font-weight:600;color:var(--text-primary)">Cashback, który się opłaca</div>
+    </div>
+  </div>
+
+  <!-- Headlines -->
+  <div class="type-style-card">
+    <div class="style-header">
+      <span class="style-name">Headlines</span>
+      <span class="style-specs">New Spirit · 22–28px · weight 600</span>
+    </div>
+    <p class="style-desc">Headlines come in Large (28px) and Medium (22px). Used for section titles, feature headers, and promotional callouts. The serif font adds brand personality to structural hierarchy.</p>
+    <div class="style-preview" style="display:flex;flex-direction:column;gap:12px">
+      <div>
+        <div style="font-size:11px;color:var(--text-secondary);font-family:monospace;margin-bottom:4px">Headline Large · 28/36</div>
+        <div style="font-family:var(--font-display);font-size:28px;line-height:36px;font-weight:600;color:var(--text-primary)">Najlepsze oferty cashback</div>
+      </div>
+      <div>
+        <div style="font-size:11px;color:var(--text-secondary);font-family:monospace;margin-bottom:4px">Headline Medium · 22/32</div>
+        <div style="font-family:var(--font-display);font-size:22px;line-height:32px;font-weight:600;color:var(--text-primary)">Zarejestruj się i zarabiaj</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Titles -->
+  <div class="type-style-card">
+    <div class="style-header">
+      <span class="style-name">Titles</span>
+      <span class="style-specs">Inter · 16–18px · weight 500–700</span>
+    </div>
+    <p class="style-desc">Titles come in Large (18px/700), Medium (18px/500), and Small (16px/600). Used for card headings, component labels, and navigation items. The switch from serif to sans-serif signals a shift from brand expression to functional UI.</p>
+    <div class="style-preview" style="display:flex;flex-direction:column;gap:12px">
+      <div>
+        <div style="font-size:11px;color:var(--text-secondary);font-family:monospace;margin-bottom:4px">Title Large · 18/24 · 700</div>
+        <div style="font-family:var(--font-body);font-size:18px;line-height:24px;font-weight:700;color:var(--text-primary)">Jak działa cashback?</div>
+      </div>
+      <div>
+        <div style="font-size:11px;color:var(--text-secondary);font-family:monospace;margin-bottom:4px">Title Medium · 18/24 · 500</div>
+        <div style="font-family:var(--font-body);font-size:18px;line-height:24px;font-weight:500;color:var(--text-primary)">Popularne sklepy partnerskie</div>
+      </div>
+      <div>
+        <div style="font-size:11px;color:var(--text-secondary);font-family:monospace;margin-bottom:4px">Title Small · 16/24 · 600</div>
+        <div style="font-family:var(--font-body);font-size:16px;line-height:24px;font-weight:600;color:var(--text-primary)">Warunki i regulamin</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Subtitles -->
+  <div class="type-style-card">
+    <div class="style-header">
+      <span class="style-name">Subtitles</span>
+      <span class="style-specs">Inter · 12–18px · weight 700</span>
+    </div>
+    <p class="style-desc">Subtitle 1 (18px/700) and Subtitle 2 (12px/700). Used for supporting text below titles, section descriptions, and secondary headings. Bold weight provides emphasis without increasing size.</p>
+    <div class="style-preview" style="display:flex;flex-direction:column;gap:12px">
+      <div>
+        <div style="font-size:11px;color:var(--text-secondary);font-family:monospace;margin-bottom:4px">Subtitle 1 · 18/24 · 700</div>
+        <div style="font-family:var(--font-body);font-size:18px;line-height:24px;font-weight:700;color:var(--text-primary)">Twoje oszczędności</div>
+      </div>
+      <div>
+        <div style="font-size:11px;color:var(--text-secondary);font-family:monospace;margin-bottom:4px">Subtitle 2 · 12/16 · 700</div>
+        <div style="font-family:var(--font-body);font-size:12px;line-height:16px;font-weight:700;color:var(--text-primary)">KATEGORIA</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Body -->
+  <div class="type-style-card">
+    <div class="style-header">
+      <span class="style-name">Body</span>
+      <span class="style-specs">Inter · 12–16px · weight 400</span>
+    </div>
+    <p class="style-desc">Body Large (16px), Body Medium (14px), and Body Small (12px). The workhorse of the type system. Used for paragraphs, descriptions, form labels, and general content. Always regular weight — never bold body copy.</p>
+    <div class="style-preview" style="display:flex;flex-direction:column;gap:12px">
+      <div>
+        <div style="font-size:11px;color:var(--text-secondary);font-family:monospace;margin-bottom:4px">Body Large · 16/24 · 400</div>
+        <div style="font-family:var(--font-body);font-size:16px;line-height:24px;font-weight:400;color:var(--text-primary)">Rób zakupy online i otrzymuj zwrot części wydanej kwoty.</div>
+      </div>
+      <div>
+        <div style="font-size:11px;color:var(--text-secondary);font-family:monospace;margin-bottom:4px">Body Medium · 14/20 · 400</div>
+        <div style="font-family:var(--font-body);font-size:14px;line-height:20px;font-weight:400;color:var(--text-primary)">Cashback zostanie naliczony w ciągu 7 dni roboczych.</div>
+      </div>
+      <div>
+        <div style="font-size:11px;color:var(--text-secondary);font-family:monospace;margin-bottom:4px">Body Small · 12/16 · 400</div>
+        <div style="font-family:var(--font-body);font-size:12px;line-height:16px;font-weight:400;color:var(--text-secondary)">Oferta ważna do 26.03.2026. Szczegóły w regulaminie.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Caption -->
+  <div class="type-style-card">
+    <div class="style-header">
+      <span class="style-name">Caption</span>
+      <span class="style-specs">Inter · 12–24px · weight 700</span>
+    </div>
+    <p class="style-desc">Used for labels, timestamps, metadata, and small-but-important text. Bold weight ensures readability at small size. Caption Big (24px) and Caption Small (18px) variants exist for featured metrics and numbers.</p>
+    <div class="style-preview" style="display:flex;flex-direction:column;gap:12px">
+      <div>
+        <div style="font-size:11px;color:var(--text-secondary);font-family:monospace;margin-bottom:4px">Caption 1 Big · 24/32 · 700</div>
+        <div style="font-family:var(--font-body);font-size:24px;line-height:32px;font-weight:700;color:var(--text-primary)">1 247,50 zł</div>
+      </div>
+      <div>
+        <div style="font-size:11px;color:var(--text-secondary);font-family:monospace;margin-bottom:4px">Caption 1 Small · 18/24 · 700</div>
+        <div style="font-family:var(--font-body);font-size:18px;line-height:24px;font-weight:700;color:var(--text-primary)">326 sklepów</div>
+      </div>
+      <div>
+        <div style="font-size:11px;color:var(--text-secondary);font-family:monospace;margin-bottom:4px">Caption · 12/16 · 700</div>
+        <div style="font-family:var(--font-body);font-size:12px;line-height:16px;font-weight:700;color:var(--text-secondary)">Zaktualizowano 2 godziny temu</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Button -->
+  <div class="type-style-card">
+    <div class="style-header">
+      <span class="style-name">Button</span>
+      <span class="style-specs">Inter · 16px · weight 600 · line-height 24px</span>
+    </div>
+    <p class="style-desc">Dedicated button text style. Semi-bold weight provides clear actionability. Never used outside of interactive button elements.</p>
+    <div class="style-preview">
+      <div style="font-family:var(--font-body);font-size:16px;line-height:24px;font-weight:600;color:var(--interaction)">Dołącz i zyskaj 12zł</div>
+    </div>
+  </div>
+
+  <!-- Overline -->
+  <div class="type-style-card">
+    <div class="style-header">
+      <span class="style-name">Overline</span>
+      <span class="style-specs">Inter · 12px · weight 400 · UPPERCASE · 0.025em tracking</span>
+    </div>
+    <p class="style-desc">Used above headings for category labels or section identifiers. Uppercase with letter-spacing creates a distinct visual signal without competing with the headline below it.</p>
+    <div class="style-preview">
+      <div style="font-family:var(--font-body);font-size:12px;line-height:16px;font-weight:400;text-transform:uppercase;letter-spacing:0.025em;color:var(--text-secondary)">NOWA OFERTA</div>
+    </div>
+  </div>
+
+  <!-- Tag -->
+  <div class="type-style-card">
+    <div class="style-header">
+      <span class="style-name">Tag</span>
+      <span class="style-specs">Inter · 12px · weight 600 · UPPERCASE · 0.025em tracking</span>
+    </div>
+    <p class="style-desc">Status labels and badges. Semi-bold uppercase with tight tracking. Used for offer types (CASHBACK, KOD), status indicators, and category filters.</p>
+    <div class="style-preview" style="display:flex;gap:12px;flex-wrap:wrap">
+      <span style="font-family:var(--font-body);font-size:12px;line-height:16px;font-weight:600;text-transform:uppercase;letter-spacing:0.025em;background:var(--primary-light);color:var(--interaction);padding:4px 10px;border-radius:4px">CASHBACK</span>
+      <span style="font-family:var(--font-body);font-size:12px;line-height:16px;font-weight:600;text-transform:uppercase;letter-spacing:0.025em;background:var(--primary-light);color:var(--interaction);padding:4px 10px;border-radius:4px">KOD RABATOWY</span>
+      <span style="font-family:var(--font-body);font-size:12px;line-height:16px;font-weight:600;text-transform:uppercase;letter-spacing:0.025em;background:var(--primary-light);color:var(--interaction);padding:4px 10px;border-radius:4px">ELEKTRONIKA</span>
+    </div>
+  </div>
+
+  <!-- Chip -->
+  <div class="type-style-card">
+    <div class="style-header">
+      <span class="style-name">Chip</span>
+      <span class="style-specs">Inter · 14px · weight 600 · UPPERCASE · 0.05em tracking</span>
+    </div>
+    <p class="style-desc">Interactive filter elements. Wider letter-spacing than Tags for better readability at the slightly larger size. Used in category chip groups and filter rows.</p>
+    <div class="style-preview" style="display:flex;gap:8px;flex-wrap:wrap">
+      <span style="font-family:var(--font-body);font-size:14px;line-height:20px;font-weight:600;text-transform:uppercase;letter-spacing:0.05em;border:1px solid var(--divider);padding:8px 16px;border-radius:24px;color:var(--text-primary)">CASHBACK 10%</span>
+      <span style="font-family:var(--font-body);font-size:14px;line-height:20px;font-weight:600;text-transform:uppercase;letter-spacing:0.05em;border:1px solid var(--interaction);background:rgba(202,62,2,0.06);padding:8px 16px;border-radius:24px;color:var(--interaction)">MODA</span>
+      <span style="font-family:var(--font-body);font-size:14px;line-height:20px;font-weight:600;text-transform:uppercase;letter-spacing:0.05em;border:1px solid var(--divider);padding:8px 16px;border-radius:24px;color:var(--text-primary)">ELEKTRONIKA</span>
+    </div>
+  </div>
+
+  <!-- ====== DECORATION STYLES ====== -->
+  <h3 class="subsection-title" id="type-decoration">Decoration Styles</h3>
+  <p style="font-size:14px;color:var(--text-secondary);margin-bottom:20px;">Text decoration patterns used across the interface.</p>
+
+  <div class="type-decoration-grid">
+    <div class="type-decoration-card">
+      <h4>Link</h4>
+      <p>Always Inter, inherits parent size. Color: <code style="background:var(--surface);padding:2px 6px;border-radius:4px;font-size:12px">#CA3E02</code> (interaction orange). No underline by default, underline on hover.</p>
+      <div style="font-family:var(--font-body);font-size:14px;line-height:20px">
+        Sprawdź ofertę na <span style="color:var(--interaction);cursor:pointer;text-decoration:none">Allegro</span> i <span style="color:var(--interaction);cursor:pointer;text-decoration:underline">zobacz regulamin</span>
+      </div>
+    </div>
+    <div class="type-decoration-card">
+      <h4>Strikethrough</h4>
+      <p>Used for original prices before discounts. Regular weight, muted color <code style="background:var(--surface);padding:2px 6px;border-radius:4px;font-size:12px">#666666</code>.</p>
+      <div style="font-family:var(--font-body);font-size:16px;line-height:24px;display:flex;align-items:baseline;gap:8px">
+        <span style="text-decoration:line-through;color:#666666;font-weight:400">249,99 zł</span>
+        <span style="color:var(--interaction);font-weight:700">199,99 zł</span>
+      </div>
+    </div>
+    <div class="type-decoration-card">
+      <h4>Truncation</h4>
+      <p>Text overflow with ellipsis. Applied to card titles and descriptions that exceed container width.</p>
+      <div style="font-family:var(--font-body);font-size:14px;line-height:20px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:220px;color:var(--text-primary)">Najlepsza oferta cashback na elektronikę i sprzęt AGD w sklepie internetowym</div>
+    </div>
+  </div>
+
+  <!-- ====== RESPONSIVE SCALING ====== -->
+  <h3 class="subsection-title" id="type-scaling">Responsive Scaling</h3>
+  <p style="font-size:14px;color:var(--text-secondary);margin-bottom:20px;">iGraal's type ramp is <strong>fixed</strong> — the same sizes are used across all breakpoints. Layout adapts through container width changes, not type scaling. This is a simpler approach than responsive type systems like eBay's.</p>
+
+  <table class="type-scaling-table">
+    <thead>
+      <tr>
+        <th>Context</th>
+        <th>Mobile (&lt;768px)</th>
+        <th>Desktop (≥768px)</th>
+        <th>Behaviour</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td style="font-family:var(--font-body);font-weight:600">Page title (Display)</td>
+        <td>32px / 40px</td>
+        <td>32px / 40px</td>
+        <td style="font-family:var(--font-body);font-size:12px;color:var(--text-secondary)">Fixed</td>
+      </tr>
+      <tr>
+        <td style="font-family:var(--font-body);font-weight:600">Section title (Headline L)</td>
+        <td>28px / 36px</td>
+        <td>28px / 36px</td>
+        <td style="font-family:var(--font-body);font-size:12px;color:var(--text-secondary)">Fixed</td>
+      </tr>
+      <tr>
+        <td style="font-family:var(--font-body);font-weight:600">Card title (Headline M)</td>
+        <td>22px / 32px</td>
+        <td>22px / 32px</td>
+        <td style="font-family:var(--font-body);font-size:12px;color:var(--text-secondary)">Fixed</td>
+      </tr>
+      <tr>
+        <td style="font-family:var(--font-body);font-weight:600">Body</td>
+        <td>14px / 20px</td>
+        <td>14px / 20px</td>
+        <td style="font-family:var(--font-body);font-size:12px;color:var(--text-secondary)">Fixed</td>
+      </tr>
+      <tr>
+        <td style="font-family:var(--font-body);font-weight:600">Container width</td>
+        <td>100% – 32px</td>
+        <td>max-width: 1200px</td>
+        <td style="font-family:var(--font-body);font-size:12px;color:var(--text-secondary)">Responsive</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div style="background:var(--surface);border-radius:12px;padding:16px 20px;margin-bottom:32px;font-size:13px;line-height:1.6;color:var(--text-secondary)">
+    <strong style="color:var(--text-primary)">💡 Note:</strong> No responsive scaling tokens were found in iGraal's CSS variables. The type system remains consistent across breakpoints. Readability on mobile is maintained through line-height ratios and container padding, not by scaling font sizes.
+  </div>
+
+  <!-- ====== USAGE EXAMPLES ====== -->
+  <h3 class="subsection-title" id="type-examples">Usage Examples</h3>
+  <p style="font-size:14px;color:var(--text-secondary);margin-bottom:20px;">Real-world examples of the type system in action across different page contexts.</p>
+
+  <!-- Example 1: Homepage Hero -->
+  <div class="type-usage-card" data-label="Homepage Hero">
+    <div class="type-usage-label">Display Medium</div>
+    <div style="font-family:var(--font-display);font-size:32px;line-height:40px;font-weight:600;color:var(--text-primary);margin-bottom:12px">iGraal pomaga Ci oszczędzać, gdy robisz zakupy online</div>
+    <div class="type-usage-label">Body Large</div>
+    <div style="font-family:var(--font-body);font-size:16px;line-height:24px;font-weight:400;color:var(--text-secondary);margin-bottom:16px">Od sklepów spożywczych po podróże — zyskuj cashback przy każdych zakupach w ponad 1600 sklepach.</div>
+    <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap">
+      <div>
+        <div class="type-usage-label">Button</div>
+        <span style="font-family:var(--font-body);font-size:16px;line-height:24px;font-weight:600;background:var(--interaction);color:white;padding:12px 32px;border-radius:48px;display:inline-block">Dołącz i zyskaj 12zł</span>
+      </div>
+      <div>
+        <div class="type-usage-label">Caption</div>
+        <span style="font-family:var(--font-body);font-size:12px;line-height:16px;font-weight:700;color:var(--text-secondary)">Zawsze za darmo</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Example 2: Offer Card -->
+  <div class="type-usage-card" data-label="Offer Card">
+    <div style="max-width:320px;border:1px solid var(--divider);border-radius:16px;padding:24px;background:var(--white)">
+      <div class="type-usage-label">Tag</div>
+      <div style="font-family:var(--font-body);font-size:12px;line-height:16px;font-weight:600;text-transform:uppercase;letter-spacing:0.025em;color:var(--interaction);margin-bottom:8px">CASHBACK</div>
+      <div class="type-usage-label">Title Medium</div>
+      <div style="font-family:var(--font-body);font-size:18px;line-height:24px;font-weight:500;color:var(--text-primary);margin-bottom:4px">Allegro</div>
+      <div class="type-usage-label">Headline Medium</div>
+      <div style="font-family:var(--font-display);font-size:22px;line-height:32px;font-weight:600;color:var(--text-primary);margin-bottom:12px">6% cashbacku</div>
+      <div class="type-usage-label">Button</div>
+      <div style="font-family:var(--font-body);font-size:16px;line-height:24px;font-weight:600;background:var(--interaction);color:white;padding:12px 24px;border-radius:48px;text-align:center;margin-bottom:8px">Aktywuj cashback</div>
+      <div class="type-usage-label">Body Small</div>
+      <div style="font-family:var(--font-body);font-size:12px;line-height:16px;font-weight:400;color:var(--text-secondary)">Do 26.03.2026</div>
+    </div>
+  </div>
+
+  <!-- Example 3: FAQ Section -->
+  <div class="type-usage-card" data-label="FAQ Section">
+    <div class="type-usage-label">Overline</div>
+    <div style="font-family:var(--font-body);font-size:12px;line-height:16px;font-weight:400;text-transform:uppercase;letter-spacing:0.025em;color:var(--text-secondary);margin-bottom:8px">POMOC</div>
+    <div class="type-usage-label">Display Medium</div>
+    <div style="font-family:var(--font-display);font-size:32px;line-height:40px;font-weight:600;color:var(--text-primary);margin-bottom:24px">Jak działa cashback w iGraal?</div>
+    <div style="border:1px solid var(--divider);border-radius:12px;padding:20px;margin-bottom:8px">
+      <div class="type-usage-label">Title Medium</div>
+      <div style="font-family:var(--font-body);font-size:18px;line-height:24px;font-weight:500;color:var(--text-primary);margin-bottom:8px">Kiedy otrzymam cashback?</div>
+      <div class="type-usage-label">Body Medium</div>
+      <div style="font-family:var(--font-body);font-size:14px;line-height:20px;font-weight:400;color:var(--text-secondary)">Cashback zostanie naliczony w ciągu 7 dni roboczych od daty zakupu. Status możesz sprawdzić w zakładce "Moje zakupy".</div>
+    </div>
+    <div class="type-usage-label">Caption</div>
+    <div style="font-family:var(--font-body);font-size:12px;line-height:16px;font-weight:700;color:var(--text-secondary)">Sprawdź warunki</div>
+  </div>
+
+  <!-- Keep old type-scale div for backward compat, hidden -->
+  <div id="type-scale" style="display:none"></div>
 </section>
 
 <!-- ====== SPACING ====== -->
@@ -4087,18 +4561,21 @@ const semanticColors = [
 ];
 
 const typeScale = [
-  { name: 'H1', family: 'display', size: '32px', lh: '40px', weight: 600, sample: 'Cashback, który się opłaca' },
-  { name: 'H2', family: 'display', size: '28px', lh: '36px', weight: 600, sample: 'Najlepsze oferty cashback' },
-  { name: 'H3', family: 'display', size: '22px', lh: '32px', weight: 600, sample: 'Zarejestruj się i zarabiaj' },
-  { name: 'H4', family: 'body', size: '18px', lh: '24px', weight: 500, sample: 'Popularne sklepy partnerskie' },
-  { name: 'H5', family: 'body', size: '18px', lh: '24px', weight: 700, sample: 'Jak działa cashback?' },
-  { name: 'H6', family: 'body', size: '16px', lh: '24px', weight: 600, sample: 'Warunki i regulamin' },
+  { name: 'Display Medium', family: 'display', size: '32px', lh: '40px', weight: 600, sample: 'Cashback, który się opłaca' },
+  { name: 'Headline Large', family: 'display', size: '28px', lh: '36px', weight: 600, sample: 'Najlepsze oferty cashback' },
+  { name: 'Headline Medium', family: 'display', size: '22px', lh: '32px', weight: 600, sample: 'Zarejestruj się i zarabiaj' },
+  { name: 'Title Large', family: 'body', size: '18px', lh: '24px', weight: 700, sample: 'Jak działa cashback?' },
+  { name: 'Title Medium', family: 'body', size: '18px', lh: '24px', weight: 500, sample: 'Popularne sklepy partnerskie' },
+  { name: 'Title Small', family: 'body', size: '16px', lh: '24px', weight: 600, sample: 'Warunki i regulamin' },
   { name: 'Subtitle 1', family: 'body', size: '18px', lh: '24px', weight: 700, sample: 'Twoje oszczędności' },
   { name: 'Subtitle 2', family: 'body', size: '12px', lh: '16px', weight: 700, sample: 'KATEGORIA' },
-  { name: 'Body 1', family: 'body', size: '16px', lh: '24px', weight: 400, sample: 'Rób zakupy online i otrzymuj zwrot części wydanej kwoty.' },
-  { name: 'Body 2', family: 'body', size: '14px', lh: '20px', weight: 400, sample: 'Cashback zostanie naliczony w ciągu 7 dni roboczych.' },
-  { name: 'Caption', family: 'body', size: '12px', lh: '16px', weight: 700, sample: 'Zaktualizowano 2 godziny temu' },
+  { name: 'Body Large', family: 'body', size: '16px', lh: '24px', weight: 400, sample: 'Rób zakupy online i otrzymuj zwrot części wydanej kwoty.' },
+  { name: 'Body Medium', family: 'body', size: '14px', lh: '20px', weight: 400, sample: 'Cashback zostanie naliczony w ciągu 7 dni roboczych.' },
+  { name: 'Body Small', family: 'body', size: '12px', lh: '16px', weight: 400, sample: 'Oferta ważna do 26.03.2026. Szczegóły w regulaminie.' },
   { name: 'Button', family: 'body', size: '16px', lh: '24px', weight: 600, sample: 'Dołącz i zyskaj' },
+  { name: 'Caption', family: 'body', size: '12px', lh: '16px', weight: 700, sample: 'Zaktualizowano 2 godziny temu' },
+  { name: 'Caption 1 Big', family: 'body', size: '24px', lh: '32px', weight: 700, sample: '1 247,50 zł' },
+  { name: 'Caption 1 Small', family: 'body', size: '18px', lh: '24px', weight: 700, sample: '326 sklepów' },
   { name: 'Overline', family: 'body', size: '12px', lh: '16px', weight: 400, sample: 'NOWA OFERTA', extra: 'text-transform:uppercase;letter-spacing:0.025em' },
   { name: 'Tag', family: 'body', size: '12px', lh: '16px', weight: 600, sample: 'ELEKTRONIKA', extra: 'text-transform:uppercase;letter-spacing:0.025em' },
   { name: 'Chip', family: 'body', size: '14px', lh: '20px', weight: 600, sample: 'CASHBACK 10%', extra: 'text-transform:uppercase;letter-spacing:0.05em' },
@@ -4188,20 +4665,45 @@ function renderSemantic() {
 }
 
 function renderTypeScale() {
+  // Render into the dark ramp card
+  const rampEl = document.getElementById('type-ramp-card');
+  if (rampEl) {
+    rampEl.innerHTML = typeScale.map(t => {
+      const ff = t.family === 'display' ? 'var(--font-display)' : 'var(--font-body)';
+      const ffName = t.family === 'display' ? 'New Spirit' : 'Inter';
+      const extra = t.extra || '';
+      const ls = t.extra && t.extra.includes('letter-spacing') ? t.extra.match(/letter-spacing:([^;]+)/)[1] : '0';
+      const transform = t.extra && t.extra.includes('uppercase') ? 'UPPERCASE' : '—';
+      return `
+      <div class="type-ramp-row">
+        <span class="type-ramp-name">${t.name}</span>
+        <span class="type-ramp-sample" style="font-family:${ff};font-size:${t.size};line-height:${t.lh};font-weight:${t.weight};${extra}">${t.sample}</span>
+        <span class="type-ramp-specs">
+          <span>${ffName}</span>
+          <span>${t.size} / ${t.lh}</span>
+          <span>w${t.weight}</span>
+          <span>${transform}</span>
+        </span>
+      </div>`;
+    }).join('');
+  }
+  // Also render the hidden legacy div for backward compat
   const el = document.getElementById('type-scale');
-  el.innerHTML = typeScale.map(t => {
-    const ff = t.family === 'display' ? 'var(--font-display)' : 'var(--font-body)';
-    const ffName = t.family === 'display' ? 'New Spirit' : 'Inter';
-    const extra = t.extra || '';
-    return `
-    <div class="type-example">
-      <div class="type-preview" style="font-family:${ff};font-size:${t.size};line-height:${t.lh};font-weight:${t.weight};${extra}">${t.sample}</div>
-      <div class="type-meta">
-        <strong>${t.name}</strong><br>
-        ${ffName} · ${t.size}/${t.lh} · ${t.weight}
-      </div>
-    </div>`;
-  }).join('');
+  if (el) {
+    el.innerHTML = typeScale.map(t => {
+      const ff = t.family === 'display' ? 'var(--font-display)' : 'var(--font-body)';
+      const ffName = t.family === 'display' ? 'New Spirit' : 'Inter';
+      const extra = t.extra || '';
+      return `
+      <div class="type-example">
+        <div class="type-preview" style="font-family:${ff};font-size:${t.size};line-height:${t.lh};font-weight:${t.weight};${extra}">${t.sample}</div>
+        <div class="type-meta">
+          <strong>${t.name}</strong><br>
+          ${ffName} · ${t.size}/${t.lh} · ${t.weight}
+        </div>
+      </div>`;
+    }).join('');
+  }
 }
 
 function renderSpacing() {
